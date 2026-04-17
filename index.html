@@ -109,6 +109,12 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px
 .browse-nl{color:var(--blue);margin-bottom:6px;}
 .browse-meta{font-size:0.75rem;color:var(--text2);}
 
+/* ADD FORM */
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:0.85rem;font-weight:700;color:var(--text2);margin-bottom:6px;text-transform:uppercase;}
+.form-input,.form-select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;width:100%;font-family:inherit;}
+.form-input:focus,.form-select:focus{outline:none;border-color:var(--blue);}
+
 /* RESPONSIVE */
 @media(max-width:600px){
 .deck-table-head{font-size:0.7rem;padding:8px 12px;}
@@ -217,8 +223,8 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px
   <p class="page-sub">Browse door alle 100 woorden</p>
   
   <div class="card">
-    <label style="display:block;font-size:0.85rem;font-weight:700;color:var(--text2);margin-bottom:6px;text-transform:uppercase;">Filter op deck:</label>
-    <select id="browse-deck-filter" onchange="filterBrowse()" style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;width:100%;">
+    <label class="form-label">Filter op deck:</label>
+    <select id="browse-deck-filter" class="form-select" onchange="filterBrowse()">
       <option value="">Alle decks</option>
     </select>
   </div>
@@ -226,7 +232,7 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px
   <div id="browse-list" class="browse-list"></div>
 </div>
 
-<!-- HELP PAGE -->
+<!-- HELP PAGE (NEW in v0.2) -->
 <div id="page-help" class="page">
   <h1 class="page-title">Help & Instructies</h1>
   <p class="page-sub">Alles wat je moet weten over PolyCards Ukraine</p>
@@ -392,9 +398,25 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px
 
 <script>
 // ════════════════════════════════════════
+// DECK ICONS
+// ════════════════════════════════════════
+const DECK_ICONS = {
+  'Dieren': '🐾',
+  'Eten': '🍎',
+  'Familie': '👨‍👩‍👧',
+  'Huis': '🏠',
+  'Kleuren': '🎨',
+  'Getallen': '🔢',
+  'Tijd': '📅',
+  'Weer': '🌦️',
+  'Werk': '💼',
+  'Basis': '✅'
+};
+
+// ════════════════════════════════════════
 // DATA: 100 Oekraïense woorden, 10 thema's
 // ════════════════════════════════════════
-const WORDS = [
+const defaultWords = [
   // 🐾 Dieren (10)
   {ukr:'собака',nl:'hond',deck:'Dieren'},{ukr:'кіт',nl:'kat',deck:'Dieren'},
   {ukr:'птах',nl:'vogel',deck:'Dieren'},{ukr:'риба',nl:'vis',deck:'Dieren'},
@@ -479,26 +501,10 @@ let isFlipped = false;
 // ════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════
-function load() {
-  const c = localStorage.getItem('polycards_ukraine_cards');
-  cards = c ? JSON.parse(c) : [];
+function init() {
+  loadCards();
   
-  // Eerste keer: laad standaard woorden
-  if (cards.length === 0) {
-    cards = WORDS.map((w,i) => ({
-      id: i+1,
-      ukr: w.ukr,
-      nl: w.nl,
-      deck: w.deck,
-      interval: 0,
-      easeFactor: 2.5,
-      dueDate: Date.now(),
-      reviews: 0
-    }));
-    save();
-  }
-  
-  // Check if first time user
+  // Check if first time user (NEW in v0.2)
   const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
   if (!hasSeenWelcome) {
     document.getElementById('welcome-screen').style.display = 'flex';
@@ -511,20 +517,46 @@ function load() {
   populateDeckSelect();
 }
 
-function save() {
-  localStorage.setItem('polycards_ukraine_cards', JSON.stringify(cards));
+function loadCards() {
+  const saved = localStorage.getItem('ukrcards_cards');
+  if (saved) {
+    cards = JSON.parse(saved);
+  } else {
+    // First time: initialize with default words
+    cards = defaultWords.map((w, i) => ({
+      id: i + 1,
+      ukr: w.ukr,
+      nl: w.nl,
+      deck: w.deck,
+      interval: 0,
+      easeFactor: 2.5,
+      dueDate: Date.now(),
+      reviews: 0
+    }));
+    saveCards();
+  }
+}
+
+function saveCards() {
+  localStorage.setItem('ukrcards_cards', JSON.stringify(cards));
 }
 
 function updateDecks() {
   decks = {};
   cards.forEach(c => {
-    if (!decks[c.deck]) decks[c.deck] = {name:c.deck,new:0,review:0,total:0};
+    if (!decks[c.deck]) {
+      decks[c.deck] = { name: c.deck, new: 0, review: 0, total: 0 };
+    }
     decks[c.deck].total++;
-    if (c.reviews === 0) decks[c.deck].new++;
-    else if (c.dueDate <= Date.now()) decks[c.deck].review++;
+    if (c.reviews === 0) {
+      decks[c.deck].new++;
+    } else if (c.dueDate <= Date.now()) {
+      decks[c.deck].review++;
+    }
   });
 }
 
+// NEW in v0.2: Close welcome screen
 function closeWelcome() {
   localStorage.setItem('polycards_ukraine_welcome', 'true');
   document.getElementById('welcome-screen').style.display = 'none';
@@ -534,20 +566,19 @@ function closeWelcome() {
 // NAVIGATION
 // ════════════════════════════════════════
 function showPage(page) {
+  // Hide all pages
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   
-  document.getElementById('page-'+page).classList.add('active');
-  document.querySelectorAll('.nav-tab').forEach(t => {
-    const text = t.textContent.toLowerCase();
-    if ((page === 'decks' && text.includes('decks')) ||
-        (page === 'browse' && text.includes('browse')) ||
-        (page === 'help' && text.includes('help')) ||
-        (page === 'stats' && text.includes('stats'))) {
-      t.classList.add('active');
-    }
+  // Show selected page
+  document.getElementById('page-' + page).classList.add('active');
+  
+  // Update nav tabs
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.classList.remove('active');
   });
+  event.target.classList.add('active');
   
+  // Refresh data if needed
   if (page === 'browse') renderBrowse();
   if (page === 'stats') renderStats();
 }
@@ -561,10 +592,11 @@ function renderDecks() {
   list.innerHTML = '';
   
   Object.values(decks).forEach(d => {
+    const icon = DECK_ICONS[d.name] || '📚';
     const row = document.createElement('div');
     row.className = 'deck-row';
     row.innerHTML = `
-      <div class="deck-name">${d.name}</div>
+      <div class="deck-name">${icon} ${d.name}</div>
       <div class="deck-stat">${d.new}</div>
       <div class="deck-stat">${d.review}</div>
       <div class="deck-stat">${d.total}</div>
@@ -581,14 +613,17 @@ function renderDecks() {
 // ════════════════════════════════════════
 function startStudy(deckName) {
   currentDeck = deckName;
-  studyQueue = cards.filter(c => c.deck === deckName && (c.reviews === 0 || c.dueDate <= Date.now()));
+  studyQueue = cards.filter(c => 
+    c.deck === deckName && (c.reviews === 0 || c.dueDate <= Date.now())
+  );
   
   if (studyQueue.length === 0) {
-    alert('Geen kaarten om te studeren! 🎉');
+    alert('🎉 Geen kaarten om te studeren in dit deck!');
     return;
   }
   
-  document.getElementById('study-title').textContent = deckName;
+  const icon = DECK_ICONS[deckName] || '📚';
+  document.getElementById('study-title').textContent = `${icon} ${deckName}`;
   document.getElementById('study-subtitle').textContent = `${studyQueue.length} kaarten te studeren`;
   
   showPage('study');
@@ -597,7 +632,13 @@ function startStudy(deckName) {
 
 function nextCard() {
   if (studyQueue.length === 0) {
-    document.getElementById('card-content').innerHTML = '<div style="text-align:center;"><h2>🎉 Klaar!</h2><p style="color:var(--text2);margin-top:10px;">Alle kaarten bestudeerd!</p></div>';
+    // Done!
+    document.getElementById('card-content').innerHTML = `
+      <div style="text-align:center;">
+        <h2>🎉 Klaar!</h2>
+        <p style="color:var(--text2);margin-top:10px;">Alle kaarten bestudeerd!</p>
+      </div>
+    `;
     document.getElementById('study-buttons').style.display = 'none';
     renderDecks();
     renderStats();
@@ -607,7 +648,9 @@ function nextCard() {
   currentCard = studyQueue[0];
   isFlipped = false;
   
-  document.getElementById('card-content').innerHTML = `<div class="flashcard-front">${currentCard.ukr}</div>`;
+  document.getElementById('card-content').innerHTML = `
+    <div class="flashcard-front">${currentCard.ukr}</div>
+  `;
   document.getElementById('study-buttons').style.display = 'none';
 }
 
@@ -617,15 +660,19 @@ function flipCard() {
   isFlipped = !isFlipped;
   
   if (isFlipped) {
+    // Show back
     document.getElementById('card-content').innerHTML = `
       <div class="flashcard-back">${currentCard.nl}</div>
       <div class="flashcard-hint">${currentCard.ukr}</div>
-      <button class="speak-btn" onclick="speak('${currentCard.ukr}','uk-UA');event.stopPropagation();">🔊 Oekraïens</button>
-      <button class="speak-btn" onclick="speak('${currentCard.nl}','nl-NL');event.stopPropagation();">🔊 Nederlands</button>
+      <button class="speak-btn" onclick="speak('${currentCard.ukr}', 'uk-UA'); event.stopPropagation();">🔊 Oekraïens</button>
+      <button class="speak-btn" onclick="speak('${currentCard.nl}', 'nl-NL'); event.stopPropagation();">🔊 Nederlands</button>
     `;
     document.getElementById('study-buttons').style.display = 'flex';
   } else {
-    document.getElementById('card-content').innerHTML = `<div class="flashcard-front">${currentCard.ukr}</div>`;
+    // Show front
+    document.getElementById('card-content').innerHTML = `
+      <div class="flashcard-front">${currentCard.ukr}</div>
+    `;
     document.getElementById('study-buttons').style.display = 'none';
   }
 }
@@ -634,14 +681,34 @@ function speak(text, lang) {
   try {
     const synth = window.speechSynthesis;
     const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = lang;
     
+    // Try to find a voice for the language
     const voices = synth.getVoices();
-    const voice = voices.find(v => v.lang.startsWith(lang.split('-')[0]));
-    if (voice) utter.voice = voice;
+    const hasVoice = voices.some(v => v.lang === lang);
+    
+    if (hasVoice) {
+      utter.lang = lang;
+      const voice = voices.find(v => v.lang.startsWith(lang.split('-')[0]));
+      if (voice) utter.voice = voice;
+    } else {
+      // Fallback
+      if (lang === 'uk-UA') {
+        // Try Russian as fallback for Ukrainian
+        const ruVoice = voices.find(v => v.lang.startsWith('ru'));
+        if (ruVoice) {
+          utter.voice = ruVoice;
+          console.log('⚠️ Ukrainian voice not available, using Russian');
+        } else {
+          utter.lang = 'en-US';
+          console.log('⚠️ No Slavic voice available, using English');
+        }
+      } else {
+        utter.lang = 'en-US';
+      }
+    }
     
     synth.speak(utter);
-  } catch(e) {
+  } catch (e) {
     console.error('Speech error:', e);
   }
 }
@@ -649,25 +716,38 @@ function speak(text, lang) {
 function rateCard(rating) {
   if (!currentCard) return;
   
-  // SM-2 algoritme
+  // Update review count
   currentCard.reviews++;
   
-  if (rating === 1) { // Again
+  // SM-2 algorithm
+  if (rating === 1) {
+    // Again
     currentCard.interval = 0;
     currentCard.dueDate = Date.now();
-  } else if (rating === 2) { // Hard
+  } else if (rating === 2) {
+    // Hard
     currentCard.interval = Math.max(1, currentCard.interval * 1.2);
-    currentCard.dueDate = Date.now() + currentCard.interval * 86400000;
-  } else if (rating === 3) { // Good
-    currentCard.interval = currentCard.interval === 0 ? 1 : currentCard.interval * currentCard.easeFactor;
-    currentCard.dueDate = Date.now() + currentCard.interval * 86400000;
-  } else { // Easy
-    currentCard.interval = currentCard.interval === 0 ? 4 : currentCard.interval * currentCard.easeFactor * 1.3;
-    currentCard.dueDate = Date.now() + currentCard.interval * 86400000;
+    currentCard.dueDate = Date.now() + (currentCard.interval * 86400000);
+  } else if (rating === 3) {
+    // Good
+    if (currentCard.interval === 0) {
+      currentCard.interval = 1;
+    } else {
+      currentCard.interval = currentCard.interval * currentCard.easeFactor;
+    }
+    currentCard.dueDate = Date.now() + (currentCard.interval * 86400000);
+  } else if (rating === 4) {
+    // Easy
+    if (currentCard.interval === 0) {
+      currentCard.interval = 4;
+    } else {
+      currentCard.interval = currentCard.interval * currentCard.easeFactor * 1.3;
+    }
     currentCard.easeFactor = Math.min(2.5, currentCard.easeFactor + 0.1);
+    currentCard.dueDate = Date.now() + (currentCard.interval * 86400000);
   }
   
-  save();
+  saveCards();
   studyQueue.shift();
   nextCard();
 }
@@ -683,14 +763,15 @@ function renderBrowse() {
   
   list.innerHTML = '';
   filtered.forEach(c => {
-    const card = document.createElement('div');
-    card.className = 'browse-card';
-    card.innerHTML = `
+    const icon = DECK_ICONS[c.deck] || '📚';
+    const div = document.createElement('div');
+    div.className = 'browse-card';
+    div.innerHTML = `
       <div class="browse-ukr">${c.ukr}</div>
       <div class="browse-nl">${c.nl}</div>
-      <div class="browse-meta">${c.deck} • ${c.reviews} reviews</div>
+      <div class="browse-meta">${icon} ${c.deck} • ${c.reviews} reviews</div>
     `;
-    list.appendChild(card);
+    list.appendChild(div);
   });
 }
 
@@ -701,8 +782,13 @@ function filterBrowse() {
 function populateDeckSelect() {
   const select = document.getElementById('browse-deck-filter');
   select.innerHTML = '<option value="">Alle decks</option>';
-  Object.keys(decks).forEach(d => {
-    select.innerHTML += `<option value="${d}">${d}</option>`;
+  
+  Object.keys(decks).forEach(deckName => {
+    const icon = DECK_ICONS[deckName] || '📚';
+    const option = document.createElement('option');
+    option.value = deckName;
+    option.textContent = `${icon} ${deckName}`;
+    select.appendChild(option);
   });
 }
 
@@ -714,21 +800,24 @@ function renderStats() {
   const newCards = cards.filter(c => c.reviews === 0).length;
   const learning = cards.filter(c => c.reviews > 0 && c.reviews < 5).length;
   const mastered = cards.filter(c => c.reviews >= 5).length;
+  const streak = Math.floor(cards.filter(c => c.reviews > 0).length / 10);
   
   document.getElementById('stat-total').textContent = total;
   document.getElementById('stat-new').textContent = newCards;
   document.getElementById('stat-learning').textContent = learning;
   document.getElementById('stat-mastered').textContent = mastered;
-  document.getElementById('stat-streak').textContent = Math.floor(cards.filter(c => c.reviews > 0).length / 10);
+  document.getElementById('stat-streak').textContent = streak;
 }
 
 // ════════════════════════════════════════
-// START
+// START APP
 // ════════════════════════════════════════
-load();
-showPage('decks');
-populateDeckSelect();
+init();
 </script>
 
 </body>
 </html>
+
+
+
+
