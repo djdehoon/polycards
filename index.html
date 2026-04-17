@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+
+
+
 <html lang="nl">
 <head>
 <meta charset="UTF-8"/>
@@ -14,6 +18,9 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
 
+
+
+
 /* NAV */
 nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .nav-logo{font-size:1.2rem;font-weight:800;letter-spacing:-0.5px;}
@@ -23,15 +30,24 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px
 .nav-tab:hover{background:var(--surface2);color:var(--text);}
 .nav-tab.active{background:var(--blue);color:#fff;}
 
+
+
+
 /* PAGES */
 .page{display:none;padding:20px;max-width:680px;margin:0 auto;}
 .page.active{display:block;}
 .page-title{font-size:1.5rem;font-weight:800;margin-bottom:4px;}
 .page-sub{color:var(--text2);margin-bottom:20px;font-size:0.9rem;}
 
+
+
+
 /* CARDS / SURFACES */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:14px;}
 .card-title{font-size:0.8rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+
+
+
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;cursor:pointer;font-size:0.9rem;font-weight:700;transition:all 0.2s;font-family:inherit;}
@@ -43,538 +59,1127 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px
 .btn-danger{background:#3d1515;color:var(--red);border:1px solid var(--red);}
 .btn-danger:hover{background:var(--red);color:#fff;}
 
+
+
+
 /* DECK LIST */
 .deck-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
-.deck-table-head{display:grid;grid-template-columns:1fr 55px 55px 55px 90px;padding:10px 16px;border-bottom:1px solid var(--border);font-size:0.75rem;font-weight:700;color:var(--text2);text-transform:uppercase;}
-.deck-row{display:grid;grid-template-columns:1fr 55px 55px 55px 90px;padding:12px 16px;border-bottom:1px solid var(--border);align-items:center;}
+.deck-table-head{display:grid;grid-template-columns:1fr 55px 55px 55px 90px;padding:10px 16px;border-bottom:1px solid var(--border);color:var(--text2);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+.deck-row{display:grid;grid-template-columns:1fr 55px 55px 55px 90px;padding:14px 16px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.2s;}
 .deck-row:last-child{border-bottom:none;}
 .deck-row:hover{background:var(--surface2);}
-.deck-name{font-weight:600;font-size:0.95rem;}
-.deck-stat{text-align:center;font-size:0.85rem;color:var(--text2);}
-.deck-actions{display:flex;gap:6px;justify-content:flex-end;}
+.deck-name{font-weight:700;}
+.deck-count{text-align:center;font-weight:700;font-size:0.9rem;}
+.c-new{color:var(--blue);}
+.c-learn{color:var(--red);}
+.c-due{color:var(--green);}
+.study-btn{background:var(--blue);color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.8rem;transition:background 0.2s;}
+.study-btn:hover{background:#3a8eef;}
+
+
+
 
 /* STUDY PAGE */
-.flashcard{background:var(--surface);border:2px solid var(--border);border-radius:var(--radius);padding:40px 30px;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all 0.3s;margin-bottom:20px;}
-.flashcard:hover{border-color:var(--blue);}
-.flashcard-front{font-size:2rem;font-weight:800;text-align:center;}
-.flashcard-back{font-size:1.5rem;font-weight:600;color:var(--blue);text-align:center;margin-bottom:10px;}
-.flashcard-hint{font-size:0.9rem;color:var(--text2);text-align:center;margin-top:10px;}
-.study-buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.study-buttons .btn{min-width:100px;}
-.btn-again{background:#3d1515;color:var(--red);border:1px solid var(--red);}
-.btn-again:hover{background:var(--red);color:#fff;}
-.btn-hard{background:#3d2915;color:var(--orange);border:1px solid var(--orange);}
-.btn-hard:hover{background:var(--orange);color:#fff;}
-.btn-good{background:#153d15;color:var(--green);border:1px solid var(--green);}
-.btn-good:hover{background:var(--green);color:#fff;}
-.btn-easy{background:#153d3d;color:#4dd0e1;border:1px solid #4dd0e1;}
-.btn-easy:hover{background:#4dd0e1;color:#fff;}
+.study-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.study-counts{display:flex;gap:12px;font-size:0.85rem;font-weight:700;}
+.prog-bar{height:5px;background:var(--surface2);border-radius:3px;margin-bottom:18px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--blue);border-radius:3px;transition:width 0.4s;}
+
+
+
+
+/* MODE SELECTOR */
+.mode-selector{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.mode-btn{padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:none;color:var(--text2);cursor:pointer;font-size:0.82rem;font-weight:600;transition:all 0.2s;}
+.mode-btn:hover{border-color:var(--blue);color:var(--blue);}
+.mode-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+
+
+
+/* FLASHCARD */
+.fc-wrap{perspective:1200px;margin-bottom:16px;}
+.fc{position:relative;width:100%;min-height:340px;transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);cursor:pointer;border-radius:var(--radius);}
+.fc.flipped{transform:rotateY(180deg);}
+.fc-face{position:absolute;width:100%;min-height:340px;backface-visibility:hidden;border-radius:var(--radius);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 24px;text-align:center;}
+.fc-front{background:var(--surface);}
+.fc-back{background:var(--surface2);transform:rotateY(180deg);}
+.fc-tag{font-size:0.72rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.fc-emoji{font-size:3.5rem;margin-bottom:12px;}
+.fc-word{font-size:2rem;font-weight:800;margin-bottom:6px;line-height:1.2;}
+.fc-translit{color:var(--text2);font-style:italic;font-size:0.9rem;margin-bottom:12px;}
+.fc-sentence{background:var(--bg);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 8px 8px 0;font-size:0.88rem;line-height:1.6;text-align:left;width:100%;margin-top:6px;}
+.fc-hint{color:var(--text2);font-size:0.78rem;margin-top:14px;}
+.fc-answer-word{font-size:1.8rem;font-weight:800;color:var(--green);margin-bottom:8px;}
+.fc-answer-translit{color:var(--text2);font-style:italic;font-size:0.88rem;margin-bottom:10px;}
+.speak-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;margin-top:10px;transition:all 0.2s;}
+.speak-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+
+
+
+/* SHOW ANSWER */
+.show-ans-btn{width:100%;padding:14px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;margin-bottom:10px;}
+.show-ans-btn:hover{background:#3a8eef;}
+
+
+
+
+/* RATING BUTTONS */
+.rating-btns{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;}
+.r-btn{padding:12px 6px;border-radius:10px;border:none;cursor:pointer;font-weight:700;font-size:0.82rem;display:flex;flex-direction:column;align-items:center;gap:2px;transition:all 0.2s;font-family:inherit;}
+.r-btn .sub{font-size:0.68rem;font-weight:400;opacity:0.8;}
+.r-again{background:#2a1010;color:var(--red);border:1px solid var(--red);}
+.r-again:hover{background:var(--red);color:#fff;}
+.r-hard{background:#2a1e0a;color:var(--orange);border:1px solid var(--orange);}
+.r-hard:hover{background:var(--orange);color:#fff;}
+.r-good{background:#0a2a0a;color:var(--green);border:1px solid var(--green);}
+.r-good:hover{background:var(--green);color:#fff;}
+.r-easy{background:#0a1a2a;color:var(--blue);border:1px solid var(--blue);}
+.r-easy:hover{background:var(--blue);color:#fff;}
+
+
+
+
+/* TYPE MODE */
+.type-input-wrap{width:100%;margin-bottom:10px;}
+.type-input{width:100%;background:var(--surface2);border:2px solid var(--border);color:var(--text);border-radius:10px;padding:14px 16px;font-size:1.1rem;font-weight:600;outline:none;transition:border 0.2s;font-family:inherit;text-align:center;}
+.type-input:focus{border-color:var(--blue);}
+.type-input.correct{border-color:var(--green);background:#0a2a0a;}
+.type-input.wrong{border-color:var(--red);background:#2a0a0a;}
+.type-feedback{text-align:center;font-size:0.9rem;margin-bottom:10px;min-height:24px;font-weight:600;}
+.type-feedback.ok{color:var(--green);}
+.type-feedback.nope{color:var(--red);}
+.check-btn{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;margin-bottom:10px;}
+.check-btn:hover{background:#3a8eef;}
+
+
+
+
+/* DONE STATE */
+.done-state{text-align:center;padding:50px 20px;}
+.done-icon{font-size:4rem;margin-bottom:16px;}
+.done-title{font-size:1.4rem;font-weight:800;margin-bottom:8px;}
+.done-sub{color:var(--text2);margin-bottom:24px;}
+
+
+
+
+/* BROWSE */
+.search-bar{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:11px 16px;font-size:0.95rem;outline:none;margin-bottom:12px;transition:border 0.2s;font-family:inherit;}
+.search-bar:focus{border-color:var(--blue);}
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.f-btn{padding:5px 12px;border-radius:16px;border:1px solid var(--border);background:none;color:var(--text2);cursor:pointer;font-size:0.78rem;font-weight:600;transition:all 0.2s;}
+.f-btn:hover,.f-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.browse-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;}
+.bi-emoji{font-size:1.6rem;}
+.bi-word{font-size:1rem;font-weight:700;}
+.bi-sub{color:var(--text2);font-size:0.82rem;margin-top:2px;}
+.bi-tag{margin-left:auto;font-size:0.72rem;background:var(--surface2);padding:3px 8px;border-radius:6px;color:var(--text2);}
+
+
+
 
 /* STATS */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px;}
-.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;}
-.stat-value{font-size:1.8rem;font-weight:800;color:var(--blue);margin-bottom:4px;}
-.stat-label{font-size:0.75rem;color:var(--text2);text-transform:uppercase;font-weight:700;}
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-align:center;}
+.stat-num{font-size:2rem;font-weight:800;}
+.stat-lbl{color:var(--text2);font-size:0.82rem;margin-top:4px;}
+.bar-row{margin-bottom:12px;}
+.bar-label{display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:5px;}
+.bar-track{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;transition:width 0.6s;}
 
-/* FORMS */
-input,select,textarea{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:0.9rem;font-family:inherit;width:100%;margin-bottom:12px;}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);}
-label{display:block;font-size:0.85rem;font-weight:700;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;}
 
-/* RESPONSIVE */
-@media(max-width:600px){
-.deck-table-head{font-size:0.7rem;padding:8px 12px;}
-.deck-row{padding:10px 12px;font-size:0.85rem;}
-.deck-stat{font-size:0.75rem;}
-.btn-sm{padding:5px 10px;font-size:0.75rem;}
-.flashcard{padding:30px 20px;min-height:240px;}
-.flashcard-front{font-size:1.6rem;}
-.flashcard-back{font-size:1.2rem;}
-.study-buttons .btn{min-width:80px;padding:8px 14px;font-size:0.85rem;}
-.stats-grid{grid-template-columns:repeat(2,1fr);}
-.nav-tabs{gap:2px;}
+
+
+/* ADD FORM */
+.form-group{margin-bottom:13px;}
+.form-label{display:block;font-size:0.75rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:5px;}
+.form-input,.form-textarea,.form-select{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:10px 13px;font-size:0.95rem;outline:none;transition:border 0.2s;font-family:inherit;}
+.form-input:focus,.form-textarea:focus{border-color:var(--blue);}
+.form-textarea{resize:vertical;min-height:65px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+
+
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:200;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;width:100%;max-width:420px;}
+.modal-title{font-size:1.1rem;font-weight:800;margin-bottom:16px;}
+.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;}
+
+
+
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:11px 22px;border-radius:24px;font-weight:700;z-index:300;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;font-size:0.9rem;}
+.toast.show{opacity:1;}
+
+
+
+
+@media(max-width:480px){
+.form-row{grid-template-columns:1fr;}
+.rating-btns{grid-template-columns:repeat(2,1fr);}
+.stats-grid{grid-template-columns:1fr;}
+.deck-table-head,.deck-row{grid-template-columns:1fr 45px 45px 45px 70px;}
 .nav-tab{padding:6px 8px;font-size:0.75rem;}
 }
 </style>
+
+
+
+
 </head>
 <body>
 
+
+
+
 <nav>
-  <div class="nav-logo">🇺🇦 <span>UkrCards</span></div>
+  <div class="nav-logo">🇺🇦 <span>UkrCards</span> <span style="font-size:0.65rem;color:var(--orange);font-weight:600;margin-left:2px">PRO</span></div>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('decks')">📚 Decks</button>
-    <button class="nav-tab" onclick="showPage('browse')">🔍 Browse</button>
     <button class="nav-tab" onclick="showPage('add')">➕ Add</button>
+    <button class="nav-tab" onclick="showPage('browse')">🔍 Browse</button>
     <button class="nav-tab" onclick="showPage('stats')">📊 Stats</button>
   </div>
 </nav>
 
-<!-- DECKS PAGE -->
-<div id="page-decks" class="page active">
-  <h1 class="page-title">Mijn Decks</h1>
-  <p class="page-sub">100 woorden, 10 thema's</p>
-  
+
+
+
+<!-- DECKS -->
+
+
+
+
+<div class="page active" id="page-decks">
+  <div class="page-title">Mijn Decks 📚</div>
+  <div class="page-sub">Kies een deck en een leermodus</div>
   <div class="deck-table">
     <div class="deck-table-head">
-      <div>Deck</div>
-      <div>Nieuw</div>
-      <div>Review</div>
-      <div>Totaal</div>
-      <div></div>
+      <span>Deck</span>
+      <span style="text-align:center">New</span>
+      <span style="text-align:center">Lrn</span>
+      <span style="text-align:center">Due</span>
+      <span></span>
     </div>
-    <div id="deck-list"></div>
+    <div id="deck-rows"></div>
+  </div>
+  <button class="btn btn-outline btn-sm" onclick="openDeckModal()">➕ Nieuw deck</button>
+</div>
+
+
+
+
+<!-- STUDY -->
+
+
+
+
+<div class="page" id="page-study">
+  <div class="study-topbar">
+    <button class="btn btn-outline btn-sm" onclick="showPage('decks')">← Terug</button>
+    <div class="study-counts">
+      <span class="c-new" id="s-new">0</span>
+      <span class="c-learn" id="s-learn">0</span>
+      <span class="c-due" id="s-due">0</span>
+    </div>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="s-prog" style="width:0%"></div></div>
+
+
+
+
+  <!-- MODE SELECTOR -->
+
+
+
+
+  <div class="mode-selector">
+    <button class="mode-btn active" id="mode-flip" onclick="setStudyMode('flip')">🔄 Flashcard</button>
+    <button class="mode-btn" id="mode-type" onclick="setStudyMode('type')">⌨️ Typ het woord</button>
+  </div>
+  <div class="mode-selector" style="margin-top:-8px">
+    <button class="mode-btn active" id="dir-uk-nl" onclick="setDirection('uk-nl')">🇺🇦 → 🇳🇱</button>
+    <button class="mode-btn" id="dir-nl-uk" onclick="setDirection('nl-uk')">🇳🇱 → 🇺🇦</button>
+    <button class="mode-btn" id="dir-mix" onclick="setDirection('mix')">🔀 Mix</button>
+  </div>
+
+
+
+
+  <div id="study-area">
+    <!-- FLIP MODE -->
+    <div id="flip-mode">
+      <div class="fc-wrap">
+        <div class="fc" id="fc" onclick="flipCard()">
+          <div class="fc-face fc-front">
+            <div class="fc-tag" id="fc-tag"></div>
+            <div class="fc-emoji" id="fc-emoji"></div>
+            <div class="fc-word" id="fc-word"></div>
+            <div class="fc-translit" id="fc-translit"></div>
+            <div class="fc-sentence" id="fc-sentence"></div>
+            <div class="fc-hint">👆 Tik om te omdraaien</div>
+          </div>
+          <div class="fc-face fc-back">
+            <div class="fc-tag" id="fc-back-tag"></div>
+            <div class="fc-emoji" id="fc-back-emoji"></div>
+            <div class="fc-answer-word" id="fc-answer"></div>
+            <div class="fc-answer-translit" id="fc-answer-translit"></div>
+            <div class="fc-sentence" id="fc-back-sentence"></div>
+            <button class="speak-btn" onclick="speakWord(event)">🔊 Uitspraak</button>
+          </div>
+        </div>
+      </div>
+      <button class="show-ans-btn" id="show-ans-btn" onclick="flipCard()">Toon Antwoord</button>
+      <div class="rating-btns" id="rating-btns" style="display:none">
+        <button class="r-btn r-again" onclick="rate('again')">Again<span class="sub">&lt;1m</span></button>
+        <button class="r-btn r-hard" onclick="rate('hard')">Hard<span class="sub">&lt;6m</span></button>
+        <button class="r-btn r-good" onclick="rate('good')">Good<span class="sub">&lt;10m</span></button>
+        <button class="r-btn r-easy" onclick="rate('easy')">Easy<span class="sub">5d</span></button>
+      </div>
+    </div>
+
+
+
+
+<!-- TYPE MODE -->
+
+
+
+
+<div id="type-mode" style="display:none">
+  <div class="fc-wrap">
+    <div class="fc-face fc-front" style="position:relative;min-height:220px;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;">
+      <div class="fc-tag" id="t-tag"></div>
+      <div class="fc-emoji" id="t-emoji"></div>
+      <div class="fc-word" id="t-word"></div>
+      <div class="fc-translit" id="t-translit"></div>
+    </div>
+  </div>
+  <div class="type-input-wrap">
+    <input class="type-input" id="type-input" placeholder="Typ het antwoord..." onkeydown="typeKeydown(event)" autocomplete="off" autocorrect="off" spellcheck="false"/>
+  </div>
+  <div class="type-feedback" id="type-feedback"></div>
+  <button class="check-btn" id="check-btn" onclick="checkType()">✓ Controleer</button>
+  <div class="rating-btns" id="type-rating-btns" style="display:none">
+    <button class="r-btn r-again" onclick="rate('again')">Again<span class="sub">&lt;1m</span></button>
+    <button class="r-btn r-hard" onclick="rate('hard')">Hard<span class="sub">&lt;6m</span></button>
+    <button class="r-btn r-good" onclick="rate('good')">Good<span class="sub">&lt;10m</span></button>
+    <button class="r-btn r-easy" onclick="rate('easy')">Easy<span class="sub">5d</span></button>
   </div>
 </div>
 
-<!-- STUDY PAGE -->
-<div id="page-study" class="page">
-  <h1 class="page-title" id="study-title">Studeren</h1>
-  <p class="page-sub" id="study-subtitle"></p>
-  
-  <div id="flashcard" class="flashcard" onclick="flipCard()">
-    <div id="card-content"></div>
+
+
+
   </div>
-  
-  <div class="study-buttons" id="study-buttons" style="display:none;">
-    <button class="btn btn-again" onclick="rateCard(1)">❌ Again</button>
-    <button class="btn btn-hard" onclick="rateCard(2)">😓 Hard</button>
-    <button class="btn btn-good" onclick="rateCard(3)">👍 Good</button>
-    <button class="btn btn-easy" onclick="rateCard(4)">🎉 Easy</button>
-  </div>
-  
-  <div style="text-align:center;margin-top:20px;">
-    <button class="btn btn-outline" onclick="showPage('decks')">← Terug naar Decks</button>
+
+
+
+
+  <div id="study-done" style="display:none">
+    <div class="done-state">
+      <div class="done-icon">🎉</div>
+      <div class="done-title">Deck klaar!</div>
+      <div class="done-sub">Geweldig gedaan! Kom morgen terug voor je herhaling.</div>
+      <button class="btn btn-primary" onclick="showPage('decks')">← Terug naar Decks</button>
+    </div>
   </div>
 </div>
 
-<!-- BROWSE PAGE -->
-<div id="page-browse" class="page">
-  <h1 class="page-title">Alle Woorden</h1>
-  <p class="page-sub">Browse door alle 100 woorden</p>
-  
+
+
+
+<!-- ADD -->
+
+
+
+
+<div class="page" id="page-add">
+  <div class="page-title">Kaart Toevoegen ✏️</div>
+  <div class="page-sub">Voeg een nieuwe Oekraïense flashcard toe</div>
   <div class="card">
-    <label>Filter op deck:</label>
-    <select id="browse-deck-filter" onchange="filterBrowse()">
-      <option value="">Alle decks</option>
-    </select>
+    <div class="card-title">🇺🇦 Oekraïens</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Oekraïens woord *</label>
+        <input class="form-input" id="a-word" placeholder="bijv. кіт"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Uitspraak</label>
+        <input class="form-input" id="a-translit" placeholder="bijv. kit"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Zin in het Oekraïens</label>
+      <textarea class="form-textarea" id="a-suk" placeholder="bijv. Мій кіт slaapt op de bank."></textarea>
+    </div>
   </div>
-  
+  <div class="card">
+    <div class="card-title">🇳🇱 Nederlands</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nederlandse vertaling *</label>
+        <input class="form-input" id="a-trans" placeholder="bijv. kat"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Deck</label>
+        <select class="form-select" id="a-deck"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Zin in het Nederlands</label>
+      <textarea class="form-textarea" id="a-snl" placeholder="bijv. Mijn kat slaapt op de bank."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Emoji</label>
+      <input class="form-input" id="a-emoji" placeholder="bijv. 🐱" style="font-size:1.3rem;width:80px"/>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-primary" onclick="saveCard()">💾 Opslaan</button>
+    <button class="btn btn-outline" onclick="clearAdd()">✕ Wissen</button>
+  </div>
+</div>
+
+
+
+
+<!-- BROWSE -->
+
+
+
+
+<div class="page" id="page-browse">
+  <div class="page-title">Browse 🔍</div>
+  <div class="page-sub" id="browse-count">Alle kaarten</div>
+  <input class="search-bar" id="browse-search" placeholder="🔍 Zoek op woord of vertaling..." oninput="renderBrowse()"/>
+  <div class="filter-row" id="browse-filters"></div>
   <div id="browse-list"></div>
 </div>
 
-<!-- ADD PAGE -->
-<div id="page-add" class="page">
-  <h1 class="page-title">Kaart Toevoegen</h1>
-  <p class="page-sub">Voeg je eigen woorden toe</p>
-  
+
+
+
+<!-- STATS -->
+
+
+
+
+<div class="page" id="page-stats">
+  <div class="page-title">Statistieken 📊</div>
+  <div class="page-sub">Jouw leervoortgang</div>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-num c-new" id="st-total">0</div><div class="stat-lbl">Totaal kaarten</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--green)" id="st-mature">0</div><div class="stat-lbl">Mature 🌟</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--orange)" id="st-young">0</div><div class="stat-lbl">Young 📈</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:var(--text2)" id="st-new">0</div><div class="stat-lbl">Nieuw 🆕</div></div>
+  </div>
   <div class="card">
-    <label>Oekraïens:</label>
-    <input type="text" id="add-ukr" placeholder="привіт"/>
-    
-    <label>Nederlands:</label>
-    <input type="text" id="add-nl" placeholder="hallo"/>
-    
-    <label>Deck:</label>
-    <select id="add-deck"></select>
-    
-    <button class="btn btn-primary" onclick="addCard()">➕ Toevoegen</button>
+    <div class="card-title">📊 Per deck</div>
+    <div id="deck-stat-bars"></div>
   </div>
 </div>
 
-<!-- STATS PAGE -->
-<div id="page-stats" class="page">
-  <h1 class="page-title">Statistieken</h1>
-  <p class="page-sub">Je voortgang</p>
-  
-  <div class="stats-grid">
-    <div class="stat-box">
-      <div class="stat-value" id="stat-total">0</div>
-      <div class="stat-label">Totaal Kaarten</div>
+
+
+
+<!-- DECK MODAL -->
+
+
+
+
+<div class="modal-overlay" id="deck-modal">
+  <div class="modal">
+    <div class="modal-title">➕ Nieuw Deck aanmaken</div>
+    <div class="form-group">
+      <label class="form-label">Naam</label>
+      <input class="form-input" id="new-deck-name" placeholder="bijv. Dieren 🐾"/>
     </div>
-    <div class="stat-box">
-      <div class="stat-value" id="stat-new">0</div>
-      <div class="stat-label">Nieuw</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-value" id="stat-learning">0</div>
-      <div class="stat-label">Aan het leren</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-value" id="stat-mastered">0</div>
-      <div class="stat-label">Beheerst</div>
-    </div>
-  </div>
-  
-  <div class="card">
-    <div class="card-title">🔥 Streak</div>
-    <div style="font-size:2rem;text-align:center;margin:10px 0;">
-      <span id="stat-streak">0</span> dagen
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeDeckModal()">Annuleer</button>
+      <button class="btn btn-primary" onclick="createDeck()">Aanmaken</button>
     </div>
   </div>
 </div>
+
+
+
+
+<div class="toast" id="toast"></div>
+
+
+
 
 <script>
 // ════════════════════════════════════════
-// DATA: 100 Oekraïense woorden, 10 thema's
+// 📦 DATA — 100 woorden, 10 thema's
 // ════════════════════════════════════════
 const WORDS = [
   // 🐾 Dieren (10)
-  {ukr:'собака',nl:'hond',deck:'Dieren'},{ukr:'кіт',nl:'kat',deck:'Dieren'},
-  {ukr:'птах',nl:'vogel',deck:'Dieren'},{ukr:'риба',nl:'vis',deck:'Dieren'},
-  {ukr:'кінь',nl:'paard',deck:'Dieren'},{ukr:'корова',nl:'koe',deck:'Dieren'},
-  {ukr:'свиня',nl:'varken',deck:'Dieren'},{ukr:'вівця',nl:'schaap',deck:'Dieren'},
-  {ukr:'курка',nl:'kip',deck:'Dieren'},{ukr:'миша',nl:'muis',deck:'Dieren'},
-  
-  // 🍎 Eten (10)
-  {ukr:'хліб',nl:'brood',deck:'Eten'},{ukr:'вода',nl:'water',deck:'Eten'},
-  {ukr:'молоко',nl:'melk',deck:'Eten'},{ukr:'м\'ясо',nl:'vlees',deck:'Eten'},
-  {ukr:'сир',nl:'kaas',deck:'Eten'},{ukr:'яблуко',nl:'appel',deck:'Eten'},
-  {ukr:'банан',nl:'banaan',deck:'Eten'},{ukr:'картопля',nl:'aardappel',deck:'Eten'},
-  {ukr:'рис',nl:'rijst',deck:'Eten'},{ukr:'цукор',nl:'suiker',deck:'Eten'},
-  
+  {w:'кіт',t:'kit',tr:'kat',sUk:'Mijn <b>кіт</b> slaapt de hele dag.',sNl:'Mijn <b>kat</b> slaapt de hele dag.',deck:'Dieren 🐾',e:'🐱'},
+  {w:'собака',t:'sobaka',tr:'hond',sUk:'De <b>собака</b> rent in het park.',sNl:'De <b>hond</b> rent in het park.',deck:'Dieren 🐾',e:'🐶'},
+  {w:'кінь',t:'kin',tr:'paard',sUk:'Het <b>кінь</b> is sterk en snel.',sNl:'Het <b>paard</b> is sterk en snel.',deck:'Dieren 🐾',e:'🐴'},
+  {w:'птах',t:'ptakh',tr:'vogel',sUk:'De <b>птах</b> zingt elke ochtend.',sNl:'De <b>vogel</b> zingt elke ochtend.',deck:'Dieren 🐾',e:'🐦'},
+  {w:'риба',t:'ryba',tr:'vis',sUk:'De <b>риба</b> zwemt in de rivier.',sNl:'De <b>vis</b> zwemt in de rivier.',deck:'Dieren 🐾',e:'🐟'},
+  {w:'ведмідь',t:'vedmid',tr:'beer',sUk:'De <b>ведмідь</b> slaapt in de winter.',sNl:'De <b>beer</b> slaapt in de winter.',deck:'Dieren 🐾',e:'🐻'},
+  {w:'лев',t:'lev',tr:'leeuw',sUk:'De <b>лев</b> is de koning van de jungle.',sNl:'De <b>leeuw</b> is de koning van de jungle.',deck:'Dieren 🐾',e:'🦁'},
+  {w:'слон',t:'slon',tr:'olifant',sUk:'De <b>слон</b> heeft een lange slurf.',sNl:'De <b>olifant</b> heeft een lange slurf.',deck:'Dieren 🐾',e:'🐘'},
+  {w:'жаба',t:'zhaba',tr:'kikker',sUk:'De <b>жаба</b> springt in het water.',sNl:'De <b>kikker</b> springt in het water.',deck:'Dieren 🐾',e:'🐸'},
+  {w:'метелик',t:'metелyk',tr:'vlinder',sUk:'De <b>метелик</b> vliegt over de bloemen.',sNl:'De <b>vlinder</b> vliegt over de bloemen.',deck:'Dieren 🐾',e:'🦋'},
+
+  // 🍎 Eten & Drinken (10)
+  {w:'хліб',t:'khlib',tr:'brood',sUk:'Ik koop elke dag vers <b>хліб</b>.',sNl:'Ik koop elke dag vers <b>brood</b>.',deck:'Eten & Drinken 🍎',e:'🍞'},
+  {w:'вода',t:'voda',tr:'water',sUk:'Ik drink elke ochtend <b>воду</b>.',sNl:'Ik drink elke ochtend <b>water</b>.',deck:'Eten & Drinken 🍎',e:'💧'},
+  {w:'молоко',t:'moloko',tr:'melk',sUk:'<b>Молоко</b> is goed voor je botten.',sNl:'<b>Melk</b> is goed voor je botten.',deck:'Eten & Drinken 🍎',e:'🥛'},
+  {w:'яблуко',t:'yabluko',tr:'appel',sUk:'Ik eet elke dag een <b>яблуко</b>.',sNl:'Ik eet elke dag een <b>appel</b>.',deck:'Eten & Drinken 🍎',e:'🍎'},
+  {w:'кава',t:'kava',tr:'koffie',sUk:'<b>Кава</b> helpt me wakker te worden.',sNl:'<b>Koffie</b> helpt me wakker te worden.',deck:'Eten & Drinken 🍎',e:'☕'},
+  {w:'чай',t:'chay',tr:'thee',sUk:'Ik drink elke avond <b>чай</b>.',sNl:'Ik drink elke avond <b>thee</b>.',deck:'Eten & Drinken 🍎',e:'🍵'},
+  {w:'суп',t:'sup',tr:'soep',sUk:'Ik eet warme <b>суп</b> in de winter.',sNl:'Ik eet warme <b>soep</b> in de winter.',deck:'Eten & Drinken 🍎',e:'🍲'},
+  {w:'сир',t:'syr',tr:'kaas',sUk:'Ik hou van <b>сир</b> op mijn brood.',sNl:'Ik hou van <b>kaas</b> op mijn brood.',deck:'Eten & Drinken 🍎',e:'🧀'},
+  {w:'яйце',t:'yaytse',tr:'ei',sUk:'Ik eet elke ochtend een <b>яйце</b>.',sNl:'Ik eet elke ochtend een <b>ei</b>.',deck:'Eten & Drinken 🍎',e:'🥚'},
+  {w:'торт',t:'tort',tr:'taart',sUk:'We eten <b>торт</b> op verjaardagen.',sNl:'We eten <b>taart</b> op verjaardagen.',deck:'Eten & Drinken 🍎',e:'🎂'},
+
   // 👨‍👩‍👧 Familie (10)
-  {ukr:'мама',nl:'moeder',deck:'Familie'},{ukr:'тато',nl:'vader',deck:'Familie'},
-  {ukr:'син',nl:'zoon',deck:'Familie'},{ukr:'дочка',nl:'dochter',deck:'Familie'},
-  {ukr:'брат',nl:'broer',deck:'Familie'},{ukr:'сестра',nl:'zus',deck:'Familie'},
-  {ukr:'дідусь',nl:'opa',deck:'Familie'},{ukr:'бабуся',nl:'oma',deck:'Familie'},
-  {ukr:'чоловік',nl:'man/echtgenoot',deck:'Familie'},{ukr:'жінка',nl:'vrouw/echtgenote',deck:'Familie'},
-  
-  // 🏠 Huis (10)
-  {ukr:'будинок',nl:'huis',deck:'Huis'},{ukr:'кімната',nl:'kamer',deck:'Huis'},
-  {ukr:'кухня',nl:'keuken',deck:'Huis'},{ukr:'ванна',nl:'badkamer',deck:'Huis'},
-  {ukr:'ліжко',nl:'bed',deck:'Huis'},{ukr:'стіл',nl:'tafel',deck:'Huis'},
-  {ukr:'стілець',nl:'stoel',deck:'Huis'},{ukr:'вікно',nl:'raam',deck:'Huis'},
-  {ukr:'двері',nl:'deur',deck:'Huis'},{ukr:'підлога',nl:'vloer',deck:'Huis'},
-  
+  {w:'мати',t:'maty',tr:'moeder',sUk:'Mijn <b>мати</b> kookt heerlijk.',sNl:'Mijn <b>moeder</b> kookt heerlijk.',deck:'Familie 👨‍👩‍👧',e:'👩'},
+  {w:'батько',t:'batko',tr:'vader',sUk:'Mijn <b>батько</b> werkt hard.',sNl:'Mijn <b>vader</b> werkt hard.',deck:'Familie 👨‍👩‍👧',e:'👨'},
+  {w:'сестра',t:'sestra',tr:'zus',sUk:'Mijn <b>сестра</b> is jonger dan ik.',sNl:'Mijn <b>zus</b> is jonger dan ik.',deck:'Familie 👨‍👩‍👧',e:'👧'},
+  {w:'брат',t:'brat',tr:'broer',sUk:'Mijn <b>брат</b> speelt voetbal.',sNl:'Mijn <b>broer</b> speelt voetbal.',deck:'Familie 👨‍👩‍👧',e:'👦'},
+  {w:'бабуся',t:'babusya',tr:'oma',sUk:'Mijn <b>бабуся</b> vertelt mooie verhalen.',sNl:'Mijn <b>oma</b> vertelt mooie verhalen.',deck:'Familie 👨‍👩‍👧',e:'👵'},
+  {w:'дідусь',t:'didus',tr:'opa',sUk:'Mijn <b>дідусь</b> is oud en wijs.',sNl:'Mijn <b>opa</b> is oud en wijs.',deck:'Familie 👨‍👩‍👧',e:'👴'},
+  {w:'дитина',t:'dytyna',tr:'kind',sUk:'Het <b>дитина</b> speelt in de tuin.',sNl:'Het <b>kind</b> speelt in de tuin.',deck:'Familie 👨‍👩‍👧',e:'👶'},
+  {w:'чоловік',t:'cholovik',tr:'man / echtgenoot',sUk:'Haar <b>чоловік</b> is erg aardig.',sNl:'Haar <b>man</b> is erg aardig.',deck:'Familie 👨‍👩‍👧',e:'💑'},
+  {w:'дружина',t:'druzhyna',tr:'vrouw / echtgenote',sUk:'Zijn <b>дружина</b> is een dokter.',sNl:'Zijn <b>vrouw</b> is een dokter.',deck:'Familie 👨‍👩‍👧',e:'💑'},
+  {w:'сім\'я',t:'simya',tr:'familie',sUk:'Mijn <b>сім\'я</b> is heel belangrijk.',sNl:'Mijn <b>familie</b> is heel belangrijk.',deck:'Familie 👨‍👩‍👧',e:'👨‍👩‍👧'},
+
   // 🎨 Kleuren (10)
-  {ukr:'червоний',nl:'rood',deck:'Kleuren'},{ukr:'синій',nl:'blauw',deck:'Kleuren'},
-  {ukr:'зелений',nl:'groen',deck:'Kleuren'},{ukr:'жовтий',nl:'geel',deck:'Kleuren'},
-  {ukr:'чорний',nl:'zwart',deck:'Kleuren'},{ukr:'білий',nl:'wit',deck:'Kleuren'},
-  {ukr:'сірий',nl:'grijs',deck:'Kleuren'},{ukr:'рожевий',nl:'roze',deck:'Kleuren'},
-  {ukr:'помаранчевий',nl:'oranje',deck:'Kleuren'},{ukr:'фіолетовий',nl:'paars',deck:'Kleuren'},
-  
-  // 🔢 Getallen (10)
-  {ukr:'один',nl:'een',deck:'Getallen'},{ukr:'два',nl:'twee',deck:'Getallen'},
-  {ukr:'три',nl:'drie',deck:'Getallen'},{ukr:'чотири',nl:'vier',deck:'Getallen'},
-  {ukr:'п\'ять',nl:'vijf',deck:'Getallen'},{ukr:'шість',nl:'zes',deck:'Getallen'},
-  {ukr:'сім',nl:'zeven',deck:'Getallen'},{ukr:'вісім',nl:'acht',deck:'Getallen'},
-  {ukr:'дев\'ять',nl:'negen',deck:'Getallen'},{ukr:'десять',nl:'tien',deck:'Getallen'},
-  
-  // 📅 Tijd (10)
-  {ukr:'день',nl:'dag',deck:'Tijd'},{ukr:'ніч',nl:'nacht',deck:'Tijd'},
-  {ukr:'ранок',nl:'ochtend',deck:'Tijd'},{ukr:'вечір',nl:'avond',deck:'Tijd'},
-  {ukr:'тиждень',nl:'week',deck:'Tijd'},{ukr:'місяць',nl:'maand',deck:'Tijd'},
-  {ukr:'рік',nl:'jaar',deck:'Tijd'},{ukr:'година',nl:'uur',deck:'Tijd'},
-  {ukr:'хвилина',nl:'minuut',deck:'Tijd'},{ukr:'секунда',nl:'seconde',deck:'Tijd'},
-  
-  // 🌦️ Weer (10)
-  {ukr:'сонце',nl:'zon',deck:'Weer'},{ukr:'дощ',nl:'regen',deck:'Weer'},
-  {ukr:'сніг',nl:'sneeuw',deck:'Weer'},{ukr:'вітер',nl:'wind',deck:'Weer'},
-  {ukr:'хмара',nl:'wolk',deck:'Weer'},{ukr:'тепло',nl:'warm',deck:'Weer'},
-  {ukr:'холодно',nl:'koud',deck:'Weer'},{ukr:'гаряче',nl:'heet',deck:'Weer'},
-  {ukr:'мороз',nl:'vorst',deck:'Weer'},{ukr:'туман',nl:'mist',deck:'Weer'},
-  
-  // 💼 Werk (10)
-  {ukr:'робота',nl:'werk',deck:'Werk'},{ukr:'школа',nl:'school',deck:'Werk'},
-  {ukr:'університет',nl:'universiteit',deck:'Werk'},{ukr:'вчитель',nl:'leraar',deck:'Werk'},
-  {ukr:'студент',nl:'student',deck:'Werk'},{ukr:'лікар',nl:'dokter',deck:'Werk'},
-  {ukr:'медсестра',nl:'verpleegster',deck:'Werk'},{ukr:'інженер',nl:'ingenieur',deck:'Werk'},
-  {ukr:'водій',nl:'chauffeur',deck:'Werk'},{ukr:'продавець',nl:'verkoper',deck:'Werk'},
-  
-  // ✅ Basis (10)
-  {ukr:'так',nl:'ja',deck:'Basis'},{ukr:'ні',nl:'nee',deck:'Basis'},
-  {ukr:'привіт',nl:'hallo',deck:'Basis'},{ukr:'до побачення',nl:'tot ziens',deck:'Basis'},
-  {ukr:'дякую',nl:'dank je',deck:'Basis'},{ukr:'будь ласка',nl:'alsjeblieft',deck:'Basis'},
-  {ukr:'вибачте',nl:'sorry',deck:'Basis'},{ukr:'добре',nl:'goed',deck:'Basis'},
-  {ukr:'погано',nl:'slecht',deck:'Basis'},{ukr:'допомога',nl:'hulp',deck:'Basis'}
+  {w:'червоний',t:'chervony',tr:'rood',sUk:'De roos is <b>червоний</b>.',sNl:'De roos is <b>rood</b>.',deck:'Kleuren 🎨',e:'🔴'},
+  {w:'синій',t:'syniy',tr:'blauw',sUk:'De lucht is <b>синій</b>.',sNl:'De lucht is <b>blauw</b>.',deck:'Kleuren 🎨',e:'🔵'},
+  {w:'зелений',t:'zeleny',tr:'groen',sUk:'Het gras is <b>зелений</b>.',sNl:'Het gras is <b>groen</b>.',deck:'Kleuren 🎨',e:'🟢'},
+  {w:'жовтий',t:'zhovty',tr:'geel',sUk:'De zon is <b>жовтий</b>.',sNl:'De zon is <b>geel</b>.',deck:'Kleuren 🎨',e:'🟡'},
+  {w:'чорний',t:'chorny',tr:'zwart',sUk:'De nacht is <b>чорний</b>.',sNl:'De nacht is <b>zwart</b>.',deck:'Kleuren 🎨',e:'⚫'},
+  {w:'білий',t:'bily',tr:'wit',sUk:'De sneeuw is <b>білий</b>.',sNl:'De sneeuw is <b>wit</b>.',deck:'Kleuren 🎨',e:'⚪'},
+  {w:'помаранчевий',t:'pomaranchevyy',tr:'oranje',sUk:'De pompoen is <b>помаранчевий</b>.',sNl:'De pompoen is <b>oranje</b>.',deck:'Kleuren 🎨',e:'🟠'},
+  {w:'рожевий',t:'rozhevy',tr:'roze',sUk:'De bloem is <b>рожевий</b>.',sNl:'De bloem is <b>roze</b>.',deck:'Kleuren 🎨',e:'🌸'},
+  {w:'коричневий',t:'korychnevy',tr:'bruin',sUk:'De boom is <b>коричневий</b>.',sNl:'De boom is <b>bruin</b>.',deck:'Kleuren 🎨',e:'🟤'},
+  {w:'сірий',t:'siry',tr:'grijs',sUk:'De muur is <b>сірий</b>.',sNl:'De muur is <b>grijs</b>.',deck:'Kleuren 🎨',e:'🩶'},
+
+  // 🔢 Cijfers (10)
+  {w:'один',t:'odyn',tr:'één',sUk:'Ik heb <b>один</b> broer.',sNl:'Ik heb <b>één</b> broer.',deck:'Cijfers 🔢',e:'1️⃣'},
+  {w:'два',t:'dva',tr:'twee',sUk:'Ik heb <b>два</b> katten.',sNl:'Ik heb <b>twee</b> katten.',deck:'Cijfers 🔢',e:'2️⃣'},
+  {w:'три',t:'try',tr:'drie',sUk:'Er zijn <b>три</b> appels op tafel.',sNl:'Er zijn <b>drie</b> appels op tafel.',deck:'Cijfers 🔢',e:'3️⃣'},
+  {w:'чотири',t:'chotyry',tr:'vier',sUk:'Een hond heeft <b>чотири</b> poten.',sNl:'Een hond heeft <b>vier</b> poten.',deck:'Cijfers 🔢',e:'4️⃣'},
+  {w:'п\'ять',t:'pyat',tr:'vijf',sUk:'Ik heb <b>п\'ять</b> vingers aan elke hand.',sNl:'Ik heb <b>vijf</b> vingers aan elke hand.',deck:'Cijfers 🔢',e:'5️⃣'},
+  {w:'шість',t:'shist',tr:'zes',sUk:'Er zijn <b>шість</b> eieren in de doos.',sNl:'Er zijn <b>zes</b> eieren in de doos.',deck:'Cijfers 🔢',e:'6️⃣'},
+  {w:'сім',t:'sim',tr:'zeven',sUk:'Een week heeft <b>сім</b> dagen.',sNl:'Een week heeft <b>zeven</b> dagen.',deck:'Cijfers 🔢',e:'7️⃣'},
+  {w:'вісім',t:'visim',tr:'acht',sUk:'Een spin heeft <b>вісім</b> poten.',sNl:'Een spin heeft <b>acht</b> poten.',deck:'Cijfers 🔢',e:'8️⃣'},
+  {w:'дев\'ять',t:'devyat',tr:'negen',sUk:'Er zijn <b>дев\'ять</b> planeten.',sNl:'Er zijn <b>negen</b> planeten.',deck:'Cijfers 🔢',e:'9️⃣'},
+  {w:'десять',t:'desyat',tr:'tien',sUk:'Ik heb <b>десять</b> vingers.',sNl:'Ik heb <b>tien</b> vingers.',deck:'Cijfers 🔢',e:'🔟'},
+
+  // 🗣️ Begroetingen (10)
+  {w:'привіт',t:'pryvit',tr:'hallo',sUk:'<b>Привіт</b>! Hoe gaat het?',sNl:'<b>Hallo</b>! Hoe gaat het?',deck:'Begroetingen 🗣️',e:'👋'},
+  {w:'добрий день',t:'dobry den',tr:'goedendag',sUk:'<b>Добрий день</b>, meneer!',sNl:'<b>Goedendag</b>, meneer!',deck:'Begroetingen 🗣️',e:'☀️'},
+  {w:'добрий ранок',t:'dobry ranok',tr:'goedemorgen',sUk:'<b>Добрий ранок</b>! Sliep je goed?',sNl:'<b>Goedemorgen</b>! Sliep je goed?',deck:'Begroetingen 🗣️',e:'🌅'},
+  {w:'добрий вечір',t:'dobry vechir',tr:'goedenavond',sUk:'<b>Добрий вечір</b>! Welkom thuis.',sNl:'<b>Goedenavond</b>! Welkom thuis.',deck:'Begroetingen 🗣️',e:'🌙'},
+  {w:'до побачення',t:'do pobachennya',tr:'tot ziens',sUk:'<b>До побачення</b>! Tot morgen.',sNl:'<b>Tot ziens</b>! Tot morgen.',deck:'Begroetingen 🗣️',e:'👋'},
+  {w:'дякую',t:'dyakuyu',tr:'dank je',sUk:'<b>Дякую</b> voor je hulp!',sNl:'<b>Dank je</b> voor je hulp!',deck:'Begroetingen 🗣️',e:'🙏'},
+  {w:'будь ласка',t:'bud laska',tr:'alsjeblieft',sUk:'Geef mij water, <b>будь ласка</b>.',sNl:'Geef mij water, <b>alsjeblieft</b>.',deck:'Begroetingen 🗣️',e:'🙏'},
+  {w:'вибачте',t:'vybachte',tr:'sorry / excuseer',sUk:'<b>Вибачте</b>, ik ben te laat.',sNl:'<b>Sorry</b>, ik ben te laat.',deck:'Begroetingen 🗣️',e:'😅'},
+  {w:'так',t:'tak',tr:'ja',sUk:'<b>Так</b>, ik begrijp het.',sNl:'<b>Ja</b>, ik begrijp het.',deck:'Begroetingen 🗣️',e:'✅'},
+  {w:'ні',t:'ni',tr:'nee',sUk:'<b>Ні</b>, dat wil ik niet.',sNl:'<b>Nee</b>, dat wil ik niet.',deck:'Begroetingen 🗣️',e:'❌'},
+
+  // 🏠 Thuis (10)
+  {w:'будинок',t:'budynok',tr:'huis',sUk:'Mijn <b>будинок</b> is groot.',sNl:'Mijn <b>huis</b> is groot.',deck:'Thuis 🏠',e:'🏠'},
+  {w:'кімната',t:'kimnata',tr:'kamer',sUk:'Mijn <b>кімната</b> is opgeruimd.',sNl:'Mijn <b>kamer</b> is opgeruimd.',deck:'Thuis 🏠',e:'🚪'},
+  {w:'стіл',t:'stil',tr:'tafel',sUk:'Het eten staat op de <b>стіл</b>.',sNl:'Het eten staat op de <b>tafel</b>.',deck:'Thuis 🏠',e:'🪑'},
+  {w:'стілець',t:'stilets',tr:'stoel',sUk:'Ik zit op een comfortabele <b>стілець</b>.',sNl:'Ik zit op een comfortabele <b>stoel</b>.',deck:'Thuis 🏠',e:'🪑'},
+  {w:'ліжко',t:'lizhko',tr:'bed',sUk:'Mijn <b>ліжко</b> is zacht en warm.',sNl:'Mijn <b>bed</b> is zacht en warm.',deck:'Thuis 🏠',e:'🛏️'},
+  {w:'вікно',t:'vikno',tr:'raam',sUk:'Ik kijk door het <b>вікно</b>.',sNl:'Ik kijk door het <b>raam</b>.',deck:'Thuis 🏠',e:'🪟'},
+  {w:'двері',t:'dveri',tr:'deur',sUk:'De <b>двері</b> is open.',sNl:'De <b>deur</b> is open.',deck:'Thuis 🏠',e:'🚪'},
+  {w:'кухня',t:'kukhnya',tr:'keuken',sUk:'Ik kook in de <b>кухня</b>.',sNl:'Ik kook in de <b>keuken</b>.',deck:'Thuis 🏠',e:'🍳'},
+  {w:'ванна',t:'vanna',tr:'badkamer',sUk:'De <b>ванна</b> is schoon.',sNl:'De <b>badkamer</b> is schoon.',deck:'Thuis 🏠',e:'🛁'},
+  {w:'сад',t:'sad',tr:'tuin',sUk:'Ik werk in de <b>сад</b>.',sNl:'Ik werk in de <b>tuin</b>.',deck:'Thuis 🏠',e:'🌿'},
+
+  // 🚗 Transport (10)
+  {w:'автомобіль',t:'avtomobil',tr:'auto',sUk:'Mijn <b>автомобіль</b> is rood.',sNl:'Mijn <b>auto</b> is rood.',deck:'Transport 🚗',e:'🚗'},
+  {w:'потяг',t:'potyah',tr:'trein',sUk:'De <b>потяг</b> rijdt snel.',sNl:'De <b>trein</b> rijdt snel.',deck:'Transport 🚗',e:'🚂'},
+  {w:'літак',t:'litak',tr:'vliegtuig',sUk:'Het <b>літак</b> vliegt hoog.',sNl:'Het <b>vliegtuig</b> vliegt hoog.',deck:'Transport 🚗',e:'✈️'},
+  {w:'автобус',t:'avtobus',tr:'bus',sUk:'Ik neem de <b>автобус</b> naar school.',sNl:'Ik neem de <b>bus</b> naar school.',deck:'Transport 🚗',e:'🚌'},
+  {w:'велосипед',t:'velosyped',tr:'fiets',sUk:'Ik rijd elke dag op mijn <b>велосипед</b>.',sNl:'Ik rijd elke dag op mijn <b>fiets</b>.',deck:'Transport 🚗',e:'🚲'},
+  {w:'корабель',t:'korabel',tr:'schip',sUk:'Het <b>корабель</b> vaart op zee.',sNl:'Het <b>schip</b> vaart op zee.',deck:'Transport 🚗',e:'🚢'},
+  {w:'метро',t:'metro',tr:'metro',sUk:'Ik neem de <b>метро</b> in de stad.',sNl:'Ik neem de <b>metro</b> in de stad.',deck:'Transport 🚗',e:'🚇'},
+  {w:'таксі',t:'taksi',tr:'taxi',sUk:'Ik neem een <b>таксі</b> naar het vliegveld.',sNl:'Ik neem een <b>taxi</b> naar het vliegveld.',deck:'Transport 🚗',e:'🚕'},
+  {w:'мотоцикл',t:'motosykl',tr:'motor',sUk:'Hij rijdt op een <b>мотоцикл</b>.',sNl:'Hij rijdt op een <b>motor</b>.',deck:'Transport 🚗',e:'🏍️'},
+  {w:'вертоліт',t:'vertolit',tr:'helikopter',sUk:'De <b>вертоліт</b> landt op het dak.',sNl:'De <b>helikopter</b> landt op het dak.',deck:'Transport 🚗',e:'🚁'},
+
+  // 🌤️ Weer (10)
+  {w:'сонце',t:'sontse',tr:'zon',sUk:'De <b>сонце</b> schijnt vandaag.',sNl:'De <b>zon</b> schijnt vandaag.',deck:'Weer 🌤️',e:'☀️'},
+  {w:'дощ',t:'doshch',tr:'regen',sUk:'Er valt <b>дощ</b> buiten.',sNl:'Er valt <b>regen</b> buiten.',deck:'Weer 🌤️',e:'🌧️'},
+  {w:'сніг',t:'snig',tr:'sneeuw',sUk:'Er ligt <b>сніг</b> in de tuin.',sNl:'Er ligt <b>sneeuw</b> in de tuin.',deck:'Weer 🌤️',e:'❄️'},
+  {w:'вітер',t:'viter',tr:'wind',sUk:'De <b>вітер</b> blaast hard vandaag.',sNl:'De <b>wind</b> blaast hard vandaag.',deck:'Weer 🌤️',e:'💨'},
+  {w:'хмара',t:'khmara',tr:'wolk',sUk:'Er zijn veel <b>хмара</b> in de lucht.',sNl:'Er zijn veel <b>wolken</b> in de lucht.',deck:'Weer 🌤️',e:'☁️'},
+  {w:'гроза',t:'hroza',tr:'onweer',sUk:'Vanavond komt er een <b>гроза</b>.',sNl:'Vanavond komt er een <b>onweer</b>.',deck:'Weer 🌤️',e:'⛈️'},
+  {w:'веселка',t:'veselka',tr:'regenboog',sUk:'Na de regen zag ik een <b>веселка</b>.',sNl:'Na de regen zag ik een <b>regenboog</b>.',deck:'Weer 🌤️',e:'🌈'},
+  {w:'туман',t:'tuman',tr:'mist',sUk:'Er is veel <b>туман</b> in de ochtend.',sNl:'Er is veel <b>mist</b> in de ochtend.',deck:'Weer 🌤️',e:'🌫️'},
+  {w:'лід',t:'lid',tr:'ijs',sUk:'Het meer is bedekt met <b>лід</b>.',sNl:'Het meer is bedekt met <b>ijs</b>.',deck:'Weer 🌤️',e:'🧊'},
+  {w:'спека',t:'speka',tr:'hitte',sUk:'De <b>спека</b> is ondraaglijk vandaag.',sNl:'De <b>hitte</b> is ondraaglijk vandaag.',deck:'Weer 🌤️',e:'🌡️'},
+
+  // ❤️ Emoties (10)
+  {w:'щасливий',t:'shchaslyvyy',tr:'blij / gelukkig',sUk:'Ik ben <b>щасливий</b> vandaag.',sNl:'Ik ben <b>blij</b> vandaag.',deck:'Emoties ❤️',e:'😊'},
+  {w:'сумний',t:'sumnyy',tr:'verdrietig',sUk:'Hij is <b>сумний</b> na het nieuws.',sNl:'Hij is <b>verdrietig</b> na het nieuws.',deck:'Emoties ❤️',e:'😢'},
+  {w:'злий',t:'zlyy',tr:'boos',sUk:'Ze is <b>злий</b> op hem.',sNl:'Ze is <b>boos</b> op hem.',deck:'Emoties ❤️',e:'😠'},
+  {w:'наляканий',t:'nalyakanyy',tr:'bang',sUk:'Het kind is <b>наляканий</b> van de hond.',sNl:'Het kind is <b>bang</b> voor de hond.',deck:'Emoties ❤️',e:'😨'},
+  {w:'здивований',t:'zdyvovanyy',tr:'verrast',sUk:'Ik ben <b>здивований</b> door het cadeau.',sNl:'Ik ben <b>verrast</b> door het cadeau.',deck:'Emoties ❤️',e:'😲'},
+  {w:'втомлений',t:'vtomlenыy',tr:'moe',sUk:'Ik ben <b>втомлений</b> na het werk.',sNl:'Ik ben <b>moe</b> na het werk.',deck:'Emoties ❤️',e:'😴'},
+  {w:'закоханий',t:'zakohanyy',tr:'verliefd',sUk:'Hij is <b>закоханий</b> op haar.',sNl:'Hij is <b>verliefd</b> op haar.',deck:'Emoties ❤️',e:'😍'},
+  {w:'спокійний',t:'spokiynyy',tr:'rustig / kalm',sUk:'Ze is altijd <b>спокійний</b>.',sNl:'Ze is altijd <b>rustig</b>.',deck:'Emoties ❤️',e:'😌'},
+  {w:'гордий',t:'hordyy',tr:'trots',sUk:'Ik ben <b>гордий</b> op jou.',sNl:'Ik ben <b>trots</b> op jou.',deck:'Emoties ❤️',e:'🦁'},
+  {w:'самотній',t:'samotniy',tr:'eenzaam',sUk:'Hij voelt zich <b>самотній</b>.',sNl:'Hij voelt zich <b>eenzaam</b>.',deck:'Emoties ❤️',e:'😔'},
 ];
 
 // ════════════════════════════════════════
-// STATE
+// 🗄️ STATE
 // ════════════════════════════════════════
+let decks = [];
 let cards = [];
-let decks = {};
-let currentDeck = null;
 let studyQueue = [];
 let currentCard = null;
-let isFlipped = false;
+let currentDeckName = '';
+let studyMode = 'flip';
+let direction = 'uk-nl';
+let cardFlipped = false;
+let typeChecked = false;
+let totalInSession = 0;
 
 // ════════════════════════════════════════
-// INIT
+// 💾 STORAGE
 // ════════════════════════════════════════
+function save() {
+  localStorage.setItem('ukr_decks', JSON.stringify(decks));
+  localStorage.setItem('ukr_cards', JSON.stringify(cards));
+}
 function load() {
-  const c = localStorage.getItem('ukrcards_cards');
+  const d = localStorage.getItem('ukr_decks');
+  const c = localStorage.getItem('ukr_cards');
+  decks = d ? JSON.parse(d) : [];
   cards = c ? JSON.parse(c) : [];
-  
+
   // Eerste keer: laad standaard woorden + decks
   if (cards.length === 0) {
-    cards = WORDS.map((w,i) => ({
-      id: i+1,
-      ukr: w.ukr,
-      nl: w.nl,
-      deck: w.deck,
-      interval: 0,
-      easeFactor: 2.5,
-      dueDate: Date.now(),
-      reviews: 0
-    }));
+    const deckNames = [...new Set(WORDS.map(w => w.deck))];
+    deckNames.forEach(name => {
+      if (!decks.find(d => d.name === name)) {
+        decks.push({ name });
+      }
+    });
+    WORDS.forEach(w => {
+      cards.push({
+        id: Date.now() + Math.random(),
+        word: w.w,
+        translit: w.t,
+        translation: w.tr,
+        sentenceUk: w.sUk,
+        sentenceNl: w.sNl,
+        deck: w.deck,
+        emoji: w.e,
+        interval: 0,
+        ease: 2.5,
+        due: 0,
+        lapses: 0,
+        state: 'new'
+      });
+    });
     save();
   }
-  
-  updateDecks();
-  renderDecks();
-  renderBrowse();
-  renderStats();
-  populateDeckSelect();
-}
-
-function save() {
-  localStorage.setItem('ukrcards_cards', JSON.stringify(cards));
-}
-
-function updateDecks() {
-  decks = {};
-  cards.forEach(c => {
-    if (!decks[c.deck]) decks[c.deck] = {name:c.deck,new:0,review:0,total:0};
-    decks[c.deck].total++;
-    if (c.reviews === 0) decks[c.deck].new++;
-    else if (c.dueDate <= Date.now()) decks[c.deck].review++;
-  });
 }
 
 // ════════════════════════════════════════
-// NAVIGATION
+// 🧭 NAVIGATIE
 // ════════════════════════════════════════
-function showPage(page) {
+function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  
-  document.getElementById('page-'+page).classList.add('active');
-  document.querySelectorAll('.nav-tab').forEach(t => {
-    if (t.textContent.includes(page === 'decks' ? 'Decks' : page === 'browse' ? 'Browse' : page === 'add' ? 'Add' : 'Stats')) {
-      t.classList.add('active');
-    }
-  });
-  
-  if (page === 'browse') renderBrowse();
-  if (page === 'stats') renderStats();
+  document.getElementById('page-' + id).classList.add('active');
+  const tabs = { decks: 0, add: 1, browse: 2, stats: 3 };
+  if (tabs[id] !== undefined) {
+    document.querySelectorAll('.nav-tab')[tabs[id]].classList.add('active');
+  }
+  if (id === 'decks') renderDecks();
+  if (id === 'browse') renderBrowse();
+  if (id === 'stats') renderStats();
+  if (id === 'add') populateDeckSelect();
 }
 
 // ════════════════════════════════════════
-// DECKS PAGE
+// 📚 DECKS
 // ════════════════════════════════════════
 function renderDecks() {
-  updateDecks();
-  const list = document.getElementById('deck-list');
-  list.innerHTML = '';
-  
-  Object.values(decks).forEach(d => {
+  const now = Date.now();
+  const container = document.getElementById('deck-rows');
+  container.innerHTML = '';
+  decks.forEach(deck => {
+    const dc = cards.filter(c => c.deck === deck.name);
+    const newC = dc.filter(c => c.state === 'new').length;
+    const learnC = dc.filter(c => c.state === 'learn').length;
+    const dueC = dc.filter(c => c.state === 'review' && c.due <= now).length;
     const row = document.createElement('div');
     row.className = 'deck-row';
     row.innerHTML = `
-      <div class="deck-name">${d.name}</div>
-      <div class="deck-stat">${d.new}</div>
-      <div class="deck-stat">${d.review}</div>
-      <div class="deck-stat">${d.total}</div>
-      <div class="deck-actions">
-        <button class="btn btn-primary btn-sm" onclick="startStudy('${d.name}')">Studeren →</button>
-      </div>
+      <span class="deck-name">${deck.name}</span>
+      <span class="deck-count c-new">${newC}</span>
+      <span class="deck-count c-learn">${learnC}</span>
+      <span class="deck-count c-due">${dueC}</span>
+      <button class="study-btn" onclick="startStudy('${deck.name}')">Studeren →</button>
     `;
-    list.appendChild(row);
+    container.appendChild(row);
   });
 }
 
+function openDeckModal() {
+  document.getElementById('deck-modal').classList.add('open');
+}
+function closeDeckModal() {
+  document.getElementById('deck-modal').classList.remove('open');
+  document.getElementById('new-deck-name').value = '';
+}
+function createDeck() {
+  const name = document.getElementById('new-deck-name').value.trim();
+  if (!name) return;
+  if (decks.find(d => d.name === name)) { showToast('Deck bestaat al!'); return; }
+  decks.push({ name });
+  save();
+  closeDeckModal();
+  renderDecks();
+  populateDeckSelect();
+  showToast('✅ Deck aangemaakt!');
+}
+
 // ════════════════════════════════════════
-// STUDY PAGE
+// 🎓 STUDEREN
 // ════════════════════════════════════════
 function startStudy(deckName) {
-  currentDeck = deckName;
-  studyQueue = cards.filter(c => c.deck === deckName && (c.reviews === 0 || c.dueDate <= Date.now()));
-  
+  currentDeckName = deckName;
+  const now = Date.now();
+  const dc = cards.filter(c => c.deck === deckName);
+  studyQueue = [
+    ...dc.filter(c => c.state === 'new').slice(0, 20),
+    ...dc.filter(c => c.state === 'learn'),
+    ...dc.filter(c => c.state === 'review' && c.due <= now)
+  ];
+  shuffle(studyQueue);
+  totalInSession = studyQueue.length;
+
   if (studyQueue.length === 0) {
-    alert('Geen kaarten om te studeren! 🎉');
+    showToast('🎉 Geen kaarten te studeren!');
     return;
   }
-  
-  document.getElementById('study-title').textContent = deckName;
-  document.getElementById('study-subtitle').textContent = `${studyQueue.length} kaarten te studeren`;
-  
   showPage('study');
+  updateStudyCounts();
   nextCard();
+}
+
+function setStudyMode(mode) {
+  studyMode = mode;
+  document.querySelectorAll('[id^="mode-"]').forEach(b => b.classList.remove('active'));
+  document.getElementById('mode-' + mode).classList.add('active');
+  if (currentCard) renderCard();
+}
+
+function setDirection(dir) {
+  direction = dir;
+  document.querySelectorAll('[id^="dir-"]').forEach(b => b.classList.remove('active'));
+  document.getElementById('dir-' + dir).classList.add('active');
+  if (currentCard) renderCard();
+}
+
+function getEffectiveDirection() {
+  if (direction === 'mix') return Math.random() > 0.5 ? 'uk-nl' : 'nl-uk';
+  return direction;
 }
 
 function nextCard() {
+  cardFlipped = false;
+  typeChecked = false;
+
+  document.getElementById('study-area').style.display = 'block';
+  document.getElementById('study-done').style.display = 'none';
+
   if (studyQueue.length === 0) {
-    document.getElementById('card-content').innerHTML = '<div style="text-align:center;"><h2>🎉 Klaar!</h2><p style="color:var(--text2);margin-top:10px;">Alle kaarten bestudeerd!</p></div>';
-    document.getElementById('study-buttons').style.display = 'none';
-    renderDecks();
-    renderStats();
+    document.getElementById('study-area').style.display = 'none';
+    document.getElementById('study-done').style.display = 'block';
     return;
   }
-  
+
   currentCard = studyQueue[0];
-  isFlipped = false;
-  
-  document.getElementById('card-content').innerHTML = `<div class="flashcard-front">${currentCard.ukr}</div>`;
-  document.getElementById('study-buttons').style.display = 'none';
+  updateStudyCounts();
+  renderCard();
+}
+
+function renderCard() {
+  const dir = getEffectiveDirection();
+  const c = currentCard;
+
+  // Reset flip
+  const fc = document.getElementById('fc');
+  if (fc) fc.classList.remove('flipped');
+
+  // Progress bar
+  const done = totalInSession - studyQueue.length;
+  const pct = totalInSession > 0 ? (done / totalInSession) * 100 : 0;
+  document.getElementById('s-prog').style.width = pct + '%';
+
+  if (studyMode === 'flip') {
+    document.getElementById('flip-mode').style.display = 'block';
+    document.getElementById('type-mode').style.display = 'none';
+    document.getElementById('show-ans-btn').style.display = 'block';
+    document.getElementById('rating-btns').style.display = 'none';
+
+    if (dir === 'uk-nl') {
+      // Voorkant: Oekraïens
+      document.getElementById('fc-tag').textContent = c.deck;
+      document.getElementById('fc-emoji').textContent = c.emoji;
+      document.getElementById('fc-word').textContent = c.word;
+      document.getElementById('fc-translit').textContent = '[' + c.translit + ']';
+      document.getElementById('fc-sentence').innerHTML = c.sentenceUk;
+      // Achterkant: Nederlands
+      document.getElementById('fc-back-tag').textContent = '🇳🇱 Vertaling';
+      document.getElementById('fc-back-emoji').textContent = c.emoji;
+      document.getElementById('fc-answer').textContent = c.translation;
+      document.getElementById('fc-answer-translit').textContent = '';
+      document.getElementById('fc-back-sentence').innerHTML = c.sentenceNl;
+    } else {
+      // Voorkant: Nederlands
+      document.getElementById('fc-tag').textContent = c.deck;
+      document.getElementById('fc-emoji').textContent = c.emoji;
+      document.getElementById('fc-word').textContent = c.translation;
+      document.getElementById('fc-translit').textContent = '';
+      document.getElementById('fc-sentence').innerHTML = c.sentenceNl;
+      // Achterkant: Oekraïens
+      document.getElementById('fc-back-tag').textContent = '🇺🇦 Oekraïens';
+      document.getElementById('fc-back-emoji').textContent = c.emoji;
+      document.getElementById('fc-answer').textContent = c.word;
+      document.getElementById('fc-answer-translit').textContent = '[' + c.translit + ']';
+      document.getElementById('fc-back-sentence').innerHTML = c.sentenceUk;
+    }
+
+  } else {
+    // TYPE MODE
+    document.getElementById('flip-mode').style.display = 'none';
+    document.getElementById('type-mode').style.display = 'block';
+    document.getElementById('check-btn').style.display = 'block';
+    document.getElementById('type-rating-btns').style.display = 'none';
+    document.getElementById('type-feedback').textContent = '';
+    document.getElementById('type-input').value = '';
+    document.getElementById('type-input').className = 'type-input';
+    document.getElementById('type-input').disabled = false;
+
+    if (dir === 'uk-nl') {
+      document.getElementById('t-tag').textContent = c.deck;
+      document.getElementById('t-emoji').textContent = c.emoji;
+      document.getElementById('t-word').textContent = c.word;
+      document.getElementById('t-translit').textContent = '[' + c.translit + ']';
+    } else {
+      document.getElementById('t-tag').textContent = c.deck;
+      document.getElementById('t-emoji').textContent = c.emoji;
+      document.getElementById('t-word').textContent = c.translation;
+      document.getElementById('t-translit').textContent = '';
+    }
+    setTimeout(() => document.getElementById('type-input').focus(), 100);
+  }
 }
 
 function flipCard() {
-  if (!currentCard || studyQueue.length === 0) return;
-  
-  isFlipped = !isFlipped;
-  
-  if (isFlipped) {
-    document.getElementById('card-content').innerHTML = `
-      <div class="flashcard-back">${currentCard.nl}</div>
-      <div class="flashcard-hint">${currentCard.ukr}</div>
-    `;
-    document.getElementById('study-buttons').style.display = 'flex';
-  } else {
-    document.getElementById('card-content').innerHTML = `<div class="flashcard-front">${currentCard.ukr}</div>`;
-    document.getElementById('study-buttons').style.display = 'none';
+  if (studyMode !== 'flip') return;
+  const fc = document.getElementById('fc');
+  cardFlipped = !cardFlipped;
+  fc.classList.toggle('flipped', cardFlipped);
+  document.getElementById('show-ans-btn').style.display = cardFlipped ? 'none' : 'block';
+  document.getElementById('rating-btns').style.display = cardFlipped ? 'grid' : 'none';
+}
+
+
+
+
+function speakWord(e) {
+e.stopPropagation();
+const dir = getEffectiveDirection();
+const text = dir === 'uk-nl' ? currentCard.word : currentCard.translation;
+const lang = dir === 'uk-nl' ? 'uk-UA' : 'nl-NL';
+
+
+
+
+// Check of stemmen beschikbaar zijn
+const voices = speechSynthesis.getVoices();
+const hasVoice = voices.some(v => v.lang.startsWith(lang.split('-')[0]));
+
+
+
+
+const utter = new SpeechSynthesisUtterance(text);
+
+
+
+
+if (hasVoice) {
+// Perfecte stem gevonden
+utter.lang = lang;
+const voice = voices.find(v => v.lang.startsWith(lang.split('-')[0]));
+if (voice) utter.voice = voice;
+} else if (dir === 'uk-nl') {
+// Fallback voor Oekraïens: probeer Russisch, dan Engels
+const fallbackVoice = voices.find(v => v.lang.startsWith('ru')) ||
+voices.find(v => v.lang.startsWith('en'));
+if (fallbackVoice) {
+utter.voice = fallbackVoice;
+showToast('⚠️ Geen Oekraïense stem, gebruikt fallback');
+}
+} else {
+// Fallback voor Nederlands: gebruik Engels
+utter.lang = 'en-US';
+showToast('⚠️ Geen Nederlandse stem gevonden');
+}
+
+
+
+
+utter.onerror = () => showToast('❌ Uitspraak niet beschikbaar');
+speechSynthesis.speak(utter);
+}
+
+
+
+
+
+
+function typeKeydown(e) {
+  if (e.key === 'Enter') {
+    if (!typeChecked) checkType();
+    else if (typeChecked) rate('good');
   }
 }
 
-function rateCard(rating) {
-  if (!currentCard) return;
-  
-  // SM-2 algoritme (simplified)
-  currentCard.reviews++;
-  
-  if (rating === 1) { // Again
-    currentCard.interval = 0;
-    currentCard.dueDate = Date.now();
-  } else if (rating === 2) { // Hard
-    currentCard.interval = Math.max(1, currentCard.interval * 1.2);
-    currentCard.dueDate = Date.now() + currentCard.interval * 86400000;
-  } else if (rating === 3) { // Good
-    currentCard.interval = currentCard.interval === 0 ? 1 : currentCard.interval * currentCard.easeFactor;
-    currentCard.dueDate = Date.now() + currentCard.interval * 86400000;
-  } else { // Easy
-    currentCard.interval = currentCard.interval === 0 ? 4 : currentCard.interval * currentCard.easeFactor * 1.3;
-    currentCard.dueDate = Date.now() + currentCard.interval * 86400000;
-    currentCard.easeFactor = Math.min(2.5, currentCard.easeFactor + 0.1);
+function checkType() {
+  const dir = getEffectiveDirection();
+  const input = document.getElementById('type-input').value.trim().toLowerCase();
+  const correct = (dir === 'uk-nl' ? currentCard.translation : currentCard.word).toLowerCase();
+  const feedback = document.getElementById('type-feedback');
+  typeChecked = true;
+
+  // Fuzzy check: allow 1 typo
+  const isCorrect = input === correct || levenshtein(input, correct) <= 1;
+
+  if (isCorrect) {
+    document.getElementById('type-input').className = 'type-input correct';
+    feedback.className = 'type-feedback ok';
+    feedback.textContent = '✅ Correct! ' + (input !== correct ? '(bijna: ' + correct + ')' : '');
+  } else {
+    document.getElementById('type-input').className = 'type-input wrong';
+    feedback.className = 'type-feedback nope';
+    feedback.textContent = '❌ Fout — het juiste antwoord: ' + correct;
   }
-  
+
+  document.getElementById('type-input').disabled = true;
+  document.getElementById('check-btn').style.display = 'none';
+  document.getElementById('type-rating-btns').style.display = 'grid';
+}
+
+// Levenshtein voor fuzzy matching
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  const dp = Array.from({length: m+1}, (_, i) => Array.from({length: n+1}, (_, j) => i === 0 ? j : j === 0 ? i : 0));
+  for (let i = 1; i <= m; i++)
+    for (let j = 1; j <= n; j++)
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
+  return dp[m][n];
+}
+
+// ════════════════════════════════════════
+// 🃏 SRS RATING
+// ════════════════════════════════════════
+function rate(rating) {
+  const c = currentCard;
+  const now = Date.now();
+  const day = 86400000;
+
+  if (rating === 'again') {
+    c.interval = 0;
+    c.state = 'learn';
+    c.due = now + 60000;
+    c.lapses++;
+    studyQueue.push(studyQueue.shift());
+  } else if (rating === 'hard') {
+    c.interval = Math.max(1, c.interval * 1.2);
+    c.ease = Math.max(1.3, c.ease - 0.15);
+    c.state = 'review';
+    c.due = now + c.interval * day;
+    studyQueue.shift();
+  } else if (rating === 'good') {
+    c.interval = c.interval === 0 ? 1 : Math.round(c.interval * c.ease);
+    c.state = 'review';
+    c.due = now + c.interval * day;
+    studyQueue.shift();
+  } else if (rating === 'easy') {
+    c.interval = c.interval === 0 ? 4 : Math.round(c.interval * c.ease * 1.3);
+    c.ease = Math.min(3.0, c.ease + 0.15);
+    c.state = 'review';
+    c.due = now + c.interval * day;
+    studyQueue.shift();
+  }
+
   save();
-  studyQueue.shift();
+  updateStudyCounts();
   nextCard();
 }
 
+function updateStudyCounts() {
+  const now = Date.now();
+  const dc = cards.filter(c => c.deck === currentDeckName);
+  document.getElementById('s-new').textContent = dc.filter(c => c.state === 'new').length + ' new';
+  document.getElementById('s-learn').textContent = dc.filter(c => c.state === 'learn').length + ' lrn';
+  document.getElementById('s-due').textContent = dc.filter(c => c.state === 'review' && c.due <= now).length + ' due';
+}
+
 // ════════════════════════════════════════
-// BROWSE PAGE
+// ➕ KAART TOEVOEGEN
 // ════════════════════════════════════════
-function renderBrowse() {
-  const list = document.getElementById('browse-list');
-  const filter = document.getElementById('browse-deck-filter').value;
-  
-  const filtered = filter ? cards.filter(c => c.deck === filter) : cards;
-  
-  list.innerHTML = '';
-  filtered.forEach(c => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <div>
-          <div style="font-size:1.1rem;font-weight:700;">${c.ukr}</div>
-          <div style="color:var(--blue);margin-top:4px;">${c.nl}</div>
-          <div style="font-size:0.75rem;color:var(--text2);margin-top:6px;">${c.deck} • ${c.reviews} reviews</div>
-        </div>
-      </div>
-    `;
-    list.appendChild(card);
+function populateDeckSelect() {
+  const sel = document.getElementById('a-deck');
+  if (!sel) return;
+  sel.innerHTML = decks.map(d => `<option value="${d.name}">${d.name}</option>`).join('');
+}
+
+function saveCard() {
+  const word = document.getElementById('a-word').value.trim();
+  const trans = document.getElementById('a-trans').value.trim();
+  if (!word || !trans) { showToast('⚠️ Vul minstens het woord en de vertaling in!'); return; }
+  cards.push({
+    id: Date.now() + Math.random(),
+    word,
+    translit: document.getElementById('a-translit').value.trim(),
+    translation: trans,
+    sentenceUk: document.getElementById('a-suk').value.trim(),
+    sentenceNl: document.getElementById('a-snl').value.trim(),
+    deck: document.getElementById('a-deck').value,
+    emoji: document.getElementById('a-emoji').value.trim() || '📝',
+    interval: 0, ease: 2.5, due: 0, lapses: 0, state: 'new'
+  });
+  save();
+  clearAdd();
+  showToast('✅ Kaart opgeslagen!');
+}
+
+function clearAdd() {
+  ['a-word','a-translit','a-trans','a-suk','a-snl','a-emoji'].forEach(id => {
+    document.getElementById(id).value = '';
   });
 }
 
-function filterBrowse() {
+// ════════════════════════════════════════
+// 🔍 BROWSE
+// ════════════════════════════════════════
+function renderBrowse() {
+  const query = (document.getElementById('browse-search').value || '').toLowerCase();
+  const activeFilter = document.querySelector('.f-btn.active');
+  const filterDeck = activeFilter ? activeFilter.dataset.deck : 'all';
+
+  // Filters
+  const filterRow = document.getElementById('browse-filters');
+  filterRow.innerHTML = `<button class="f-btn ${filterDeck === 'all' ? 'active' : ''}" data-deck="all" onclick="setBrowseFilter('all')">Alle</button>` +
+    decks.map(d => `<button class="f-btn ${filterDeck === d.name ? 'active' : ''}" data-deck="${d.name}" onclick="setBrowseFilter('${d.name}')">${d.name}</button>`).join('');
+
+  let filtered = cards;
+  if (filterDeck !== 'all') filtered = filtered.filter(c => c.deck === filterDeck);
+  if (query) filtered = filtered.filter(c =>
+    c.word.toLowerCase().includes(query) ||
+    c.translation.toLowerCase().includes(query) ||
+    c.translit.toLowerCase().includes(query)
+  );
+
+  document.getElementById('browse-count').textContent = filtered.length + ' kaarten';
+  const list = document.getElementById('browse-list');
+  list.innerHTML = filtered.length === 0
+    ? '<div style="text-align:center;color:var(--text2);padding:40px">Geen kaarten gevonden</div>'
+    : filtered.map(c => `
+      <div class="browse-item">
+        <span style="font-size:1.6rem">${c.emoji}</span>
+        <div>
+          <div class="bi-word">${c.word}</div>
+          <div class="bi-sub">${c.translation} · <i>${c.translit}</i></div>
+        </div>
+        <span class="bi-tag">${c.deck}</span>
+      </div>`).join('');
+}
+
+let _browseFilter = 'all';
+function setBrowseFilter(deck) {
+  _browseFilter = deck;
+  document.querySelectorAll('.f-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.deck === deck);
+  });
   renderBrowse();
 }
 
-function populateDeckSelect() {
-  const select1 = document.getElementById('browse-deck-filter');
-  const select2 = document.getElementById('add-deck');
-  
-  select1.innerHTML = '<option value="">Alle decks</option>';
-  select2.innerHTML = '';
-  
-  Object.keys(decks).forEach(d => {
-    select1.innerHTML += `<option value="${d}">${d}</option>`;
-    select2.innerHTML += `<option value="${d}">${d}</option>`;
-  });
-}
-
 // ════════════════════════════════════════
-// ADD PAGE
-// ════════════════════════════════════════
-function addCard() {
-  const ukr = document.getElementById('add-ukr').value.trim();
-  const nl = document.getElementById('add-nl').value.trim();
-  const deck = document.getElementById('add-deck').value;
-  
-  if (!ukr || !nl) {
-    alert('Vul beide velden in!');
-    return;
-  }
-  
-  cards.push({
-    id: cards.length + 1,
-    ukr, nl, deck,
-    interval: 0,
-    easeFactor: 2.5,
-    dueDate: Date.now(),
-    reviews: 0
-  });
-  
-  save();
-  updateDecks();
-  renderDecks();
-  
-  document.getElementById('add-ukr').value = '';
-  document.getElementById('add-nl').value = '';
-  
-  alert('✅ Kaart toegevoegd!');
-}
-
-// ════════════════════════════════════════
-// STATS PAGE
+// 📊 STATS
 // ════════════════════════════════════════
 function renderStats() {
   const total = cards.length;
-  const newCards = cards.filter(c => c.reviews === 0).length;
-  const learning = cards.filter(c => c.reviews > 0 && c.reviews < 5).length;
-  const mastered = cards.filter(c => c.reviews >= 5).length;
-  
-  document.getElementById('stat-total').textContent = total;
-  document.getElementById('stat-new').textContent = newCards;
-  document.getElementById('stat-learning').textContent = learning;
-  document.getElementById('stat-mastered').textContent = mastered;
-  
-  // Streak (simplified - zou datum-based moeten zijn)
-  document.getElementById('stat-streak').textContent = Math.floor(cards.filter(c => c.reviews > 0).length / 10);
+  const mature = cards.filter(c => c.interval >= 21).length;
+  const young = cards.filter(c => c.state === 'review' && c.interval < 21).length;
+  const newC = cards.filter(c => c.state === 'new').length;
+
+  document.getElementById('st-total').textContent = total;
+  document.getElementById('st-mature').textContent = mature;
+  document.getElementById('st-young').textContent = young;
+  document.getElementById('st-new').textContent = newC;
+
+  const bars = document.getElementById('deck-stat-bars');
+  bars.innerHTML = decks.map(d => {
+    const dc = cards.filter(c => c.deck === d.name);
+    const pct = total > 0 ? Math.round((dc.length / total) * 100) : 0;
+    const colors = ['#4a9eff','#4caf50','#ff9800','#f44336','#9c27b0','#00bcd4','#ff5722','#8bc34a','#ffc107','#e91e63'];
+    const color = colors[decks.indexOf(d) % colors.length];
+    return `<div class="bar-row">
+      <div class="bar-label"><span>${d.name}</span><span>${dc.length} kaarten</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+    </div>`;
+  }).join('');
 }
 
 // ════════════════════════════════════════
-// START
+// 🛠️ HELPERS
+// ════════════════════════════════════════
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ════════════════════════════════════════
+// 🚀 INIT
 // ════════════════════════════════════════
 load();
 showPage('decks');
 populateDeckSelect();
 </script>
 
+
+
+
 </body>
 </html>
-```
-
----
-
-## ✅ KLAAR!
-
-De code is nu klaar om te kopiëren en te deployen naar je GitHub repository!
-
-**Volg de stappen bovenaan deze memo om het live te zetten.** 🚀
-
-
-
-
