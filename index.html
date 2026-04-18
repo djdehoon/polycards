@@ -198,7 +198,7 @@ nav {
 .fc-word{font-size:2rem;font-weight:800;margin-bottom:6px;line-height:1.2;}
 .fc-translit{color:var(--text2);font-style:italic;font-size:0.9rem;margin-bottom:12px;}
 .fc-sentence{background:var(--bg);border-left:3px solid var(--blue);padding:10px 14px;border-radius:0 8px 8px 0;font-size:0.88rem;line-height:1.6;text-align:left;width:100%;margin-top:6px;}
-.fc-hint{color:var(--text2);font-size:0.78rem;margin-top:14px;}
+.fc-hint{color:var(--text2);font-size:0.78rem;margin-top:14px;background: transparent; /* ✅ Geen achtergrond */}
 .fc-answer-word{font-size:1.8rem;font-weight:800;color:var(--green);margin-bottom:8px;}
 .fc-answer-translit{color:var(--text2);font-style:italic;font-size:0.88rem;margin-bottom:10px;}
 .speak-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;margin-top:10px;transition:all 0.2s;}
@@ -591,6 +591,7 @@ nav {
             <div class="fc-emoji" id="fc-emoji"></div>
             <div class="fc-word" id="fc-word"></div>
             <div class="fc-translit" id="fc-translit"></div>
+            <div class="fc-answer-word" id="fc-answer"></div>
             <div class="fc-sentence" id="fc-sentence"></div>
             <button class="speak-btn" onclick="speakWord(event)">🔊 Uitspraak</button>
             <div class="fc-hint">👆 Tik om te omdraaien</div>
@@ -601,7 +602,7 @@ nav {
             <div class="fc-emoji" id="fc-back-emoji"></div>
             <div class="fc-answer-word" id="fc-answer"></div>
             <div class="fc-answer-translit" id="fc-answer-translit"></div>
-            <div class="fc-word" id="fc-word"></div>
+            
             <div class="fc-sentence" id="fc-back-sentence"></div>
             <button class="speak-btn" onclick="speakWord(event)">🔊 Uitspraak</button>
           </div>
