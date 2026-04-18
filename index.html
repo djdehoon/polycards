@@ -45,6 +45,27 @@ nav {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
 }
 
+  /* Flag UA */
+.flag-ua {
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 1.2em;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* Fallback voor Windows zonder emoji support */
+@supports not (font-family: 'Segoe UI Emoji') {
+  .flag-ua::before {
+    content: "🇺🇦";
+    background: linear-gradient(to bottom, #0057B7 50%, #FFD700 50%);
+    width: 20px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+}
+
+  
 /* PolyCards naam (blauw) */
 .logo-name {
   color: var(--blue);
@@ -52,10 +73,10 @@ nav {
 
 /* Ukraine label (oranje) */
 .logo-country {
-  font-size: 0.65rem;
+  font-size: 1rem;
   color: var(--orange);
   font-weight: 600;
-  margin-left: 2px;
+  margin-left: 0px;
 }
 
 /* Versienummer (grijs) */
@@ -315,10 +336,10 @@ nav {
 
 
 <div class="nav-logo">
-  🇺🇦 
+  <span class="flag-ua">🇺🇦</span> 
   <span class="logo-name">PolyCards</span> 
   <span class="logo-country">Ukraine</span>
-  <span class="nav-version">v0.14</span>
+  <span class="nav-version">v0.15</span>
 </div>
   
 <div class="nav-tabs">
