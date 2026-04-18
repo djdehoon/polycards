@@ -448,9 +448,13 @@ nav {
 .form-row{grid-template-columns:1fr;}
 .rating-btns{grid-template-columns:repeat(2,1fr);}
 .stats-grid{grid-template-columns:1fr;}
-.deck-table-head,.deck-row{grid-template-columns:1fr 45px 45px 45px 70px;}
-.nav-tab{padding:6px 8px;font-size:0.75rem;}
+.deck-table-head,.deck-row{grid-template-columns:1fr 36px 36px 36px 80px;}
+.nav-logo{font-size:0.95rem;}
+.nav-tab{padding:5px 8px;font-size:0.72rem;}
+.nav-tab .tab-label{display:none;}
+.btn-study{padding:8px 10px;font-size:0.78rem;white-space:nowrap;}
 }
+
 </style>
 
 
@@ -509,12 +513,13 @@ nav {
 </div>
   
 <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showPage('decks')">📚 Decks</button>
-    <button class="nav-tab" onclick="showPage('instructions')">📖 Instructions</button>
-    <button class="nav-tab" onclick="showPage('browse')">🔍 Browse</button>
-    <button class="nav-tab" onclick="showPage('stats')">📊 Stats</button>
-    <button class="nav-tab" onclick="showWelcome()">🎉 Welkom</button>
+    <button class="nav-tab active" onclick="showPage('decks')">📚 <span class="tab-label">Decks</span></button>
+    <button class="nav-tab" onclick="showPage('instructions')">📖 <span class="tab-label">Instructions</span></button>
+    <button class="nav-tab" onclick="showPage('browse')">🔍 <span class="tab-label">Browse</span></button>
+    <button class="nav-tab" onclick="showPage('stats')">📊 <span class="tab-label">Stats</span></button>
+    <button class="nav-tab" onclick="showWelcome()">👋 <span class="tab-label">Welcome</span></button>
   </div>
+
 
 </nav>
 
