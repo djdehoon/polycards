@@ -271,47 +271,55 @@ nav {
    📖 INSTRUCTIONS PAGE
    ════════════════════════════════════════ */
 .instructions-section {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
 }
 
 .instructions-q {
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 1rem;
-  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: var(--blue);
+  letter-spacing: 0.2px;
 }
 
 .instructions-a {
   color: var(--text2);
-  line-height: 1.8;
-  font-size: 0.92rem;
-  padding-left: 4px;
+  line-height: 1.9;
+  font-size: 0.9rem;
+  font-weight: 400;
 }
 
 .instructions-a ul {
-  padding-left: 20px;
-  margin-top: 10px;
+  padding-left: 0;
+  margin-top: 12px;
   list-style: none;
 }
 
 .instructions-a li {
-  margin-bottom: 8px;
-  line-height: 1.7;
+  margin-bottom: 10px;
+  line-height: 1.8;
+  padding-left: 24px;
   position: relative;
-  padding-left: 20px;
+  color: var(--text2);
 }
 
 .instructions-a li::before {
-  content: "→";
+  content: "•";
   position: absolute;
-  left: 0;
+  left: 8px;
   color: var(--blue);
-  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.4;
 }
 
 .instructions-a strong {
   color: var(--text);
-  font-weight: 700;
+  font-weight: 600;
+}
+
+/* Extra ruimte tussen cards */
+#page-instructions .card {
+  margin-bottom: 20px;
 }
 
 
