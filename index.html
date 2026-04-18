@@ -265,6 +265,12 @@ nav {
 .bi-word{font-size:1rem;font-weight:700;}
 .bi-sub{color:var(--text2);font-size:0.82rem;margin-top:2px;}
 .bi-tag{margin-left:auto;font-size:0.72rem;background:var(--surface2);padding:3px 8px;border-radius:6px;color:var(--text2);}
+/* v0.16: HELP PAGE STYLES */
+.help-section{margin-bottom:20px;}
+.help-q{font-weight:700;margin-bottom:6px;font-size:0.95rem;}
+.help-a{color:var(--text2);line-height:1.7;font-size:0.9rem;}
+.help-a ul{padding-left:20px;margin-top:8px;}
+.help-a li{margin-bottom:6px;}
 
 
 
@@ -347,7 +353,7 @@ nav {
   
 <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('decks')">📚 Decks</button>
-    <button class="nav-tab" onclick="showPage('add')">➕ Add</button>
+    <button class="nav-tab" onclick="showPage('instructions')">📖 Instructions</button>
     <button class="nav-tab" onclick="showPage('browse')">🔍 Browse</button>
     <button class="nav-tab" onclick="showPage('stats')">📊 Stats</button>
   </div>
@@ -500,58 +506,6 @@ nav {
 
 
 
-<!-- ADD -->
-
-
-
-
-<div class="page" id="page-add">
-  <div class="page-title">Kaart Toevoegen ✏️</div>
-  <div class="page-sub">Voeg een nieuwe Oekraïense flashcard toe</div>
-  <div class="card">
-    <div class="card-title">🇺🇦 Oekraïens</div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Oekraïens woord *</label>
-        <input class="form-input" id="a-word" placeholder="bijv. кіт"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Uitspraak</label>
-        <input class="form-input" id="a-translit" placeholder="bijv. kit"/>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Zin in het Oekraïens</label>
-      <textarea class="form-textarea" id="a-suk" placeholder="bijv. Мій кіт slaapt op de bank."></textarea>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">🇳🇱 Nederlands</div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Nederlandse vertaling *</label>
-        <input class="form-input" id="a-trans" placeholder="bijv. kat"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Deck</label>
-        <select class="form-select" id="a-deck"></select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Zin in het Nederlands</label>
-      <textarea class="form-textarea" id="a-snl" placeholder="bijv. Mijn kat slaapt op de bank."></textarea>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Emoji</label>
-      <input class="form-input" id="a-emoji" placeholder="bijv. 🐱" style="font-size:1.3rem;width:80px"/>
-    </div>
-  </div>
-  <div style="display:flex;gap:10px">
-    <button class="btn btn-primary" onclick="saveCard()">💾 Opslaan</button>
-    <button class="btn btn-outline" onclick="clearAdd()">✕ Wissen</button>
-  </div>
-</div>
-
 
 
 
@@ -569,6 +523,105 @@ nav {
 </div>
 
 
+<!-- v0.16: HELP / INSTRUCTIE PAGE -->
+<div class="page" id="page-help">
+  <div class="page-title">❓ Instructie</div>
+  <div class="page-sub">Alles over PolyCards Ukraine</div>
+
+  <div class="card">
+    <div class="card-title">📚 Wat is PolyCards Ukraine?</div>
+    <p class="help-a">PolyCards Ukraine helpt je <strong>Oekraïens leren</strong> via slimme flashcards met <strong>spaced repetition</strong> — een bewezen methode waarbij je woorden op het juiste moment herhaalt.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎴 Hoe gebruik je de app?</div>
+    <div class="help-section">
+      <div class="help-q">1. Kies een deck</div>
+      <div class="help-a">Ga naar Decks en klik op "Studeren" bij een thema.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">2. Bekijk de kaart</div>
+      <div class="help-a">Je ziet een Oekraïens woord. Probeer de vertaling te bedenken.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">3. Draai de kaart</div>
+      <div class="help-a">Klik op de kaart om het antwoord te zien.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">4. Beoordeel jezelf</div>
+      <div class="help-a">Kies eerlijk: Again / Hard / Good / Easy.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔊 Audio uitspraak</div>
+    <p class="help-a">Klik op <strong>🔊 Uitspraak</strong> om het woord te horen. Werkt voor Oekraïens én Nederlands.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔄 Richting & modus</div>
+    <div class="help-section">
+      <div class="help-q">Richting wisselen</div>
+      <div class="help-a">Standaard: Oekraïens → Nederlands. Klik op de vlag-knop om om te draaien.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">Flip vs Type modus</div>
+      <div class="help-a">Flip: klik om antwoord te zien. Type: typ het antwoord zelf (uitdagender).</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Statistieken uitleg</div>
+    <div class="help-section">
+      <div class="help-q">New</div>
+      <div class="help-a">Woorden die je nog nooit hebt gezien.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">Learning (Lrn)</div>
+      <div class="help-a">Woorden die je aan het oefenen bent.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">Due</div>
+      <div class="help-a">Woorden die klaar zijn voor herhaling.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">Mature</div>
+      <div class="help-a">Woorden die je goed kent (interval ≥ 21 dagen).</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 Tips voor effectief leren</div>
+    <div class="help-a">
+      <ul>
+        <li>Oefen <strong>dagelijks</strong>, ook al is het maar 5 minuten</li>
+        <li>Wees <strong>eerlijk</strong> bij het beoordelen</li>
+        <li>Gebruik de <strong>audio</strong> om uitspraak te leren</li>
+        <li>Oefen beide <strong>richtingen</strong> (UK→NL én NL→UK)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">❓ Veelgestelde vragen</div>
+    <div class="help-section">
+      <div class="help-q">Kost de app geld?</div>
+      <div class="help-a">Nee, PolyCards Ukraine is volledig gratis.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">Wordt mijn voortgang opgeslagen?</div>
+      <div class="help-a">Ja, automatisch in je browser (localStorage).</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">Werkt het offline?</div>
+      <div class="help-a">Ja, behalve de audio-uitspraak.</div>
+    </div>
+    <div class="help-section">
+      <div class="help-q">Op welke apparaten?</div>
+      <div class="help-a">Alle moderne browsers: Chrome, Firefox, Safari, Edge.</div>
+    </div>
+  </div>
+</div>
 
 
 <!-- STATS -->
