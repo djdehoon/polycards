@@ -347,6 +347,78 @@ nav {
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:11px 22px;border-radius:24px;font-weight:700;z-index:300;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;font-size:0.9rem;}
 .toast.show{opacity:1;}
 
+/* ════════════════════════════════════════
+   WELCOME SCREEN
+   ════════════════════════════════════════ */
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.welcome-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.welcome-flags {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.welcome-title span {
+  color: var(--blue);
+}
+
+.welcome-subtitle {
+  color: var(--text2);
+  margin-bottom: 30px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.welcome-features {
+  text-align: left;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--surface2);
+  border-radius: 10px;
+}
+
+.welcome-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.welcome-feature:last-child {
+  margin-bottom: 0;
+}
+
+.welcome-feature-icon {
+  font-size: 1.3rem;
+}
 
 
 
@@ -365,6 +437,35 @@ nav {
 </head>
 <body>
 
+<!-- v0.17: WELCOME SCREEN (first time only) -->
+<div id="welcome-screen" class="welcome-screen" style="display:none;">
+  <div class="welcome-card">
+    <div class="welcome-flags">🇺🇦 🇳🇱</div>
+    <h1 class="welcome-title">Welkom bij <span>PolyCards</span> Ukraine</h1>
+    <p class="welcome-subtitle">Leer Oekraïens via slimme flashcards met spaced repetition</p>
+    
+    <div class="welcome-features">
+      <div class="welcome-feature">
+        <span class="welcome-feature-icon">📚</span>
+        <span>100 essentiële Oekraïense woorden in 10 thema's</span>
+      </div>
+      <div class="welcome-feature">
+        <span class="welcome-feature-icon">🧠</span>
+        <span>Spaced repetition algoritme voor effectief leren</span>
+      </div>
+      <div class="welcome-feature">
+        <span class="welcome-feature-icon">🔊</span>
+        <span>Native uitspraak voor beide talen</span>
+      </div>
+      <div class="welcome-feature">
+        <span class="welcome-feature-icon">📊</span>
+        <span>Voortgang bijhouden met statistieken</span>
+      </div>
+    </div>
+    
+    <button class="btn btn-primary" onclick="closeWelcome()">🚀 Start met leren</button>
+  </div>
+</div>
 
 
 
@@ -1361,12 +1462,37 @@ function showToast(msg) {
 }
 
 // ════════════════════════════════════════
-// 🚀 INIT
+// 🎉 WELCOME SCREEN
 // ════════════════════════════════════════
-load();
-showPage('decks');
-populateDeckSelect();
+function closeWelcome() {
+  localStorage.setItem('polycards_ukraine_welcome', 'true');
+  document.getElementById('welcome-screen').style.display = 'none';
+}
+
+// ════════════════════════════════════════
+// 🚀 INITIALIZATION
+// ════════════════════════════════════════
+function init() {
+  load();
+  
+  // Check if first time user (NEW in v0.17)
+  const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
+  if (!hasSeenWelcome) {
+    document.getElementById('welcome-screen').style.display = 'flex';
+  }
+  
+  updateDecks();
+  renderDecks();
+  renderBrowse();
+  renderStats();
+  showPage('decks');
+  populateDeckSelect();
+}
+
+// Start app
+init();
 </script>
+
 
 
 
