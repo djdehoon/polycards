@@ -504,7 +504,7 @@ nav {
   </svg>
   <span class="logo-name">PolyCards</span> 
   <span class="logo-country">Ukraine</span>
-  <span class="nav-version">v0.16</span>
+  <span class="nav-version">v0.18</span>
 </div>
   
 <div class="nav-tabs">
@@ -628,6 +628,7 @@ nav {
       <div class="fc-emoji" id="t-emoji"></div>
       <div class="fc-word" id="t-word"></div>
       <div class="fc-translit" id="t-translit"></div>
+      <button class="speak-btn" onclick="speakWord(event)" style="margin-top:16px;">🔊 Uitspraak</button>
     </div>
   </div>
   <div class="type-input-wrap">
@@ -1289,20 +1290,28 @@ function checkType() {
   // Fuzzy check: allow 1 typo
   const isCorrect = input === correct || levenshtein(input, correct) <= 1;
 
+  // Toon beide talen in feedback
+  const ukWord = currentCard.word;
+  const nlWord = currentCard.translation;
+  const bothLanguages = dir === 'uk-nl' 
+    ? `${nlWord} (🇺🇦 ${ukWord})`
+    : `${ukWord} (🇳🇱 ${nlWord})`;
+
   if (isCorrect) {
     document.getElementById('type-input').className = 'type-input correct';
     feedback.className = 'type-feedback ok';
-    feedback.textContent = '✅ Correct! ' + (input !== correct ? '(bijna: ' + correct + ')' : '');
+    feedback.textContent = '✅ Correct! ' + (input !== correct ? `(bijna: ${bothLanguages})` : bothLanguages);
   } else {
     document.getElementById('type-input').className = 'type-input wrong';
     feedback.className = 'type-feedback nope';
-    feedback.textContent = '❌ Fout — het juiste antwoord: ' + correct;
+    feedback.textContent = '❌ Fout — het juiste antwoord: ' + bothLanguages;
   }
 
   document.getElementById('type-input').disabled = true;
   document.getElementById('check-btn').style.display = 'none';
   document.getElementById('type-rating-btns').style.display = 'grid';
 }
+
 
 // Levenshtein voor fuzzy matching
 function levenshtein(a, b) {
