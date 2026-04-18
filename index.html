@@ -1468,6 +1468,7 @@ function closeWelcome() {
   localStorage.setItem('polycards_ukraine_welcome', 'true');
   document.getElementById('welcome-screen').style.display = 'none';
 }
+  
 // ════════════════════════════════════════
 // 🚀 INITIALIZATION
 // ════════════════════════════════════════
@@ -1481,6 +1482,7 @@ function init() {
   }
   
   showPage('decks');
+  populateDeckSelect();
 }
 
 // Start app
