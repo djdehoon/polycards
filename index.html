@@ -24,6 +24,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .nav-logo{font-size:1.2rem;font-weight:800;letter-spacing:-0.5px;}
 .nav-logo span{color:var(--blue);}
+.nav-version{font-size:0.65rem;color:var(--text2);font-weight:600;margin-left:6px;}
+
 .nav-tabs{display:flex;gap:4px;}
 .nav-tab{background:none;border:none;color:var(--text2);padding:7px 13px;border-radius:8px;cursor:pointer;font-size:0.85rem;font-weight:600;transition:all 0.2s;}
 .nav-tab:hover{background:var(--surface2);color:var(--text);}
@@ -245,12 +247,7 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:12px
 
 
 
-<div class="nav-logo">🇺🇦 <span>PolyCards</span> <span style="font-size:0.65rem;color:var(--text2);font-weight:600;margin-left:6px">Ukraine</span></div>
-
-
-
-
- 
+div class="nav-logo">🇺🇦 <span>PolyCards</span> <span style="font-size:0.65rem;color:var(--text2);font-weight:600;margin-left:6px">Ukraine</span><span class="nav-version">v0.14</span></div> 
 
 <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('decks')">📚 Decks</button>
@@ -1201,4 +1198,6 @@ populateDeckSelect();
 
 
 
-77777
+
+
+
