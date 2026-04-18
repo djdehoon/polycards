@@ -348,7 +348,7 @@ nav {
   </svg>
   <span class="logo-name">PolyCards</span> 
   <span class="logo-country">Ukraine</span>
-  <span class="nav-version">v0.15</span>
+  <span class="nav-version">v0.16</span>
 </div>
   
 <div class="nav-tabs">
@@ -863,14 +863,13 @@ function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  const tabs = { decks: 0, add: 1, browse: 2, stats: 3 };
+  const tabs = { decks: 0, help: 1, browse: 2, stats: 3 };  // ← GEWIJZIGD: add → help
   if (tabs[id] !== undefined) {
     document.querySelectorAll('.nav-tab')[tabs[id]].classList.add('active');
   }
   if (id === 'decks') renderDecks();
   if (id === 'browse') renderBrowse();
   if (id === 'stats') renderStats();
-  if (id === 'add') populateDeckSelect();
 }
 
 // ════════════════════════════════════════
