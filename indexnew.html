@@ -38,13 +38,62 @@
   <div id="toast" class="toast"></div>
   
   <!-- Script Files (in order) -->
-  <script src="config.js"></script>
-  <script src="services/storage.js"></script>
-  <script src="services/srs.js"></script>
-  <script src="services/audio.js"></script>
-  <script src="components/ui.js"></script>
-  <script src="components/study.js"></script>
-  <script src="components/stats.js"></script>
+  <script src="config.js">
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+  <script src="services/storage.js">
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+  <script src="services/srs.js">
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+  <script src="services/audio.js">
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+  <script src="components/ui.js">
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+  <script src="components/study.js">
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+  <script src="components/stats.js">
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
   <script>
     // Initialize app
     if (document.readyState === 'loading') {
@@ -52,7 +101,14 @@
     } else {
       init();
     }
-  </script>
+  
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
   <!-- WELCOME SCREEN -->
   <div id="welcome-screen" class="welcome-screen">
     <div class="welcome-card">
@@ -132,6 +188,7 @@
   <div id="toast" class="toast"></div>
   </body>
 </html>
+
 
 
 
