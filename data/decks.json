@@ -1,324 +1,94 @@
 {
   "cards": [
-    {
-      "wordUk": "привіт",
-      "wordNl": "hallo",
-      "deck": "Begroetingen",
-      "translit": "pryvit",
-      "sentence": "Привіт! Як дела?",
-      "stats": {}
-    },
-    {
-      "wordUk": "спасибі",
-      "wordNl": "dank je",
-      "deck": "Begroetingen",
-      "translit": "spasybi",
-      "sentence": "Спасибі за допомогу!",
-      "stats": {}
-    },
-    {
-      "wordUk": "будь ласка",
-      "wordNl": "alsjeblieft",
-      "deck": "Begroetingen",
-      "translit": "bud laska",
-      "sentence": "Будь ласка, допоможи мені.",
-      "stats": {}
-    },
-    {
-      "wordUk": "до побачення",
-      "wordNl": "tot ziens",
-      "deck": "Begroetingen",
-      "translit": "do pobachennya",
-      "sentence": "До побачення!",
-      "stats": {}
-    },
-    {
-      "wordUk": "кіт",
-      "wordNl": "kat",
-      "deck": "Dieren",
-      "translit": "kit",
-      "sentence": "Це чорний кіт.",
-      "stats": {}
-    },
-    {
-      "wordUk": "собака",
-      "wordNl": "hond",
-      "deck": "Dieren",
-      "translit": "sobaka",
-      "sentence": "Моя собака дуже розумна.",
-      "stats": {}
-    },
-    {
-      "wordUk": "птиця",
-      "wordNl": "vogel",
-      "deck": "Dieren",
-      "translit": "ptycya",
-      "sentence": "Птиця летить в небі.",
-      "stats": {}
-    },
-    {
-      "wordUk": "риба",
-      "wordNl": "vis",
-      "deck": "Dieren",
-      "translit": "ryba",
-      "sentence": "Риба плаває у воді.",
-      "stats": {}
-    },
-    {
-      "wordUk": "мама",
-      "wordNl": "moeder",
-      "deck": "Familie",
-      "translit": "mama",
-      "sentence": "Моя мама дуже добра.",
-      "stats": {}
-    },
-    {
-      "wordUk": "тато",
-      "wordNl": "vader",
-      "deck": "Familie",
-      "translit": "tato",
-      "sentence": "Мій тато працює інженером.",
-      "stats": {}
-    },
-    {
-      "wordUk": "сестра",
-      "wordNl": "zus",
-      "deck": "Familie",
-      "translit": "sestra",
-      "sentence": "Моя сестра студентка.",
-      "stats": {}
-    },
-    {
-      "wordUk": "брат",
-      "wordNl": "broer",
-      "deck": "Familie",
-      "translit": "brat",
-      "sentence": "Мій брат грає у футбол.",
-      "stats": {}
-    },
-    {
-      "wordUk": "хліб",
-      "wordNl": "brood",
-      "deck": "Eten & Drinken",
-      "translit": "khlib",
-      "sentence": "Свіжий хліб дуже смачний.",
-      "stats": {}
-    },
-    {
-      "wordUk": "вода",
-      "wordNl": "water",
-      "deck": "Eten & Drinken",
-      "translit": "voda",
-      "sentence": "Пийте більше води!",
-      "stats": {}
-    },
-    {
-      "wordUk": "молоко",
-      "wordNl": "melk",
-      "deck": "Eten & Drinken",
-      "translit": "moloko",
-      "sentence": "Молоко дуже корисне для здоров'я.",
-      "stats": {}
-    },
-    {
-      "wordUk": "яйце",
-      "wordNl": "ei",
-      "deck": "Eten & Drinken",
-      "translit": "yayche",
-      "sentence": "На сніданок я їм яйця.",
-      "stats": {}
-    },
-    {
-      "wordUk": "голова",
-      "wordNl": "hoofd",
-      "deck": "Lichaamsdelen",
-      "translit": "holova",
-      "sentence": "Голова болить.",
-      "stats": {}
-    },
-    {
-      "wordUk": "рука",
-      "wordNl": "hand",
-      "deck": "Lichaamsdelen",
-      "translit": "ruka",
-      "sentence": "Підніми руку!",
-      "stats": {}
-    },
-    {
-      "wordUk": "нога",
-      "wordNl": "been",
-      "deck": "Lichaamsdelen",
-      "translit": "noga",
-      "sentence": "Моя нога болить.",
-      "stats": {}
-    },
-    {
-      "wordUk": "око",
-      "wordNl": "oog",
-      "deck": "Lichaamsdelen",
-      "translit": "oko",
-      "sentence": "У мене сині очі.",
-      "stats": {}
-    },
-    {
-      "wordUk": "дім",
-      "wordNl": "huis",
-      "deck": "Huis & Meubels",
-      "translit": "dim",
-      "sentence": "Це мій дім.",
-      "stats": {}
-    },
-    {
-      "wordUk": "стіл",
-      "wordNl": "tafel",
-      "deck": "Huis & Meubels",
-      "translit": "stil",
-      "sentence": "На столі лежить книга.",
-      "stats": {}
-    },
-    {
-      "wordUk": "стілець",
-      "wordNl": "stoel",
-      "deck": "Huis & Meubels",
-      "translit": "stilets",
-      "sentence": "Сядь на стілець!",
-      "stats": {}
-    },
-    {
-      "wordUk": "ліжко",
-      "wordNl": "bed",
-      "deck": "Huis & Meubels",
-      "translit": "lizhko",
-      "sentence": "Я сплю на ліжку.",
-      "stats": {}
-    },
-    {
-      "wordUk": "сорочка",
-      "wordNl": "shirt",
-      "deck": "Kleding",
-      "translit": "sorochka",
-      "sentence": "Синя сорочка дуже гарна.",
-      "stats": {}
-    },
-    {
-      "wordUk": "штани",
-      "wordNl": "broek",
-      "deck": "Kleding",
-      "translit": "shtany",
-      "sentence": "Чорні штани дуже зручні.",
-      "stats": {}
-    },
-    {
-      "wordUk": "взуття",
-      "wordNl": "schoen",
-      "deck": "Kleding",
-      "translit": "vzuttya",
-      "sentence": "Мої взуття дуже комфортні.",
-      "stats": {}
-    },
-    {
-      "wordUk": "капелюх",
-      "wordNl": "hoed",
-      "deck": "Kleding",
-      "translit": "kapelyukh",
-      "sentence": "Капелюх захищає від сонця.",
-      "stats": {}
-    },
-    {
-      "wordUk": "один",
-      "wordNl": "een",
-      "deck": "Getallen",
-      "translit": "odyn",
-      "sentence": "У мене один брат.",
-      "stats": {}
-    },
-    {
-      "wordUk": "два",
-      "wordNl": "twee",
-      "deck": "Getallen",
-      "translit": "dva",
-      "sentence": "У мене два кота.",
-      "stats": {}
-    },
-    {
-      "wordUk": "три",
-      "wordNl": "drie",
-      "deck": "Getallen",
-      "translit": "try",
-      "sentence": "Три яблука на столі.",
-      "stats": {}
-    },
-    {
-      "wordUk": "чотири",
-      "wordNl": "vier",
-      "deck": "Getallen",
-      "translit": "chotyry",
-      "sentence": "Чотири сезони в році.",
-      "stats": {}
-    },
-    {
-      "wordUk": "їсти",
-      "wordNl": "eten",
-      "deck": "Werkwoorden",
-      "translit": "yisty",
-      "sentence": "Я їм хліб на сніданок.",
-      "stats": {}
-    },
-    {
-      "wordUk": "пити",
-      "wordNl": "drinken",
-      "deck": "Werkwoorden",
-      "translit": "pity",
-      "sentence": "Я пию воду кожен день.",
-      "stats": {}
-    },
-    {
-      "wordUk": "спати",
-      "wordNl": "slapen",
-      "deck": "Werkwoorden",
-      "translit": "spaty",
-      "sentence": "Я сплю 8 годин на ніч.",
-      "stats": {}
-    },
-    {
-      "wordUk": "працювати",
-      "wordNl": "werken",
-      "deck": "Werkwoorden",
-      "translit": "pratsyuvaty",
-      "sentence": "Я працюю в офісі.",
-      "stats": {}
-    },
-    {
-      "wordUk": "гарний",
-      "wordNl": "mooi",
-      "deck": "Bijvoeglijke Naamwoorden",
-      "translit": "harnyy",
-      "sentence": "Гарна погода сьогодні.",
-      "stats": {}
-    },
-    {
-      "wordUk": "великий",
-      "wordNl": "groot",
-      "deck": "Bijvoeglijke Naamwoorden",
-      "translit": "velykyy",
-      "sentence": "Великий дім на горі.",
-      "stats": {}
-    },
-    {
-      "wordUk": "малий",
-      "wordNl": "klein",
-      "deck": "Bijvoeglijke Naamwoorden",
-      "translit": "malyy",
-      "sentence": "Малий кіт дуже милий.",
-      "stats": {}
-    },
-    {
-      "wordUk": "гарячий",
-      "wordNl": "heet",
-      "deck": "Bijvoeglijke Naamwoorden",
-      "translit": "garyachyy",
-      "sentence": "Гарячий чай дуже смачний.",
-      "stats": {}
-    }
+    { "wordUk": "привіт", "wordNl": "hallo", "deck": "Begroetingen", "translit": "pryvit", "sentence": "Привіт! Як дела?", "stats": {} },
+    { "wordUk": "спасибі", "wordNl": "dank je", "deck": "Begroetingen", "translit": "spasybi", "sentence": "Спасибі за допомогу!", "stats": {} },
+    { "wordUk": "будь ласка", "wordNl": "alsjeblieft", "deck": "Begroetingen", "translit": "bud laska", "sentence": "Будь ласка, допоможи мені.", "stats": {} },
+    { "wordUk": "до побачення", "wordNl": "tot ziens", "deck": "Begroetingen", "translit": "do pobachennya", "sentence": "До побачення!", "stats": {} },
+    { "wordUk": "добрий день", "wordNl": "goedendag", "deck": "Begroetingen", "translit": "dobriy den", "sentence": "Добрий день!", "stats": {} },
+    { "wordUk": "добрий ранок", "wordNl": "goedemorgen", "deck": "Begroetingen", "translit": "dobriy ranok", "sentence": "Добрий ранок!", "stats": {} },
+    { "wordUk": "добрий вечір", "wordNl": "goedenavond", "deck": "Begroetingen", "translit": "dobriy vechir", "sentence": "Добрий вечір!", "stats": {} },
+    { "wordUk": "як справи", "wordNl": "hoe gaat het", "deck": "Begroetingen", "translit": "yak spravy", "sentence": "Як справи?", "stats": {} },
+    { "wordUk": "мене звуть", "wordNl": "ik heet", "deck": "Begroetingen", "translit": "mene zvut", "sentence": "Мене звуть Іван.", "stats": {} },
+    { "wordUk": "приємно познайомитись", "wordNl": "aangenaam kennis te maken", "deck": "Begroetingen", "translit": "priyemno poznaymomytys", "sentence": "Приємно познайомитись!", "stats": {} },
+    { "wordUk": "кіт", "wordNl": "kat", "deck": "Dieren", "translit": "kit", "sentence": "Це чорний кіт.", "stats": {} },
+    { "wordUk": "собака", "wordNl": "hond", "deck": "Dieren", "translit": "sobaka", "sentence": "Моя собака дуже розумна.", "stats": {} },
+    { "wordUk": "птиця", "wordNl": "vogel", "deck": "Dieren", "translit": "ptycya", "sentence": "Птиця летить в небі.", "stats": {} },
+    { "wordUk": "риба", "wordNl": "vis", "deck": "Dieren", "translit": "ryba", "sentence": "Риба плаває у воді.", "stats": {} },
+    { "wordUk": "ведмідь", "wordNl": "beer", "deck": "Dieren", "translit": "vedmid", "sentence": "Ведмідь живе в лісі.", "stats": {} },
+    { "wordUk": "вовк", "wordNl": "wolf", "deck": "Dieren", "translit": "vovk", "sentence": "Вовк виє в ночі.", "stats": {} },
+    { "wordUk": "лис", "wordNl": "vos", "deck": "Dieren", "translit": "lys", "sentence": "Лис хитрий.", "stats": {} },
+    { "wordUk": "олень", "wordNl": "hert", "deck": "Dieren", "translit": "olen", "sentence": "Олень біжить швидко.", "stats": {} },
+    { "wordUk": "заєць", "wordNl": "haas", "deck": "Dieren", "translit": "zayets", "sentence": "Заєць стрибає.", "stats": {} },
+    { "wordUk": "білка", "wordNl": "eekhoorn", "deck": "Dieren", "translit": "bilka", "sentence": "Білка збирає горіхи.", "stats": {} },
+    { "wordUk": "мама", "wordNl": "moeder", "deck": "Familie", "translit": "mama", "sentence": "Моя мама дуже добра.", "stats": {} },
+    { "wordUk": "тато", "wordNl": "vader", "deck": "Familie", "translit": "tato", "sentence": "Мій тато працює інженером.", "stats": {} },
+    { "wordUk": "сестра", "wordNl": "zus", "deck": "Familie", "translit": "sestra", "sentence": "Моя сестра студентка.", "stats": {} },
+    { "wordUk": "брат", "wordNl": "broer", "deck": "Familie", "translit": "brat", "sentence": "Мій брат грає у футбол.", "stats": {} },
+    { "wordUk": "бабуся", "wordNl": "oma", "deck": "Familie", "translit": "babusya", "sentence": "Моя бабуся дуже люба.", "stats": {} },
+    { "wordUk": "дідусь", "wordNl": "opa", "deck": "Familie", "translit": "didus", "sentence": "Мій дідусь розповідає історії.", "stats": {} },
+    { "wordUk": "дитина", "wordNl": "kind", "deck": "Familie", "translit": "dytyna", "sentence": "Дитина грає в парку.", "stats": {} },
+    { "wordUk": "чоловік", "wordNl": "man", "deck": "Familie", "translit": "cholovik", "sentence": "Мій чоловік дуже добрий.", "stats": {} },
+    { "wordUk": "жінка", "wordNl": "vrouw", "deck": "Familie", "translit": "zhinka", "sentence": "Жінка працює лікарем.", "stats": {} },
+    { "wordUk": "друг", "wordNl": "vriend", "deck": "Familie", "translit": "drug", "sentence": "Мій друг живе поруч.", "stats": {} },
+    { "wordUk": "хліб", "wordNl": "brood", "deck": "Eten & Drinken", "translit": "khlib", "sentence": "Свіжий хліб дуже смачний.", "stats": {} },
+    { "wordUk": "вода", "wordNl": "water", "deck": "Eten & Drinken", "translit": "voda", "sentence": "Пийте більше води!", "stats": {} },
+    { "wordUk": "молоко", "wordNl": "melk", "deck": "Eten & Drinken", "translit": "moloko", "sentence": "Молоко дуже корисне.", "stats": {} },
+    { "wordUk": "яйце", "wordNl": "ei", "deck": "Eten & Drinken", "translit": "yayche", "sentence": "На сніданок я їм яйця.", "stats": {} },
+    { "wordUk": "м'ясо", "wordNl": "vlees", "deck": "Eten & Drinken", "translit": "myaso", "sentence": "М'ясо дуже смачне.", "stats": {} },
+    { "wordUk": "сир", "wordNl": "kaas", "deck": "Eten & Drinken", "translit": "syr", "sentence": "Сир дуже смачний.", "stats": {} },
+    { "wordUk": "масло", "wordNl": "boter", "deck": "Eten & Drinken", "translit": "maslo", "sentence": "Масло на хлібі.", "stats": {} },
+    { "wordUk": "сахар", "wordNl": "suiker", "deck": "Eten & Drinken", "translit": "sakhar", "sentence": "Сахар в чаї.", "stats": {} },
+    { "wordUk": "сіль", "wordNl": "zout", "deck": "Eten & Drinken", "translit": "sil", "sentence": "Сіль в їжі.", "stats": {} },
+    { "wordUk": "голова", "wordNl": "hoofd", "deck": "Lichaamsdelen", "translit": "holova", "sentence": "Голова болить.", "stats": {} },
+    { "wordUk": "рука", "wordNl": "hand", "deck": "Lichaamsdelen", "translit": "ruka", "sentence": "Підніми руку!", "stats": {} },
+    { "wordUk": "нога", "wordNl": "been", "deck": "Lichaamsdelen", "translit": "noga", "sentence": "Моя нога болить.", "stats": {} },
+    { "wordUk": "око", "wordNl": "oog", "deck": "Lichaamsdelen", "translit": "oko", "sentence": "У мене сині очі.", "stats": {} },
+    { "wordUk": "вухо", "wordNl": "oor", "deck": "Lichaamsdelen", "translit": "vukho", "sentence": "Мої вуха гарні.", "stats": {} },
+    { "wordUk": "ніс", "wordNl": "neus", "deck": "Lichaamsdelen", "translit": "nis", "sentence": "Мій ніс гарний.", "stats": {} },
+    { "wordUk": "рот", "wordNl": "mond", "deck": "Lichaamsdelen", "translit": "rot", "sentence": "Мій рот гарний.", "stats": {} },
+    { "wordUk": "зуб", "wordNl": "tand", "deck": "Lichaamsdelen", "translit": "zub", "sentence": "Мої зуби білі.", "stats": {} },
+    { "wordUk": "язик", "wordNl": "tong", "deck": "Lichaamsdelen", "translit": "yazyk", "sentence": "Язик рухається.", "stats": {} },
+    { "wordUk": "серце", "wordNl": "hart", "deck": "Lichaamsdelen", "translit": "sertse", "sentence": "Серце бʼється.", "stats": {} },
+    { "wordUk": "дім", "wordNl": "huis", "deck": "Huis & Meubels", "translit": "dim", "sentence": "Це мій дім.", "stats": {} },
+    { "wordUk": "стіл", "wordNl": "tafel", "deck": "Huis & Meubels", "translit": "stil", "sentence": "На столі лежить книга.", "stats": {} },
+    { "wordUk": "стілець", "wordNl": "stoel", "deck": "Huis & Meubels", "translit": "stilets", "sentence": "Сядь на стілець!", "stats": {} },
+    { "wordUk": "ліжко", "wordNl": "bed", "deck": "Huis & Meubels", "translit": "lizhko", "sentence": "Я сплю на ліжку.", "stats": {} },
+    { "wordUk": "двері", "wordNl": "deur", "deck": "Huis & Meubels", "translit": "dveri", "sentence": "Двері закриті.", "stats": {} },
+    { "wordUk": "вікно", "wordNl": "raam", "deck": "Huis & Meubels", "translit": "vikno", "sentence": "Вікно відкрите.", "stats": {} },
+    { "wordUk": "стіна", "wordNl": "muur", "deck": "Huis & Meubels", "translit": "stina", "sentence": "Стіна біла.", "stats": {} },
+    { "wordUk": "стелю", "wordNl": "plafond", "deck": "Huis & Meubels", "translit": "stelyu", "sentence": "Стелю висока.", "stats": {} },
+    { "wordUk": "підлога", "wordNl": "vloer", "deck": "Huis & Meubels", "translit": "pidloga", "sentence": "Підлога чиста.", "stats": {} },
+    { "wordUk": "лампа", "wordNl": "lamp", "deck": "Huis & Meubels", "translit": "lampa", "sentence": "Лампа світить.", "stats": {} },
+    { "wordUk": "сорочка", "wordNl": "shirt", "deck": "Kleding", "translit": "sorochka", "sentence": "Синя сорочка гарна.", "stats": {} },
+    { "wordUk": "штани", "wordNl": "broek", "deck": "Kleding", "translit": "shtany", "sentence": "Чорні штани зручні.", "stats": {} },
+    { "wordUk": "взуття", "wordNl": "schoen", "deck": "Kleding", "translit": "vzuttya", "sentence": "Мої взуття комфортні.", "stats": {} },
+    { "wordUk": "капелюх", "wordNl": "hoed", "deck": "Kleding", "translit": "kapelyukh", "sentence": "Капелюх захищає від сонця.", "stats": {} },
+    { "wordUk": "пальто", "wordNl": "jas", "deck": "Kleding", "translit": "palto", "sentence": "Теплое пальто.", "stats": {} },
+    { "wordUk": "шарф", "wordNl": "sjaal", "deck": "Kleding", "translit": "sharf", "sentence": "Шарф теплий.", "stats": {} },
+    { "wordUk": "рукавиці", "wordNl": "handschoenen", "deck": "Kleding", "translit": "rukavytsi", "sentence": "Рукавиці теплі.", "stats": {} },
+    { "wordUk": "шапка", "wordNl": "muts", "deck": "Kleding", "translit": "shapka", "sentence": "Шапка теплая.", "stats": {} },
+    { "wordUk": "один", "wordNl": "een", "deck": "Getallen", "translit": "odyn", "sentence": "У мене один брат.", "stats": {} },
+    { "wordUk": "два", "wordNl": "twee", "deck": "Getallen", "translit": "dva", "sentence": "У мене два кота.", "stats": {} },
+    { "wordUk": "три", "wordNl": "drie", "deck": "Getallen", "translit": "try", "sentence": "Три яблука на столі.", "stats": {} },
+    { "wordUk": "чотири", "wordNl": "vier", "deck": "Getallen", "translit": "chotyry", "sentence": "Чотири сезони.", "stats": {} },
+    { "wordUk": "п'ять", "wordNl": "vijf", "deck": "Getallen", "translit": "pyat", "sentence": "П'ять пальців.", "stats": {} },
+    { "wordUk": "шість", "wordNl": "zes", "deck": "Getallen", "translit": "shist", "sentence": "Шість днів.", "stats": {} },
+    { "wordUk": "сім", "wordNl": "zeven", "deck": "Getallen", "translit": "sim", "sentence": "Сім днів в тижні.", "stats": {} },
+    { "wordUk": "вісім", "wordNl": "acht", "deck": "Getallen", "translit": "visim", "sentence": "Вісім годин.", "stats": {} },
+    { "wordUk": "дев'ять", "wordNl": "negen", "deck": "Getallen", "translit": "devyat", "sentence": "Дев'ять місяців.", "stats": {} },
+    { "wordUk": "десять", "wordNl": "tien", "deck": "Getallen", "translit": "desyat", "sentence": "Десять пальців.", "stats": {} },
+    { "wordUk": "їсти", "wordNl": "eten", "deck": "Werkwoorden", "translit": "yisty", "sentence": "Я їм хліб.", "stats": {} },
+    { "wordUk": "пити", "wordNl": "drinken", "deck": "Werkwoorden", "translit": "pity", "sentence": "Я пию воду.", "stats": {} },
+    { "wordUk": "спати", "wordNl": "slapen", "deck": "Werkwoorden", "translit": "spaty", "sentence": "Я сплю 8 годин.", "stats": {} },
+    { "wordUk": "працювати", "wordNl": "werken", "deck": "Werkwoorden", "translit": "pratsyuvaty", "sentence": "Я працюю в офісі.", "stats": {} },
+    { "wordUk": "читати", "wordNl": "lezen", "deck": "Werkwoorden", "translit": "chytaty", "sentence": "Я читаю книгу.", "stats": {} },
+    { "wordUk": "писати", "wordNl": "schrijven", "deck": "Werkwoorden", "translit": "pysaty", "sentence": "Я пишу листа.", "stats": {} },
+    { "wordUk": "говорити", "wordNl": "spreken", "deck": "Werkwoorden", "translit": "hovoryty", "sentence": "Я говорю по-українськи.", "stats": {} },
+    { "wordUk": "слухати", "wordNl": "luisteren", "deck": "Werkwoorden", "translit": "slukhaty", "sentence": "Я слухаю музику.", "stats": {} },
+    { "wordUk": "гарний", "wordNl": "mooi", "deck": "Bijvoeglijke Naamwoorden", "translit": "harnyy", "sentence": "Гарна погода.", "stats": {} },
+    { "wordUk": "великий", "wordNl": "groot", "deck": "Bijvoeglijke Naamwoorden", "translit": "velykyy", "sentence": "Великий дім.", "stats": {} },
+    { "wordUk": "малий", "wordNl": "klein", "deck": "Bijvoeglijke Naamwoorden", "translit": "malyy", "sentence": "Малий кіт.", "stats": {} },
+    { "wordUk": "гарячий", "wordNl": "heet", "deck": "Bijvoeglijke Naamwoorden", "translit": "garyachyy", "sentence": "Гарячий чай.", "stats": {} },
+    { "wordUk": "холодний", "wordNl": "koud", "deck": "Bijvoeglijke Naamwoorden", "translit": "kholodnyy", "sentence": "Холодна вода.", "stats": {} }
   ]
 }
