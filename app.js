@@ -2,10 +2,6 @@
 // POLYCARDS v0.2 - COMPLETE JAVASCRIPT
 // -----------------------------------------------------------------
 
-// -----------------------------------------------------------------
-// 1. CONFIGURATION & DATA
-// -----------------------------------------------------------------
-
 const DECKS = [
   { name: 'Dieren ??', id: 1 },
   { name: 'Eten & Drinken ??', id: 2 },
@@ -20,121 +16,27 @@ const DECKS = [
 ];
 
 const WORDS = [
-  // Dieren
   { word: '???', translation: 'kat', deck: 1 },
   { word: '??????', translation: 'hond', deck: 1 },
-  { word: '?????', translation: 'vogel', deck: 1 },
-  { word: '????', translation: 'vis', deck: 1 },
-  { word: '???????', translation: 'beer', deck: 1 },
-  { word: '??????', translation: 'vos', deck: 1 },
-  { word: '????', translation: 'wolf', deck: 1 },
-  { word: '?????', translation: 'konijn', deck: 1 },
-  { word: '????', translation: 'paard', deck: 1 },
-  { word: '??????', translation: 'koe', deck: 1 },
-  // Eten & Drinken
   { word: '????', translation: 'brood', deck: 2 },
   { word: '??????', translation: 'melk', deck: 2 },
-  { word: '????', translation: 'ei', deck: 2 },
-  { word: '?\'???', translation: 'vlees', deck: 2 },
-  { word: '????', translation: 'vis', deck: 2 },
-  { word: '????', translation: 'water', deck: 2 },
-  { word: '???', translation: 'thee', deck: 2 },
-  { word: '????', translation: 'koffie', deck: 2 },
-  { word: '???', translation: 'kaas', deck: 2 },
-  { word: '?????', translation: 'boter', deck: 2 },
-  // Familie
   { word: '????', translation: 'moeder', deck: 3 },
   { word: '????', translation: 'vader', deck: 3 },
-  { word: '??????', translation: 'zus', deck: 3 },
-  { word: '????', translation: 'broer', deck: 3 },
-  { word: '??????', translation: 'oma', deck: 3 },
-  { word: '??????', translation: 'opa', deck: 3 },
-  { word: '??????', translation: 'kind', deck: 3 },
-  { word: '???????', translation: 'man', deck: 3 },
-  { word: '???????', translation: 'vrouw', deck: 3 },
-  { word: '???', translation: 'zoon', deck: 3 },
-  // Kleuren
   { word: '????????', translation: 'rood', deck: 4 },
   { word: '?????', translation: 'blauw', deck: 4 },
-  { word: '??????', translation: 'geel', deck: 4 },
-  { word: '???????', translation: 'groen', deck: 4 },
-  { word: '??????', translation: 'zwart', deck: 4 },
-  { word: '?????', translation: 'wit', deck: 4 },
-  { word: '?????', translation: 'grijs', deck: 4 },
-  { word: '??????????', translation: 'bruin', deck: 4 },
-  { word: '???????', translation: 'roze', deck: 4 },
-  { word: '??????????', translation: 'paars', deck: 4 },
-  // Cijfers
   { word: '????', translation: 'een', deck: 5 },
   { word: '???', translation: 'twee', deck: 5 },
-  { word: '???', translation: 'drie', deck: 5 },
-  { word: '??????', translation: 'vier', deck: 5 },
-  { word: '?\'???', translation: 'vijf', deck: 5 },
-  { word: '?????', translation: 'zes', deck: 5 },
-  { word: '???', translation: 'zeven', deck: 5 },
-  { word: '?????', translation: 'acht', deck: 5 },
-  { word: '???\'???', translation: 'negen', deck: 5 },
-  { word: '??????', translation: 'tien', deck: 5 },
-  // Begroetingen
   { word: '??????', translation: 'hallo', deck: 6 },
-  { word: '?????? ????', translation: 'goededag', deck: 6 },
-  { word: '?????? ?????', translation: 'goedemorgen', deck: 6 },
-  { word: '?????? ?????', translation: 'goedenavond', deck: 6 },
-  { word: '????????? ????', translation: 'goedenacht', deck: 6 },
-  { word: '?? ?????????', translation: 'tot ziens', deck: 6 },
-  { word: '????', translation: 'tot later', deck: 6 },
-  { word: '?? ???????', translation: 'hoe gaat het?', deck: 6 },
   { word: '???????', translation: 'dank je', deck: 6 },
-  { word: '???? ?????', translation: 'alstublieft', deck: 6 },
-  // Thuis
   { word: '???', translation: 'huis', deck: 7 },
-  { word: '????????', translation: 'appartement', deck: 7 },
   { word: '???????', translation: 'kamer', deck: 7 },
-  { word: '?????', translation: 'keuken', deck: 7 },
-  { word: '???????', translation: 'slaapkamer', deck: 7 },
-  { word: '?????', translation: 'badkamer', deck: 7 },
-  { word: '????????', translation: 'woonkamer', deck: 7 },
-  { word: '?????', translation: 'deur', deck: 7 },
-  { word: '?????', translation: 'raam', deck: 7 },
-  { word: '????', translation: 'tafel', deck: 7 },
-  // Transport
   { word: '??????', translation: 'auto', deck: 8 },
-  { word: '???????', translation: 'bus', deck: 8 },
   { word: '?????', translation: 'trein', deck: 8 },
-  { word: '?????', translation: 'vliegtuig', deck: 8 },
-  { word: '???????', translation: 'schip', deck: 8 },
-  { word: '?????????', translation: 'fiets', deck: 8 },
-  { word: '????????', translation: 'motorfiets', deck: 8 },
-  { word: '?????', translation: 'taxi', deck: 8 },
-  { word: '?????', translation: 'metro', deck: 8 },
-  { word: '???????', translation: 'tram', deck: 8 },
-  // Weer
   { word: '???????', translation: 'zonnig', deck: 9 },
-  { word: '??????', translation: 'bewolkt', deck: 9 },
   { word: '???', translation: 'regen', deck: 9 },
-  { word: '????', translation: 'sneeuw', deck: 9 },
-  { word: '?????', translation: 'wind', deck: 9 },
-  { word: '?????', translation: 'onweer', deck: 9 },
-  { word: '?????', translation: 'mist', deck: 9 },
-  { word: '?????', translation: 'heet', deck: 9 },
-  { word: '???????', translation: 'koud', deck: 9 },
-  { word: '?????', translation: 'warm', deck: 9 },
-  // Emoties
   { word: '?????', translation: 'geluk', deck: 10 },
-  { word: '???', translation: 'verdriet', deck: 10 },
-  { word: '????', translation: 'woede', deck: 10 },
-  { word: '?????', translation: 'angst', deck: 10 },
-  { word: '?????', translation: 'liefde', deck: 10 },
-  { word: '?????????', translation: 'haat', deck: 10 },
-  { word: '?????', translation: 'hoop', deck: 10 },
-  { word: '????????????', translation: 'teleurstelling', deck: 10 },
-  { word: '????????', translation: 'trots', deck: 10 },
-  { word: '?????', translation: 'schaamte', deck: 10 }
+  { word: '?????', translation: 'liefde', deck: 10 }
 ];
-
-// -----------------------------------------------------------------
-// 2. STORAGE LAYER
-// -----------------------------------------------------------------
 
 let cards = [];
 
@@ -161,41 +63,29 @@ function save() {
   localStorage.setItem('polycards_cards', JSON.stringify(cards));
 }
 
-// -----------------------------------------------------------------
-// 3. SRS ALGORITHM (SM-2)
-// -----------------------------------------------------------------
-
 function rateCard(card, rating) {
   card.reviews++;
-  
-  if (rating === 1) { // Again
+  if (rating === 1) {
     card.interval = 1;
     card.easeFactor = Math.max(1.3, card.easeFactor - 0.2);
-  } else if (rating === 2) { // Hard
+  } else if (rating === 2) {
     card.interval = Math.max(1, card.interval * 1.2);
     card.easeFactor = Math.max(1.3, card.easeFactor - 0.1);
-  } else if (rating === 3) { // Good
+  } else if (rating === 3) {
     card.interval = card.interval * card.easeFactor;
-  } else if (rating === 4) { // Easy
+  } else if (rating === 4) {
     card.interval = card.interval * card.easeFactor * 1.3;
     card.easeFactor = Math.min(2.5, card.easeFactor + 0.1);
   }
-  
   card.dueDate = Date.now() + (card.interval * 86400000);
   save();
 }
 
-// -----------------------------------------------------------------
-// 4. UI FUNCTIONS
-// -----------------------------------------------------------------
-
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById(page + '-page').classList.add('active');
-  
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
-  
+  if (event && event.target) event.target.classList.add('active');
   if (page === 'decks') renderDecks();
   if (page === 'study') startStudy();
   if (page === 'browse') renderBrowse();
@@ -219,20 +109,7 @@ function renderDecks() {
     const newCount = deckCards.filter(c => c.reviews === 0).length;
     const reviewCount = deckCards.filter(c => c.dueDate <= Date.now()).length;
     const totalCount = deckCards.length;
-    
-    return \
-      <div class="card">
-        <div class="card-title">\</div>
-        <div style="display: flex; gap: 10px; margin-top: 10px;">
-          <span>?? \</span>
-          <span>? \</span>
-          <span>?? \</span>
-        </div>
-        <button onclick="startStudyDeck(\)" style="margin-top: 10px; width: 100%; padding: 8px; background: var(--blue); color: white; border: none; border-radius: 8px; cursor: pointer;">
-          Studeren
-        </button>
-      </div>
-    \;
+    return '<div class="card"><div class="card-title">' + deck.name + '</div><div style="display: flex; gap: 10px; margin-top: 10px;"><span>?? ' + totalCount + '</span><span>? ' + newCount + '</span><span>?? ' + reviewCount + '</span></div><button onclick="startStudyDeck(' + deck.id + ')" style="margin-top: 10px; width: 100%; padding: 8px; background: var(--blue); color: white; border: none; border-radius: 8px; cursor: pointer;">Studeren</button></div>';
   }).join('');
 }
 
@@ -247,14 +124,12 @@ let currentCardIndex = 0;
 function startStudy() {
   const deckId = window.currentDeckId || 1;
   studyQueue = cards.filter(c => c.deck === deckId && c.dueDate <= Date.now());
-  
   if (studyQueue.length === 0) {
     document.getElementById('study-subtitle').textContent = 'Geen kaarten te studeren!';
     document.getElementById('flashcard').innerHTML = '<p style="text-align: center; padding: 40px;">Goed gedaan! ??</p>';
     document.getElementById('study-buttons').innerHTML = '';
     return;
   }
-  
   currentCardIndex = 0;
   renderCard();
 }
@@ -266,45 +141,21 @@ function renderCard() {
     document.getElementById('study-buttons').innerHTML = '';
     return;
   }
-  
   const card = studyQueue[currentCardIndex];
-  const progress = \\/\\;
+  const progress = (currentCardIndex + 1) + '/' + studyQueue.length;
   document.getElementById('study-subtitle').textContent = progress;
-  
-  document.getElementById('flashcard').innerHTML = \
-    <div style="text-align: center; padding: 40px;">
-      <div style="font-size: 2rem; margin-bottom: 20px;">\</div>
-      <div style="font-size: 0.9rem; color: var(--text2);">Klik om te flippen</div>
-    </div>
-  \;
+  document.getElementById('flashcard').innerHTML = '<div style="text-align: center; padding: 40px;"><div style="font-size: 2rem; margin-bottom: 20px;">' + card.word + '</div><div style="font-size: 0.9rem; color: var(--text2);">Klik om te flippen</div></div>';
   document.getElementById('flashcard').dataset.flipped = 'false';
-  
-  document.getElementById('study-buttons').innerHTML = \
-    <button onclick="flipCard()" style="width: 100%; padding: 10px; margin-bottom: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer;">
-      Flip
-    </button>
-  \;
+  document.getElementById('study-buttons').innerHTML = '<button onclick="flipCard()" style="width: 100%; padding: 10px; margin-bottom: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; cursor: pointer;">Flip</button>';
 }
 
 function flipCard() {
   const card = studyQueue[currentCardIndex];
   const flipped = document.getElementById('flashcard').dataset.flipped === 'true';
-  
   if (!flipped) {
-    document.getElementById('flashcard').innerHTML = \
-      <div style="text-align: center; padding: 40px;">
-        <div style="font-size: 1.5rem; color: var(--green); margin-bottom: 20px;">\</div>
-        <div style="font-size: 0.9rem; color: var(--text2);">Hoe goed kende je dit?</div>
-      </div>
-    \;
+    document.getElementById('flashcard').innerHTML = '<div style="text-align: center; padding: 40px;"><div style="font-size: 1.5rem; color: var(--green); margin-bottom: 20px;">' + card.translation + '</div><div style="font-size: 0.9rem; color: var(--text2);">Hoe goed kende je dit?</div></div>';
     document.getElementById('flashcard').dataset.flipped = 'true';
-    
-    document.getElementById('study-buttons').innerHTML = \
-      <button onclick="nextCard(1)" style="flex: 1; padding: 10px; background: var(--red); color: white; border: none; border-radius: 8px; cursor: pointer;">Again</button>
-      <button onclick="nextCard(2)" style="flex: 1; padding: 10px; background: var(--orange); color: white; border: none; border-radius: 8px; cursor: pointer; margin: 0 5px;">Hard</button>
-      <button onclick="nextCard(3)" style="flex: 1; padding: 10px; background: var(--blue); color: white; border: none; border-radius: 8px; cursor: pointer; margin: 0 5px;">Good</button>
-      <button onclick="nextCard(4)" style="flex: 1; padding: 10px; background: var(--green); color: white; border: none; border-radius: 8px; cursor: pointer;">Easy</button>
-    \;
+    document.getElementById('study-buttons').innerHTML = '<button onclick="nextCard(1)" style="flex: 1; padding: 10px; background: var(--red); color: white; border: none; border-radius: 8px; cursor: pointer;">Again</button><button onclick="nextCard(2)" style="flex: 1; padding: 10px; background: var(--orange); color: white; border: none; border-radius: 8px; cursor: pointer; margin: 0 5px;">Hard</button><button onclick="nextCard(3)" style="flex: 1; padding: 10px; background: var(--blue); color: white; border: none; border-radius: 8px; cursor: pointer; margin: 0 5px;">Good</button><button onclick="nextCard(4)" style="flex: 1; padding: 10px; background: var(--green); color: white; border: none; border-radius: 8px; cursor: pointer;">Easy</button>';
   } else {
     renderCard();
   }
@@ -319,96 +170,42 @@ function nextCard(rating) {
 
 function renderBrowse() {
   const list = document.getElementById('browse-list');
-  list.innerHTML = cards.map(c => \
-    <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
-      <div>
-        <div style="font-weight: bold;">\</div>
-        <div style="font-size: 0.9rem; color: var(--text2);">\</div>
-      </div>
-      <div style="font-size: 0.8rem; color: var(--text2);">
-        \ reviews
-      </div>
-    </div>
-  \).join('');
+  list.innerHTML = cards.map(c => '<div class="card" style="display: flex; justify-content: space-between; align-items: center;"><div><div style="font-weight: bold;">' + c.word + '</div><div style="font-size: 0.9rem; color: var(--text2);">' + c.translation + '</div></div><div style="font-size: 0.8rem; color: var(--text2);">' + c.reviews + ' reviews</div></div>').join('');
 }
 
 function renderHelp() {
   const help = document.getElementById('help-content');
-  help.innerHTML = \
-    <div class="card">
-      <h3>?? Wat is PolyCards?</h3>
-      <p>PolyCards is een app om Oekraïens te leren met flashcards en spaced repetition.</p>
-    </div>
-    <div class="card">
-      <h3>?? Hoe werkt het?</h3>
-      <p>1. Kies een deck<br>2. Studeren: flip de kaart en zeg hoe goed je het kende<br>3. PolyCards berekent wanneer je het weer moet oefenen</p>
-    </div>
-    <div class="card">
-      <h3>?? Mijn data?</h3>
-      <p>Alles wordt opgeslagen in je browser. Geen account nodig!</p>
-    </div>
-    <div class="card">
-      <h3>?? Kosten?</h3>
-      <p>PolyCards is volledig gratis!</p>
-    </div>
-  \;
+  help.innerHTML = '<div class="card"><h3>?? Wat is PolyCards?</h3><p>PolyCards is een app om Oekraïens te leren met flashcards en spaced repetition.</p></div><div class="card"><h3>?? Hoe werkt het?</h3><p>1. Kies een deck<br>2. Studeren: flip de kaart en zeg hoe goed je het kende<br>3. PolyCards berekent wanneer je het weer moet oefenen</p></div><div class="card"><h3>?? Mijn data?</h3><p>Alles wordt opgeslagen in je browser. Geen account nodig!</p></div><div class="card"><h3>?? Kosten?</h3><p>PolyCards is volledig gratis!</p></div>';
 }
 
 function renderStats() {
   const stats = document.getElementById('stats-display');
   const totalReviews = cards.reduce((sum, c) => sum + c.reviews, 0);
-  const totalCards = cards.length;
   const newCards = cards.filter(c => c.reviews === 0).length;
   const learningCards = cards.filter(c => c.reviews > 0 && c.reviews < 5).length;
   const masteredCards = cards.filter(c => c.reviews >= 5).length;
-  
-  stats.innerHTML = \
-    <div class="card">
-      <div style="font-size: 2rem; font-weight: bold; color: var(--blue);">\</div>
-      <div style="color: var(--text2);">Totale reviews</div>
-    </div>
-    <div class="card">
-      <div style="font-size: 1.5rem; font-weight: bold;">?? \</div>
-      <div style="color: var(--text2);">Nieuwe kaarten</div>
-    </div>
-    <div class="card">
-      <div style="font-size: 1.5rem; font-weight: bold;">?? \</div>
-      <div style="color: var(--text2);">Aan het leren</div>
-    </div>
-    <div class="card">
-      <div style="font-size: 1.5rem; font-weight: bold;">? \</div>
-      <div style="color: var(--text2);">Beheerst</div>
-    </div>
-  \;
+  stats.innerHTML = '<div class="card"><div style="font-size: 2rem; font-weight: bold; color: var(--blue);">' + totalReviews + '</div><div style="color: var(--text2);">Totale reviews</div></div><div class="card"><div style="font-size: 1.5rem; font-weight: bold;">?? ' + newCards + '</div><div style="color: var(--text2);">Nieuwe kaarten</div></div><div class="card"><div style="font-size: 1.5rem; font-weight: bold;">?? ' + learningCards + '</div><div style="color: var(--text2);">Aan het leren</div></div><div class="card"><div style="font-size: 1.5rem; font-weight: bold;">? ' + masteredCards + '</div><div style="color: var(--text2);">Beheerst</div></div>';
 }
 
-// -----------------------------------------------------------------
-// 5. AUDIO
-// -----------------------------------------------------------------
-
-function speak(text, lang = 'uk-UA') {
-  const synth = window.speechSynthesis;
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang;
-  synth.speak(utterance);
+function speak(text, lang) {
+  try {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang || 'uk-UA';
+    synth.speak(utterance);
+  } catch (e) {
+    console.error('Speech error:', e);
+  }
 }
-
-// -----------------------------------------------------------------
-// 6. INITIALIZATION
-// -----------------------------------------------------------------
 
 function init() {
   initCards();
-  
-  // Check welcome screen
   if (!localStorage.getItem('polycards_welcome_seen')) {
     showWelcome();
   } else {
     hideWelcome();
   }
-  
   renderDecks();
 }
 
-// Start app
 document.addEventListener('DOMContentLoaded', init);
