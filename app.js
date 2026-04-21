@@ -1,13 +1,9 @@
-// ════════════════════════════════════════
-// APP - Main Application Logic
-// ════════════════════════════════════════
-
 const App = {
   // Initialize application
   init() {
     console.log('🚀 PolyCards initializing...');
 
-    // Load data
+    // Load data from decks.json
     this.loadDefaultData();
 
     // Check if first time user
@@ -27,30 +23,25 @@ const App = {
     console.log('✅ PolyCards ready!');
   },
 
-  // Load default data if empty
+  // Load data from decks.json
   loadDefaultData() {
     let cards = Storage.get('polycards_ukraine_cards');
     
     if (!cards || cards.length === 0) {
-      // Load from data/decks.json or use inline data
-      cards = this.getDefaultCards();
-      Storage.set('polycards_ukraine_cards', cards);
+      // Fetch from data/decks.json
+      fetch('data/decks.json')
+        .then(res => res.json())
+        .then(data => {
+          Storage.set('polycards_ukraine_cards', data.cards);
+          UI.renderDecks();
+          UI.renderStats();
+        })
+        .catch(err => {
+          console.error('Failed to load decks.json:', err);
+          // Fallback (lege array)
+          Storage.set('polycards_ukraine_cards', []);
+        });
     }
-  },
-
-  // Get default cards (100 words)
-  getDefaultCards() {
-    return [
-      { wordUk: 'привіт', wordNl: 'hallo', deck: 'Begroetingen', translit: 'pryvit', sentence: 'Привіт! Як дела?', stats: {} },
-      { wordUk: 'спасибі', wordNl: 'dank je', deck: 'Begroetingen', translit: 'spasybi', sentence: 'Спасибі за допомогу!', stats: {} },
-      { wordUk: 'будь ласка', wordNl: 'alsjeblieft', deck: 'Begroetingen', translit: 'bud laska', sentence: 'Будь ласка, допоможи мені.', stats: {} },
-      { wordUk: 'до побачення', wordNl: 'tot ziens', deck: 'Begroetingen', translit: 'do pobachennya', sentence: 'До побачення!', stats: {} },
-      { wordUk: 'кіт', wordNl: 'kat', deck: 'Dieren', translit: 'kit', sentence: 'Це чорний кіт.', stats: {} },
-      { wordUk: 'собака', wordNl: 'hond', deck: 'Dieren', translit: 'sobaka', sentence: 'Моя собака дуже розумна.', stats: {} },
-      { wordUk: 'птиця', wordNl: 'vogel', deck: 'Dieren', translit: 'ptycya', sentence: 'Птиця летить в небі.', stats: {} },
-      { wordUk: 'риба', wordNl: 'vis', deck: 'Dieren', translit: 'ryba', sentence: 'Риба плаває у воді.', stats: {} },
-      // ... (voeg hier meer woorden toe - totaal 100)
-    ];
   },
 
   // Setup event listeners
