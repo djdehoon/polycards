@@ -1,152 +1,53 @@
-// ════════════════════════════════════════
-// UI - User Interface Functions
-// ════════════════════════════════════════
-
+// components/ui.js - UI Management
 const UI = {
-  currentPage: 'decks',
-
-  // Show specific page
   showPage(page) {
-    // Hide all pages
-    document.querySelectorAll('[id^="page-"]').forEach(el => {
-      el.style.display = 'none';
-    });
-
-    // Show selected page
-    const pageEl = document.getElementById(`page-${page}`);
-    if (pageEl) pageEl.style.display = 'block';
-
-    // Update nav tabs
-    document.querySelectorAll('.nav-tab').forEach(tab => {
-      tab.classList.remove('active');
-    });
-    const activeTab = document.querySelector(`[data-page="${page}"]`);
-    if (activeTab) activeTab.classList.add('active');
-
-    this.currentPage = page;
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const pageEl = document.getElementById('page-' + page);
+    if (pageEl) pageEl.classList.add('active');
+    
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    const tabEl = document.querySelector(`[data-page="${page}"]`);
+    if (tabEl) tabEl.classList.add('active');
   },
 
-  // Render decks list
-  renderDecks() {
-    const cards = Storage.get('polycards_ukraine_cards') || [];
+  renderDecks(cards) {
     const decks = [...new Set(cards.map(c => c.deck))];
-    
-    let html = '';
-    decks.forEach(deckName => {
-      const deckCards = cards.filter(c => c.deck === deckName);
-      const dueCards = SRS.getDueCards(deckCards);
-      
-      html += `
-        <div class="deck-card" onclick="Study.selectDeck('${deckName}')">
-          <div class="deck-icon">📚</div>
-          <div class="deck-name">${deckName}</div>
-          <div class="deck-count">${deckCards.length} woorden</div>
-          <div class="deck-due">${dueCards.length} te doen</div>
+    const html = decks.map(deck => {
+      const deckCards = cards.filter(c => c.deck === deck);
+      const dueCards = SRS.getDueCards(deckCards).length;
+      return `
+        <div class="deck-card" onclick="Study.selectDeck('${deck}')">
+          <div style="font-size: 2rem; margin-bottom: 10px;">🎴</div>
+          <div style="font-weight: bold;">${deck}</div>
+          <div style="color: var(--text2); font-size: 0.9rem;">${deckCards.length} woorden</div>
+          <div style="color: var(--green); font-size: 0.85rem; margin-top: 5px;">${dueCards} due</div>
         </div>
       `;
-    });
-
-    const deckList = document.getElementById('deck-list');
-    if (deckList) deckList.innerHTML = html;
+    }).join('');
+    document.getElementById('deck-list').innerHTML = html;
   },
 
-  // Render browse list
-  renderBrowse() {
-    const cards = Storage.get('polycards_ukraine_cards') || [];
-    
-    let html = '';
-    cards.forEach(card => {
-      const accuracy = card.stats ? 
-        Math.round((card.stats.correct / (card.stats.studied || 1)) * 100) : 0;
-      
-      html += `
-        <div class="browse-card">
-          <div class="browse-word">
-            <strong>${card.wordUk}</strong> = ${card.wordNl}
-          </div>
-          <div class="browse-deck">${card.deck}</div>
-          <div class="browse-stats">
-            Accuracy: ${accuracy}% | Studied: ${card.stats?.studied || 0}x
-          </div>
-        </div>
-      `;
-    });
-
-    const browseList = document.getElementById('browse-list');
-    if (browseList) browseList.innerHTML = html;
-  },
-
-  // Render statistics
-  renderStats() {
-    const cards = Storage.get('polycards_ukraine_cards') || [];
-    const stats = SRS.getStats(cards);
-    
-    let html = `
-      <div class="stats-grid">
-        <div class="stat-box">
-          <div class="stat-label">Total Words</div>
-          <div class="stat-value">${stats.total}</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">Studied</div>
-          <div class="stat-value">${stats.studied}</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">Correct</div>
-          <div class="stat-value">${stats.correct}</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">Accuracy</div>
-          <div class="stat-value">${stats.accuracy}%</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">Due Today</div>
-          <div class="stat-value">${stats.due}</div>
-        </div>
+  renderStats(cards) {
+    const total = cards.length;
+    const learned = cards.filter(c => c.stats?.repetitions >= 5).length;
+    const html = `
+      <div class="card">
+        <div style="font-size: 1.2rem; margin-bottom: 10px;">📊 Voortgang</div>
+        <div style="margin: 10px 0;">Totaal woorden: <strong>${total}</strong></div>
+        <div style="margin: 10px 0;">Geleerd: <strong>${learned}</strong></div>
+        <div style="margin: 10px 0;">Percentage: <strong>${Math.round(learned/total*100)}%</strong></div>
       </div>
     `;
-
-    const statsContainer = document.getElementById('stats-container');
-    if (statsContainer) statsContainer.innerHTML = html;
+    document.getElementById('stats-display').innerHTML = html;
   },
 
-  // Show card
-  showCard(card) {
-    if (!card) return;
-
-    document.getElementById('fc-word-uk').textContent = card.wordUk;
-    document.getElementById('fc-word-nl').textContent = '?';
-    document.getElementById('fc-translit').textContent = card.translit || '';
-    document.getElementById('fc-sentence').innerHTML = card.sentence || '';
-    
-    // Reset flip state
-    document.getElementById('flashcard').classList.remove('flipped');
-  },
-
-  // Flip card
-  flipCard() {
-    const card = document.getElementById('flashcard');
-    card.classList.toggle('flipped');
-    
-    if (card.classList.contains('flipped')) {
-      const currentCard = Study.currentCard;
-      if (currentCard) {
-        document.getElementById('fc-word-nl').textContent = currentCard.wordNl;
-      }
-    }
-  },
-
-  // Show welcome screen
   showWelcome() {
-    const welcome = document.getElementById('welcome-screen');
-    if (welcome) welcome.style.display = 'flex';
+    this.showPage('welcome');
   },
 
-  // Hide welcome screen
   hideWelcome() {
-    const welcome = document.getElementById('welcome-screen');
-    if (welcome) welcome.style.display = 'none';
-    Storage.set('polycards_ukraine_welcome', true);
+    const welcomeEl = document.getElementById('page-welcome');
+    if (welcomeEl) welcomeEl.style.display = 'none';
   }
 };
 
