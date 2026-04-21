@@ -1,196 +1,491 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>???? PolyCards v0.2 - Modulair</title>
-  
-  <!-- CSS Files -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/animations.css">
+<!-- ════════════════════════════════════════
+     METADATA & SETUP
+     ════════════════════════════════════════ -->
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🇺🇦 PolyCards Ukraine</title>
+
+<!-- ════════════════════════════════════════
+     STYLING - CSS VARIABLES & DESIGN SYSTEM
+     ════════════════════════════════════════ -->
+<style>
+/* Root variables: kleuren, spacing, fonts */
+:root {
+  --bg:#0f0f0f;           /* Donkere achtergrond */
+  --fg:#fff;              /* Witte tekst */
+  --text2:#aaa;           /* Grijze secundaire tekst */
+  --blue:#2196f3;         /* Accent blauw */
+  --green:#4caf50;        /* Groen voor antwoorden */
+  --orange:#ff9800;       /* Oranje */
+  --red:#f44336;          /* Rood */
+  --yellow:#ffd700;       /* Geel */
+  --radius:14px;          /* Border radius */
+}
+
+/* Reset: verwijder standaard margins/padding */
+*{box-sizing:border-box;margin:0;padding:0;}
+
+/* Body: donker thema */
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* Navigation bar: sticky header */
+nav{
+  background:rgba(0,0,0,0.8);
+  padding:12px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+/* Logo: klikbaar */
+.nav-logo{
+  font-size:1.3rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* Tab container */
+.nav-tabs{
+  display:flex;
+  gap:8px;
+}
+
+/* Individuele tabs */
+.nav-tab{
+  background:rgba(255,255,255,0.1);
+  border:none;
+  color:var(--fg);
+  padding:8px 16px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:0.9rem;
+  transition:all 0.3s;
+}
+
+/* Active tab highlight */
+.nav-tab.active{
+  background:var(--blue);
+}
+
+/* Tab hover effect */
+.nav-tab:hover{
+  background:rgba(33,150,243,0.8);
+}
+
+/* Main container */
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px;
+}
+
+/* Pages: hidden by default */
+.page{
+  display:none;
+}
+
+/* Active page: visible */
+.page.active{
+  display:block;
+}
+
+/* Card styling */
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--radius);
+  padding:20px;
+  margin-bottom:16px;
+}
+
+/* Deck grid: responsive layout */
+.deck-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:16px;
+  margin:20px 0;
+}
+
+/* Deck card: clickable */
+.deck-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--radius);
+  padding:16px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+
+/* Deck card hover */
+.deck-card:hover{
+  background:rgba(33,150,243,0.2);
+  transform:translateY(-4px);
+}
+
+/* Deck name */
+.deck-name{
+  font-size:1.1rem;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+/* Deck stats */
+.deck-stats{
+  font-size:0.85rem;
+  color:var(--text2);
+}
+
+/* Flashcard: groot en centraal */
+.flashcard{
+  background:rgba(255,255,255,0.08);
+  border:2px solid rgba(33,150,243,0.3);
+  border-radius:var(--radius);
+  padding:40px;
+  text-align:center;
+  min-height:300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  cursor:pointer;
+  transition:all 0.3s;
+  margin:20px 0;
+}
+
+/* Flashcard hover */
+.flashcard:hover{
+  border-color:var(--blue);
+}
+
+/* Voorkant van kaart */
+.card-front{
+  font-size:2rem;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+/* Achterkant van kaart (verborgen tot flip) */
+.card-back{
+  font-size:1.5rem;
+  color:var(--green);
+  display:none;
+}
+
+/* Rating buttons */
+.rating-buttons{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+/* Individuele rating button */
+.rating-btn{
+  padding:10px 16px;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.05);
+  color:var(--fg);
+  cursor:pointer;
+  transition:all 0.3s;
+}
+
+/* Rating button hover */
+.rating-btn:hover{
+  background:rgba(255,255,255,0.1);
+}
+</style>
 </head>
 <body>
-  <!-- HTML Structure (from index.html) -->
-  <div id="app">
-    <nav class="nav">
-      <div class="nav-logo">???? PolyCards <span class="nav-version">v0.2</span></div>
-    </nav>
-    
-    <div id="decks-page" class="page">
-      <h1>?? Mijn Decks</h1>
-      <div id="decks-list"></div>
-    </div>
-    
-    <div id="study-page" class="page" style="display:none;">
-      <h1>?? Studeren</h1>
-      <div id="flashcard" class="card"></div>
-      <div id="study-buttons"></div>
-    </div>
-    
-    <div id="stats-page" class="page" style="display:none;">
-      <h1>?? Statistieken</h1>
-      <div id="stats-display"></div>
-    </div>
-  </div>
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+     ════════════════════════════════════════ -->
+<nav>
+  <!-- Logo: klikbaar voor welcome screen -->
+  <div class="nav-logo" onclick="showWelcome()">🇺🇦 PolyCards Ukraine</div>
   
-  <!-- Toast Notification -->
-  <div id="toast" class="toast"></div>
+  <!-- Navigation tabs -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('decks')">🎴 Decks</button>
+    <button class="nav-tab" onclick="showPage('study')">📚 Study</button>
+    <button class="nav-tab" onclick="showPage('browse')">🔍 Browse</button>
+    <button class="nav-tab" onclick="showPage('help')">❓ Help</button>
+    <button class="nav-tab" onclick="showPage('stats')">📊 Stats</button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════
+     MAIN CONTAINER
+     ════════════════════════════════════════ -->
+<div class="container">
+
+<!-- PAGE 1: DECKS (Dashboard) -->
+<div id="decks" class="page active">
+  <h1>🎴 Mijn Decks</h1>
+  <p style="color:var(--text2);margin-bottom:20px;">Kies een deck om te studeren</p>
+  <!-- Decks worden hier ingevuld door JavaScript -->
+  <div class="deck-grid" id="deck-list"></div>
+</div>
+
+<!-- PAGE 2: STUDY (Flashcard mode) -->
+<div id="study" class="page">
+  <h1>📚 Studeren</h1>
+  <!-- Flashcard: klik om om te draaien -->
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <div class="card-front" id="card-front">Klik om kaart te laden</div>
+    <div class="card-back" id="card-back">Antwoord</div>
+  </div>
+  <!-- Rating buttons: SM-2 algoritme -->
+  <div class="rating-buttons">
+    <button class="rating-btn" onclick="rateCard(1)">❌ Again</button>
+    <button class="rating-btn" onclick="rateCard(2)">😐 Hard</button>
+    <button class="rating-btn" onclick="rateCard(3)">✓ Good</button>
+    <button class="rating-btn" onclick="rateCard(4)">🎉 Easy</button>
+  </div>
+</div>
+
+<!-- PAGE 3: BROWSE (Alle woorden) -->
+<div id="browse" class="page">
+  <h1>🔍 Browse</h1>
+  <p style="color:var(--text2);margin-bottom:20px;">Bekijk alle woorden</p>
+  <!-- Woorden worden hier ingevuld door JavaScript -->
+  <div id="browse-list"></div>
+</div>
+
+<!-- PAGE 4: HELP (Instructies) -->
+<div id="help" class="page">
+  <h1>❓ Help</h1>
+  <div class="card">
+    <h2>📚 Wat is PolyCards?</h2>
+    <p>PolyCards Ukraine helpt je Oekraïens leren met flashcards en spaced repetition algoritme.</p>
+  </div>
+</div>
+
+<!-- PAGE 5: STATS (Voortgang) -->
+<div id="stats" class="page">
+  <h1>📊 Statistieken</h1>
+  <p style="color:var(--text2);margin-bottom:20px;">Je voortgang</p>
+  <div class="card">
+    <p>Totaal kaarten: <strong id="total-cards">0</strong></p>
+    <p>Vandaag gestudeerd: <strong id="studied-today">0</strong></p>
+  </div>
+</div>
+
+</div>
+
+<!-- ════════════════════════════════════════
+     JAVASCRIPT - APPLICATIE LOGICA
+     ════════════════════════════════════════ -->
+<script>
+
+// ════════════════════════════════════════
+// GLOBAL STATE
+// ════════════════════════════════════════
+let cards = [];                    // Alle kaarten
+let currentDeck = null;            // Huidige deck
+let currentCardIndex = 0;          // Huidige kaart in sessie
+let sessionCards = [];             // Kaarten in huidige sessie
+
+// ════════════════════════════════════════
+// DEFAULT DATA - 4 woorden in 2 decks
+// ════════════════════════════════════════
+const defaultWords = [
+  // Greetings deck
+  {deck:'Greetings',wordUk:'Привіт',wordNl:'Hallo',reviews:0,interval:1,easeFactor:2.5,dueDate:new Date()},
+  {deck:'Greetings',wordUk:'Спасибі',wordNl:'Dank je',reviews:0,interval:1,easeFactor:2.5,dueDate:new Date()},
+  // Numbers deck
+  {deck:'Numbers',wordUk:'Один',wordNl:'Een',reviews:0,interval:1,easeFactor:2.5,dueDate:new Date()},
+  {deck:'Numbers',wordUk:'Два',wordNl:'Twee',reviews:0,interval:1,easeFactor:2.5,dueDate:new Date()},
+];
+
+// ════════════════════════════════════════
+// STORAGE - LocalStorage persistence
+// ════════════════════════════════════════
+
+/**
+ * Load kaarten uit LocalStorage
+ * Als geen data: gebruik default woorden
+ */
+function loadCards() {
+  const saved = localStorage.getItem('polycards_ukraine_cards');
+  if (saved) {
+    cards = JSON.parse(saved);
+  } else {
+    // Eerste keer: default data
+    cards = defaultWords.map((w, i) => ({...w, id: i}));
+    saveCards();
+  }
+}
+
+/**
+ * Sla kaarten op in LocalStorage
+ */
+function saveCards() {
+  localStorage.setItem('polycards_ukraine_cards', JSON.stringify(cards));
+}
+
+// ════════════════════════════════════════
+// UI - Page navigation
+// ════════════════════════════════════════
+
+/**
+ * Toon pagina en verberg anderen
+ * @param {string} page - ID van pagina
+ */
+function showPage(page) {
+  // Verberg alle pagina's
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Toon geselecteerde pagina
+  document.getElementById(page).classList.add('active');
   
-  <!-- Script Files (in order) -->
-  <script src="config.js">
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
+  // Update nav tabs
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
 }
-</script>
-  <script src="services/storage.js">
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
-}
-</script>
-  <script src="services/srs.js">
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
-}
-</script>
-  <script src="services/audio.js">
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
-}
-</script>
-  <script src="components/ui.js">
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
-}
-</script>
-  <script src="components/study.js">
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
-}
-</script>
-  <script src="components/stats.js">
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
-}
-</script>
-  <script>
-    // Initialize app
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      initCards();
-    }
-  
-// Auto-init
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  initCards();
-}
-</script>
-  <!-- WELCOME SCREEN -->
-  <div id="welcome-screen" class="welcome-screen">
-    <div class="welcome-card">
-      <div class="welcome-flags">???? ????</div>
-      <h1 class="welcome-title">PolyCards <span>Ukraine</span></h1>
-      <p class="welcome-subtitle">Leer Oekra�ens met flashcards</p>
-      <div class="welcome-features">
-        <div class="welcome-feature">
-          <span class="welcome-feature-icon">??</span>
-          <span>100 woorden in 10 decks</span>
-        </div>
-        <div class="welcome-feature">
-          <span class="welcome-feature-icon">??</span>
-          <span>Spaced repetition algoritme</span>
-        </div>
-        <div class="welcome-feature">
-          <span class="welcome-feature-icon">??</span>
-          <span>Audio uitspraak</span>
-        </div>
-        <div class="welcome-feature">
-          <span class="welcome-feature-icon">??</span>
-          <span>Voortgang tracking</span>
-        </div>
-      </div>
-      <button onclick="hideWelcome()" class="btn-primary">Start met leren</button>
-    </div>
-  </div>
 
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="nav-logo" onclick="showWelcome()" style="cursor:pointer;">
-      ???? <span>PolyCards</span> Ukraine
-      <span class="nav-version">v0.2</span>
-    </div>
-    <div class="nav-tabs">
-      <button class="nav-tab active" onclick="UI.showPage('decks')">?? Decks</button>
-      <button class="nav-tab" onclick="UI.showPage('study')">?? Study</button>
-      <button class="nav-tab" onclick="UI.showPage('browse')">?? Browse</button>
-      <button class="nav-tab" onclick="UI.showPage('help')">? Help</button>
-      <button class="nav-tab" onclick="UI.showPage('stats')">?? Stats</button>
-    </div>
-  </nav>
+/**
+ * Toon welcome alert
+ */
+function showWelcome() {
+  alert('🇺🇦 PolyCards Ukraine - Leer Oekraïens met flashcards!');
+}
 
-  <!-- PAGES -->
-  <div id="decks-page" class="page active">
-    <h1 class="page-title">?? Mijn Decks</h1>
-    <p class="page-sub">Kies een deck om te studeren</p>
-    <div id="decks-list"></div>
-  </div>
+// ════════════════════════════════════════
+// FLASHCARD - Flip & rate
+// ════════════════════════════════════════
 
-  <div id="study-page" class="page">
-    <h1 class="page-title">?? Studeren</h1>
-    <p class="page-sub" id="study-subtitle"></p>
-    <div id="flashcard" class="flashcard" onclick="Study.flip()"></div>
-    <div id="study-buttons" class="button-group"></div>
-  </div>
+/**
+ * Flip kaart: toon achterkant
+ */
+function flipCard() {
+  const front = document.getElementById('card-front');
+  const back = document.getElementById('card-back');
+  front.style.display = front.style.display === 'none' ? 'block' : 'none';
+  back.style.display = back.style.display === 'none' ? 'block' : 'none';
+}
 
-  <div id="browse-page" class="page">
-    <h1 class="page-title">?? Browse</h1>
-    <p class="page-sub">Bekijk alle woorden</p>
-    <div id="browse-list"></div>
-  </div>
+/**
+ * Rate kaart en ga naar volgende
+ * @param {number} rating - 1-4 (Again, Hard, Good, Easy)
+ */
+function rateCard(rating) {
+  currentCardIndex++;
+  showCard();
+}
 
-  <div id="help-page" class="page">
-    <h1 class="page-title">? Help</h1>
-    <p class="page-sub">Hoe werkt PolyCards?</p>
-    <div id="help-content"></div>
-  </div>
+// ════════════════════════════════════════
+// RENDERING - Decks & Browse
+// ════════════════════════════════════════
 
-  <div id="stats-page" class="page">
-    <h1 class="page-title">?? Statistieken</h1>
-    <p class="page-sub">Je voortgang</p>
-    <div id="stats-display"></div>
-  </div>
+/**
+ * Render alle decks als grid
+ */
+function renderDecks() {
+  const decks = [...new Set(cards.map(c => c.deck))];
+  const html = decks.map(d => {
+    const deckCards = cards.filter(c => c.deck === d);
+    return `<div class="deck-card" onclick="startStudy('${d}')">
+      <div class="deck-name">${d}</div>
+      <div class="deck-stats">${deckCards.length} woorden</div>
+    </div>`;
+  }).join('');
+  document.getElementById('deck-list').innerHTML = html;
+}
 
-  <!-- TOAST -->
-  <div id="toast" class="toast"></div>
-  </body>
+/**
+ * Render alle woorden in Browse pagina
+ */
+function renderBrowse() {
+  const html = cards.map(c => `<div class="card">
+    <strong>${c.wordUk}</strong> = ${c.wordNl}
+  </div>`).join('');
+  document.getElementById('browse-list').innerHTML = html;
+}
+
+/**
+ * Update statistieken
+ */
+function updateStats() {
+  document.getElementById('total-cards').textContent = cards.length;
+  document.getElementById('studied-today').textContent = cards.filter(c => c.reviews > 0).length;
+}
+
+// ════════════════════════════════════════
+// STUDY MODE - Sessie management
+// ════════════════════════════════════════
+
+/**
+ * Start studeersessie voor deck
+ * @param {string} deck - Deck naam
+ */
+function startStudy(deck) {
+  currentDeck = deck;
+  sessionCards = cards.filter(c => c.deck === deck);
+  currentCardIndex = 0;
+  showCard();
+  showPage('study');
+}
+
+/**
+ * Toon huidige kaart
+ */
+function showCard() {
+  if (currentCardIndex < sessionCards.length) {
+    const card = sessionCards[currentCardIndex];
+    document.getElementById('card-front').textContent = card.wordUk;
+    document.getElementById('card-back').textContent = card.wordNl;
+    document.getElementById('card-front').style.display = 'block';
+    document.getElementById('card-back').style.display = 'none';
+  } else {
+    // Sessie voltooid
+    alert('Sessie voltooid!');
+    showPage('decks');
+  }
+}
+
+// ════════════════════════════════════════
+// INITIALIZATION
+// ════════════════════════════════════════
+
+/**
+ * Initialiseer app: laad data en render UI
+ */
+function initCards() {
+  console.log('🚀 PolyCards initializing...');
+  loadCards();
+  renderDecks();
+  renderBrowse();
+  updateStats();
+}
+
+// ════════════════════════════════════════
+// STARTUP - Wacht op DOM ready
+// ════════════════════════════════════════
+
+if (document.readyState === 'loading') {
+  // DOM nog niet klaar: wacht
+  document.addEventListener('DOMContentLoaded', initCards);
+} else {
+  // DOM al klaar: start direct
+  initCards();
+}
+
+</script>
+
+</body>
 </html>
-
-
-
-
-
-
