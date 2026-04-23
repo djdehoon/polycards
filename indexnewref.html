@@ -514,10 +514,10 @@ nav {
   
 <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('decks')">📚 <span class="tab-label">Decks</span></button>
-    <button class="nav-tab" onclick="showPage('instructions')">📖 <span class="tab-label">Instructions</span></button>
+    <button class="nav-tab" onclick="showPage('instructions')">📖 <span class="tab-label">Handleiding</span></button>
     <button class="nav-tab" onclick="showPage('browse')">🔍 <span class="tab-label">Browse</span></button>
     <button class="nav-tab" onclick="showPage('stats')">📊 <span class="tab-label">Stats</span></button>
-    <button class="nav-tab" onclick="showWelcome()">👋 <span class="tab-label">Welcome</span></button>
+    <button class="nav-tab" onclick="showWelcome()">👋 <span class="tab-label">Welkom</span></button>
   </div>
 
 
@@ -591,7 +591,7 @@ nav {
     <!-- FLIP MODE -->
     <div id="flip-mode">
       <div class="fc-wrap">
-        <div class="fc" id="fc" onclick="flipCard()">
+        <div class="fc" id="flashcard" onclick="flipCard()">
           <div class="fc-face fc-front">
             <div class="fc-tag" id="fc-tag"></div>
             <div class="fc-emoji" id="fc-emoji"></div>
@@ -613,11 +613,11 @@ nav {
         </div>
       </div>
       <button class="show-ans-btn" id="show-ans-btn" onclick="flipCard()">Toon Antwoord</button>
-      <div class="rating-btns" id="rating-btns" style="display:none">
-        <button class="r-btn r-again" onclick="rate('again')">Again<span class="sub">&lt;1m</span></button>
-        <button class="r-btn r-hard" onclick="rate('hard')">Hard<span class="sub">&lt;6m</span></button>
-        <button class="r-btn r-good" onclick="rate('good')">Good<span class="sub">&lt;10m</span></button>
-        <button class="r-btn r-easy" onclick="rate('easy')">Easy<span class="sub">5d</span></button>
+      <div class="rating-btns" id="rating-buttons" style="display:none">
+        <button class="r-btn r-again" onclick="rate('again')">Opnieuw<span class="sub">&lt;1m</span></button>
+        <button class="r-btn r-hard" onclick="rate('hard')">Moeilijk<span class="sub">&lt;6m</span></button>
+        <button class="r-btn r-good" onclick="rate('good')">Goed<span class="sub">&lt;10m</span></button>
+        <button class="r-btn r-easy" onclick="rate('easy')">Makkelijk<span class="sub">5d</span></button>
       </div>
     </div>
 
@@ -644,11 +644,11 @@ nav {
   </div>
   <div class="type-feedback" id="type-feedback"></div>
   <button class="check-btn" id="check-btn" onclick="checkType()">✓ Controleer</button>
-  <div class="rating-btns" id="type-rating-btns" style="display:none">
-    <button class="r-btn r-again" onclick="rate('again')">Again<span class="sub">&lt;1m</span></button>
-    <button class="r-btn r-hard" onclick="rate('hard')">Hard<span class="sub">&lt;6m</span></button>
-    <button class="r-btn r-good" onclick="rate('good')">Good<span class="sub">&lt;10m</span></button>
-    <button class="r-btn r-easy" onclick="rate('easy')">Easy<span class="sub">5d</span></button>
+  <div class="rating-btns" id="type-rating-buttons" style="display:none">
+    <button class="r-btn r-again" onclick="rate('again')">Opnieuw<span class="sub">&lt;1m</span></button>
+    <button class="r-btn r-hard" onclick="rate('hard')">Moeilijk<span class="sub">&lt;6m</span></button>
+    <button class="r-btn r-good" onclick="rate('good')">Goed<span class="sub">&lt;10m</span></button>
+    <button class="r-btn r-easy" onclick="rate('easy')">Makkelijk<span class="sub">5d</span></button>
   </div>
 </div>
 
@@ -1149,7 +1149,7 @@ function renderCard() {
   const c = currentCard;
 
   // Reset flip
-  const fc = document.getElementById('fc');
+  const fc = document.getElementById('flashcard');
   if (fc) fc.classList.remove('flipped');
 
   // Progress bar
@@ -1161,7 +1161,7 @@ function renderCard() {
     document.getElementById('flip-mode').style.display = 'block';
     document.getElementById('type-mode').style.display = 'none';
     document.getElementById('show-ans-btn').style.display = 'block';
-    document.getElementById('rating-btns').style.display = 'none';
+    document.getElementById('rating-buttons').style.display = 'none';
 
     if (dir === 'uk-nl') {
       // Voorkant: Oekraïens
@@ -1196,7 +1196,7 @@ function renderCard() {
     document.getElementById('flip-mode').style.display = 'none';
     document.getElementById('type-mode').style.display = 'block';
     document.getElementById('check-btn').style.display = 'block';
-    document.getElementById('type-rating-btns').style.display = 'none';
+    document.getElementById('type-rating-buttons').style.display = 'none';
     document.getElementById('type-feedback').textContent = '';
     document.getElementById('type-input').value = '';
     document.getElementById('type-input').className = 'type-input';
@@ -1219,11 +1219,11 @@ function renderCard() {
 
 function flipCard() {
   if (studyMode !== 'flip') return;
-  const fc = document.getElementById('fc');
+  const fc = document.getElementById('flashcard');
   cardFlipped = !cardFlipped;
   fc.classList.toggle('flipped', cardFlipped);
   document.getElementById('show-ans-btn').style.display = cardFlipped ? 'none' : 'block';
-  document.getElementById('rating-btns').style.display = cardFlipped ? 'grid' : 'none';
+  document.getElementById('rating-buttons').style.display = cardFlipped ? 'grid' : 'none';
 }
 
 
@@ -1317,7 +1317,7 @@ function checkType() {
 
   document.getElementById('type-input').disabled = true;
   document.getElementById('check-btn').style.display = 'none';
-  document.getElementById('type-rating-btns').style.display = 'grid';
+  document.getElementById('type-rating-buttons').style.display = 'grid';
 }
 
 
@@ -1542,6 +1542,7 @@ init();
 
 </body>
 </html>
+
 
 
 
