@@ -1,8 +1,30 @@
 @import url('variables.css');
 nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-//.nav-logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
-.nav-logo{font-size:0.95rem;}
 .nav-tabs { display: flex; gap: 4px; }
 .nav-tab { background: none; border: none; color: var(--text2); padding: 7px 13px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
 .nav-tab:hover { background: var(--surface2); color: var(--text); }
 .nav-tab.active { background: var(--blue); color: #fff; }
+
+
+//.nav-logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
+.nav-logo{font-size:0.95rem;}
+
+/* PolyCards naam (blauw) */
+.logo-name {
+  color: var(--blue);
+}
+
+/* Ukraine label (oranje) */
+.logo-country {
+  font-size: 1rem;
+  color: var(--orange);
+  font-weight: 600;
+  margin-left: 0px;
+}
+/* Versienummer (white) */
+.nav-version {
+  font-size: 0.65rem;
+  color: var(--white);
+  font-weight: 400;
+  margin-left: 6px;
+}
