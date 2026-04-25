@@ -6,12 +6,7 @@
 @import url('animations.css');
 
 
-:root {
-  --bg:#0f0f0f; --surface:#1a1a1a; --surface2:#242424;
-  --border:#2e2e2e; --text:#f0f0f0; --text2:#888;
-  --blue:#4a9eff; --green:#4caf50; --orange:#ff9800;
-  --red:#f44336; --yellow:#ffd700; --radius:14px;
-}
+
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
 
