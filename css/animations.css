@@ -4,13 +4,27 @@
 
 @import url('variables.css');
 
-@keyframes flip {
-  0% { transform: rotateY(0deg); }
-  100% { transform: rotateY(180deg); }
+/* Flashcard flip */
+.flashcard{position:relative;width:100%;min-height:340px;transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);cursor:pointer;border-radius:var(--radius);}
+.flashcard.flipped{transform:rotateY(180deg);}
+
+/* Transitions */
+.btn, .mode-btn, .nav-tab, .study-btn, .speak-btn, .show-ans-btn, .check-btn, .r-btn, .f-btn, .form-input, .form-textarea, .search-bar {
+  transition: all 0.2s;
 }
 
-.flip {
-  animation: flip 0.6s ease-in-out;
+.btn:hover, .study-btn:hover, .speak-btn:hover, .show-ans-btn:hover, .check-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn:active, .study-btn:active, .speak-btn:active, .show-ans-btn:active, .check-btn:active {
+  transform: translateY(0);
+}
+
+/* Page fade in */
+.page {
+  animation: fadeIn 0.3s ease-in;
 }
 
 @keyframes fadeIn {
@@ -18,34 +32,18 @@
   to { opacity: 1; }
 }
 
-.fade-in {
-  animation: fadeIn 0.3s ease-in;
+.prog-fill {
+  transition: width 0.4s;
 }
 
-@keyframes slideIn {
-  from { 
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to { 
-    opacity: 1;
-    transform: translateY(0);
-  }
+.bar-fill {
+  transition: width 0.6s;
 }
 
-.slide-in {
-  animation: slideIn 0.3s ease-out;
+.toast {
+  transition: opacity 0.3s;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.pulse {
-  animation: pulse 2s infinite;
-}
-
-* {
-  transition: var(--transition);
+.toast.show {
+  opacity: 1;
 }

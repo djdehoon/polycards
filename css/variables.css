@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   --bg:#0f0f0f; 
   --surface:#1a1a1a; 
@@ -12,3 +13,23 @@
   --yellow:#ffd700; 
   --radius:14px;
 }
+=======
+/* ════════════════════════════════════════ */
+/* VARIABLES - CSS Custom Properties */
+/* ════════════════════════════════════════ */
+
+:root {
+  --bg:#0f0f0f; 
+  --surface:#1a1a1a; 
+  --surface2:#242424;
+  --border:#2e2e2e; 
+  --text:#f0f0f0; 
+  --text2:#888;
+  --blue:#4a9eff; 
+  --green:#4caf50; 
+  --orange:#ff9800;
+  --red:#f44336; 
+  --yellow:#ffd700; 
+  --radius:14px;
+}
+>>>>>>> 6b919351230dc87572780abf1c5264e801af285b
