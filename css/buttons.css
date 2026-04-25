@@ -1,26 +1,11 @@
-/* ---------------------------------------- */
-/* BUTTONS - All Button Styles */
-/* ---------------------------------------- */
-
 @import url('variables.css');
-
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:10px;border:none;cursor:pointer;font-size:0.9rem;font-weight:700;transition:all 0.2s;font-family:inherit;}
-.btn-primary{background:var(--blue);color:#fff;}
-.btn-primary:hover{background:#3a8eef;}
-.btn-outline{background:none;border:1px solid var(--border);color:var(--text);}
-.btn-outline:hover{background:var(--surface2);}
-.btn-sm{padding:6px 12px;font-size:0.8rem;}
-.btn-danger{background:#3d1515;color:var(--red);border:1px solid var(--red);}
-.btn-danger:hover{background:var(--red);color:#fff;}
-
-.study-btn{background:var(--blue);color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.8rem;transition:background 0.2s;}
-.study-btn:hover{background:#3a8eef;}
-
-.speak-btn{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.82rem;margin-top:10px;transition:all 0.2s;}
-.speak-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
-
-.show-ans-btn{width:100%;padding:14px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;margin-bottom:10px;}
-.show-ans-btn:hover{background:#3a8eef;}
-
-.check-btn{width:100%;padding:13px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;margin-bottom:10px;}
-.check-btn:hover{background:#3a8eef;}
+.btn { display:inline-flex; align-items:center; gap:6px; padding:10px 18px; border-radius:10px; border:none; cursor:pointer; font-size:0.9rem; font-weight:700; transition:all 0.2s; }
+.btn-primary { background:var(--blue); color:#fff; }
+.btn-primary:hover { background:#3a8eef; }
+.btn-outline { background:none; border:1px solid var(--border); color:var(--text); }
+.btn-outline:hover { background:var(--surface2); }
+.btn-sm { padding:6px 12px; font-size:0.8rem; }
+.btn-danger { background:#3d1515; color:var(--red); border:1px solid var(--red); }
+.btn-danger:hover { background:var(--red); color:#fff; }
+.study-btn { background:var(--blue); color:#fff; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-weight:700; font-size:0.8rem; transition:background 0.2s; }
+.study-btn:hover { background:#3a8eef; }

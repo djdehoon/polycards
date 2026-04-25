@@ -1,0 +1,7 @@
+@import url('variables.css');
+@media(max-width:480px) {
+  .form-row { grid-template-columns:1fr; }
+  .rating-btns { grid-template-columns:repeat(2,1fr); }
+  .stats-grid { grid-template-columns:1fr; }
+  .nav-logo { font-size:0.95rem; }
+}

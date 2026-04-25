@@ -1,0 +1,5 @@
+@import url('variables.css');
+.welcome-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.welcome-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 40px; max-width: 500px; text-align: center; }
+.welcome-title { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
+.welcome-title span { color: var(--blue); }

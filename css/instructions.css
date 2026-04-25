@@ -1,0 +1,6 @@
+@import url('variables.css');
+.instructions-section { margin-bottom: 20px; }
+.instructions-q { font-weight: 600; margin-bottom: 8px; font-size: 0.85rem; color: var(--text); }
+.instructions-a { color: var(--text2); line-height: 1.9; font-size: 0.88rem; padding-left: 12px; border-left: 2px solid var(--border); }
+.instructions-a li::before { content: "•"; position: absolute; left: 6px; color: var(--blue); }
+#page-instructions .card { margin-bottom: 20px; }
