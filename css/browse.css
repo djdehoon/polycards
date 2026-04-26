@@ -1,0 +1,12 @@
+/* BROWSE */
+.search-bar{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:11px 16px;font-size:0.95rem;outline:none;margin-bottom:12px;transition:border 0.2s;font-family:inherit;}
+.search-bar:focus{border-color:var(--blue);}
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.f-btn{padding:5px 12px;border-radius:16px;border:1px solid var(--border);background:none;color:var(--text2);cursor:pointer;font-size:0.78rem;font-weight:600;transition:all 0.2s;}
+.f-btn:hover,.f-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+.browse-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;}
+.bi-emoji{font-size:1.6rem;}
+.bi-word{font-size:1rem;font-weight:700;}
+.bi-sub{color:var(--text2);font-size:0.82rem;margin-top:2px;}
+.bi-tag{margin-left:auto;font-size:0.72rem;background:var(--surface2);padding:3px 8px;border-radius:6px;color:var(--text2);}
+
