@@ -8,5 +8,14 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px; margin-bottom:14px; }
 .deck-table-head{display:grid;grid-template-columns:1fr 55px 55px 55px 90px;padding:10px 16px;border-bottom:1px solid var(--border);color:var(--text2);font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
 .deck-table { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-bottom:16px; }
-.deck-row { display:grid; grid-template-columns:1fr 55px 55px 55px 90px; padding:14px 16px; border-bottom:1px solid var(--border); align-items:center; transition:background 0.2s; }
-.deck-row:hover { background:var(--surface2); }
+.deck-row{display:grid;grid-template-columns:1fr 55px 55px 55px 90px;padding:14px 16px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.2s;}
+.deck-row:last-child{border-bottom:none;}
+.deck-row:hover{background:var(--surface2);}
+.deck-name{font-weight:700;}
+.deck-count{text-align:center;font-weight:700;font-size:0.9rem;}
+
+.c-new{color:var(--blue);}
+.c-learn{color:var(--red);}
+.c-due{color:var(--green);}
+.study-btn{background:var(--blue);color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.8rem;transition:background 0.2s;}
+.study-btn:hover{background:#3a8eef;}
