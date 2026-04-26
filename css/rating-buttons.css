@@ -1,6 +1,7 @@
 @import url('variables.css');
 .rating-btns { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:10px; }
 .r-btn { padding:12px 6px; border-radius:10px; border:none; cursor:pointer; font-weight:700; font-size:0.82rem; display:flex; flex-direction:column; align-items:center; gap:2px; transition:all 0.2s; }
+.r-btn .sub{font-size:0.68rem;font-weight:400;opacity:0.8;}
 .r-again { background:#2a1010; color:var(--red); border:1px solid var(--red); }
 .r-again:hover { background:var(--red); color:#fff; }
 .r-hard { background:#2a1e0a; color:var(--orange); border:1px solid var(--orange); }
