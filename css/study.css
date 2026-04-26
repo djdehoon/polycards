@@ -13,7 +13,7 @@
 /* SHOW ANSWER */
 .show-ans-btn {
   width:100%;padding:14px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;
-  margin-top: 60px;      /* Ruimte boven */
+  margin-top: 00px;      /* Ruimte boven */
   margin-bottom:10px;}
 .show-ans-btn:hover{background:#3a8eef;}
 
