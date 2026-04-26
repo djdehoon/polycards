@@ -1,0 +1,9 @@
+//TYPE MODE (Typ je antwoord in plaats van flip)
+
+.type-input-wrap     → Container
+.type-input          → Input veld (waar je typt)
+.type-input:focus    → Blauw border (wanneer je erin klikt)
+.type-input.correct  → Groen + donkergroen (goed antwoord)
+.type-input.wrong    → Rood + donkerrood (fout antwoord)
+.type-feedback       → Feedback bericht (✅ Goed! / ❌ Fout!)
+.check-btn           → "Check Answer" button
