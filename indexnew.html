@@ -1073,10 +1073,13 @@ function init() {
   load();
   
   // Check if first time user (NEW in v0.17)
-  const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
-  if (!hasSeenWelcome) {
-    document.getElementById('welcome-screen').style.display = 'flex';
-  }
+  //const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
+  //if (!hasSeenWelcome) {
+  //  document.getElementById('welcome-screen').style.display = 'flex';
+  //}
+
+  // Always show welcome
+  document.getElementById('welcome-screen').style.display = 'flex';
   
   showPage('decks');
   populateDeckSelect();
