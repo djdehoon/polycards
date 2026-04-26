@@ -1,5 +1,73 @@
 @import url('variables.css');
-.welcome-screen { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-.welcome-card { background: var(--surface); border: 2px solid var(--border); border-radius: var(--radius); padding: 40px; max-width: 500px; text-align: center; }
-.welcome-title { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
-.welcome-title span { color: var(--blue); }
+/* ════════════════════════════════════════
+   WELCOME SCREEN
+   ════════════════════════════════════════ */
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.welcome-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 500px;
+  text-align: center;
+}
+
+.welcome-flags {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  letter-spacing: 10px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.welcome-title span {
+  color: var(--blue);
+}
+
+.welcome-subtitle {
+  color: var(--text2);
+  margin-bottom: 30px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.welcome-features {
+  text-align: left;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--surface2);
+  border-radius: 10px;
+}
+
+.welcome-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+}
+
+.welcome-feature:last-child {
+  margin-bottom: 0;
+}
+
+.welcome-feature-icon {
+  font-size: 1.3rem;
+}
