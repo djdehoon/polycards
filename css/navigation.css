@@ -25,6 +25,8 @@ nav {
   display: flex;
   align-items: center;
   gap: 4px;
+  flex-wrap: wrap;      /* ← ADD */
+  max-width: 200px;     /* ← ADD */
 }
 /* LABEL: Logo container (emoji + tekst) */
 /* VOORBEELD: "🇺🇦 PolyCards Ukraine v1.0" */
@@ -72,8 +74,10 @@ nav {
   font-size: 0.65rem;
   color: var(--white);
   font-weight: 400;
-  white-space: nowrap;  /* ← ADD HERE */
+  /*white-space: nowrap;  /* ← ADD HERE */
   margin-left: 6px;
+  width: 100%;          /* ← ADD */
+  margin-top: 4px;      /* ← ADD */
 }
 /* LABEL: Versienummer (klein, wit) */
 /* VOORBEELD: "v1.0" */
