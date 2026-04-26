@@ -18,3 +18,21 @@
 .modal { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px; width:100%; max-width:420px; }
 .modal-title{font-size:1.1rem;font-weight:800;margin-bottom:16px;}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;}
+
+//FORM EXAMPLE
+┌─────────────────────────────┐
+│ NAME                        │ ← Label (klein, grijs)
+│ [_____________________]     │ ← Input veld
+│                             │
+│ EMAIL                       │
+│ [_____________________]     │ ← Input veld
+└─────────────────────────────┘
+//MODAL EXAMPLE
+████████████████████████████
+████ ┌──────────────────┐ ████
+████ │ Delete Deck?     │ ████
+████ │ Are you sure?    │ ████
+████ │ [Cancel] [OK]    │ ████
+████ └──────────────────┘ ████
+████████████████████████████
+
