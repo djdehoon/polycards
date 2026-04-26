@@ -148,10 +148,10 @@
 
           </div>
           <div class="flashcard-face flashcard-back">
-            <div class="flashcard-tag" id="flashcard-back-tag">a</div>
-            <div class="flashcard-emoji" id="flashcard-back-emoji">b</div>
-            <div class="flashcard-answer-word" id="flashcard-answer">c</div>
-            <div class="flashcard-answer-translit" id="flashcard-answer-translit">e</div> 
+            <div class="flashcard-tag" id="flashcard-back-tag"></div>
+            <div class="flashcard-emoji" id="flashcard-back-emoji"></div>
+            <div class="flashcard-answer-word" id="flashcard-answer"></div>
+            <div class="flashcard-answer-translit" id="flashcard-answer-translit"></div> 
             <div class="flashcard-word" id="flashcard-word"></div>
             <div class="flashcard-sentence" id="flashcard-back-sentence">e</div>
             <button class="speak-btn" onclick="speakWord(event)">🔊 Uitspraak</button>
@@ -720,7 +720,7 @@ function renderCard() {
       document.getElementById('flashcard-back-tag').textContent = '🇳🇱 Vertaling';
       document.getElementById('flashcard-back-emoji').textContent = c.emoji;
       document.getElementById('flashcard-answer').textContent = c.translation;
-      document.getElementById('flashcard-answer-translit').textContent = '';
+      //document.getElementById('flashcard-answer-translit').textContent = '';
       document.getElementById('flashcard-word').textContent = c.word;
       document.getElementById('flashcard-back-sentence').innerHTML = c.sentenceNl;
     } else {
