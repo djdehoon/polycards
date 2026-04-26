@@ -11,7 +11,10 @@
 .mode-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
 
 /* SHOW ANSWER */
-.show-ans-btn{width:100%;padding:14px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;margin-bottom:10px;}
+.show-ans-btn {
+  width:100%;padding:14px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;
+  margin-top: 20px;      /* Ruimte boven */
+  margin-bottom:10px;}
 .show-ans-btn:hover{background:#3a8eef;}
 
 //TYPE MODE (Typ je antwoord in plaats van flip)
