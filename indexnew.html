@@ -1057,9 +1057,9 @@ function showToast(msg) {
 // 🎉 WELCOME SCREEN
 // ════════════════════════════════════════
 function closeWelcome() {
-//  localStorage.setItem('polycards_ukraine_welcome', 'true');
-//  document.getElementById('welcome-screen').style.display = 'none';
-  showPage('decks');  // Show the decks page
+  localStorage.setItem('polycards_ukraine_welcome', 'true');
+  document.getElementById('welcome-screen').style.display = 'none';
+  //showPage('decks');  // Show the decks page
 }
 
 function showWelcome() {
