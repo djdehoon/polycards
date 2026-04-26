@@ -17,5 +17,3 @@ body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkM
 .c-new{color:var(--blue);}
 .c-learn{color:var(--red);}
 .c-due{color:var(--green);}
-.study-btn{background:var(--blue);color:#fff;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:0.8rem;transition:background 0.2s;}
-.study-btn:hover{background:#3a8eef;}
