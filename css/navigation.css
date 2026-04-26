@@ -1,13 +1,65 @@
 @import url('variables.css');
 nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-.nav-tabs { display: flex; gap: 4px; }
-.nav-tab { background: none; border: none; color: var(--text2); padding: 7px 13px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
-.nav-tab:hover { background: var(--surface2); color: var(--text); }
-.nav-tab.active { background: var(--blue); color: #fff; }
 
+/* Nav tabs container */
+.nav-tabs {
+  display: flex;
+  gap: 4px;
+}
 
-.nav-logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.5px; }
+/* Nav tab buttons */
+.nav-tab {
+  background: none;
+  border: none;
+  color: var(--text2);
+  padding: 7px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+/* Nav tab hover state */
+.nav-tab:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+
+/* Nav tab active state */
+.nav-tab.active {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* Nav logo container - met emoji font support */
+.nav-logo { 
+  font-size: 1.2rem; 
+  font-weight: 800; 
+  letter-spacing: -0.5px; 
+}
 //.nav-logo{font-size:0.95rem;}
+
+ /* Flag UA */
+.flag-ua {
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 1.2em;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/* Fallback voor Windows zonder emoji support */
+@supports not (font-family: 'Segoe UI Emoji') {
+  .flag-ua::before {
+    content: "🇺🇦";
+    background: linear-gradient(to bottom, #0057B7 50%, #FFD700 50%);
+    width: 20px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+}
+
 
 /* PolyCards naam (blauw) */
 .logo-name {
