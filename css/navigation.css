@@ -1,13 +1,92 @@
-@import url('variables.css');
-nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+/* ════════════════════════════════════════════════════════════ */
+/* NAVIGATION - Header, logo, tabs, and emoji support           */
+/* ════════════════════════════════════════════════════════════ */
 
-/* Nav tabs container */
+/* NAV CONTAINER - Main navigation bar */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+/* LABEL: Sticky navbar (blijft bovenaan) */
+/* VOORBEELD: Donkere balk met logo links, tabs rechts */
+
+/* NAV LOGO CONTAINER - Logo section */
+.nav-logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+/* LABEL: Logo container (emoji + tekst) */
+/* VOORBEELD: "🇺🇦 PolyCards Ukraine v1.0" */
+
+/* FLAG EMOJI - Ukraine flag with emoji support */
+.flag-ua {
+  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 1.2em;
+  display: inline-block;
+}
+/* LABEL: Ukraine vlag emoji */
+/* VOORBEELD: "🇺🇦" */
+
+@supports not (font-family: 'Segoe UI Emoji') {
+  .flag-ua::before {
+    content: "🇺🇦";
+    background: linear-gradient(to bottom, #0057B7 50%, #FFD700 50%);
+    width: 20px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 2px;
+  }
+}
+/* LABEL: Fallback voor oude browsers */
+
+/* LOGO NAME - PolyCards name (blue) */
+.logo-name {
+  color: var(--blue);
+  font-weight: 800;
+}
+/* LABEL: "PolyCards" tekst (blauw) */
+/* VOORBEELD: "PolyCards" */
+
+/* LOGO COUNTRY - Ukraine label (orange) */
+.logo-country {
+  font-size: 1rem;
+  color: var(--orange);
+  font-weight: 600;
+}
+/* LABEL: "Ukraine" tekst (oranje) */
+/* VOORBEELD: "Ukraine" */
+
+/* NAV VERSION - Version number (white) */
+.nav-version {
+  font-size: 0.65rem;
+  color: var(--white);
+  font-weight: 400;
+  margin-left: 6px;
+}
+/* LABEL: Versienummer (klein, wit) */
+/* VOORBEELD: "v1.0" */
+
+/* NAV TABS CONTAINER - Tab buttons wrapper */
 .nav-tabs {
   display: flex;
   gap: 4px;
+  align-items: center;
 }
+/* LABEL: Container voor alle tabs */
+/* VOORBEELD: "Welcome | Study | Stats | Settings" */
 
-/* Nav tab buttons */
+/* NAV TAB - Individual tab button */
 .nav-tab {
   background: none;
   border: none;
@@ -19,64 +98,22 @@ nav { background: var(--surface); border-bottom: 1px solid var(--border); paddin
   font-weight: 600;
   transition: all 0.2s;
 }
+/* LABEL: Tab knop (standaard staat) */
+/* VOORBEELD: "Welcome" (grijs) */
 
-/* Nav tab hover state */
+/* NAV TAB HOVER - Tab button hover state */
 .nav-tab:hover {
   background: var(--surface2);
   color: var(--text);
 }
+/* LABEL: Tab knop bij hover (lichter) */
+/* VOORBEELD: "Welcome" (lichter grijs) */
 
-/* Nav tab active state */
+/* NAV TAB ACTIVE - Tab button active state */
 .nav-tab.active {
   background: var(--blue);
   color: #fff;
 }
+/* LABEL: Actieve tab knop (blauw) */
+/* VOORBEELD: "Study" (blauw met wit tekst) */
 
-/* Nav logo container - met emoji font support */
-.nav-logo { 
-  font-size: 1.2rem; 
-  font-weight: 800; 
-  letter-spacing: -0.5px; 
-}
-//.nav-logo{font-size:0.95rem;}
-
- /* Flag UA */
-.flag-ua {
-  font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
-  font-size: 1.2em;
-  display: inline-block;
-  margin-right: 4px;
-}
-
-/* Fallback voor Windows zonder emoji support */
-@supports not (font-family: 'Segoe UI Emoji') {
-  .flag-ua::before {
-    content: "🇺🇦";
-    background: linear-gradient(to bottom, #0057B7 50%, #FFD700 50%);
-    width: 20px;
-    height: 15px;
-    display: inline-block;
-    border-radius: 2px;
-  }
-}
-
-
-/* PolyCards naam (blauw) */
-.logo-name {
-  color: var(--blue);
-}
-
-/* Ukraine label (oranje) */
-.logo-country {
-  font-size: 1rem;
-  color: var(--orange);
-  font-weight: 600;
-  margin-left: 0px;
-}
-/* Versienummer (white) */
-.nav-version {
-  font-size: 0.65rem;
-  color: var(--white);
-  font-weight: 400;
-  margin-left: 6px;
-}
