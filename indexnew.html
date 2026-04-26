@@ -737,6 +737,8 @@ function renderCard() {
       document.getElementById('flashcard-back-emoji').textContent = c.emoji;
       document.getElementById('flashcard-answer').textContent = c.word;
       document.getElementById('flashcard-answer-translit').textContent = '[' + c.translit + ']';
+      document.getElementById('flashcard-word2').textContent = c.translation;
+      document.getElementById('flashcard-translit2').textContent = '';
       document.getElementById('flashcard-back-sentence').innerHTML = c.sentenceUk;
     }
 
