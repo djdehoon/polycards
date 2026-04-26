@@ -152,8 +152,8 @@
             <div class="flashcard-emoji" id="flashcard-back-emoji"></div>
             <div class="flashcard-answer-word" id="flashcard-answer"></div>
             <div class="flashcard-answer-translit" id="flashcard-answer-translit"></div> 
-            <div class="flashcard-word" id="flashcard-word"></div>
-            <div class="flashcard-translit" id="flashcard-translit"></div>
+            <div class="flashcard-word2" id="flashcard-word"></div>
+            <div class="flashcard-translit2" id="flashcard-translit"></div>
             <div class="flashcard-sentence" id="flashcard-back-sentence"></div>
             <button class="speak-btn" onclick="speakWord(event)">🔊 Uitspraak</button>
           </div>
@@ -722,8 +722,8 @@ function renderCard() {
       document.getElementById('flashcard-back-emoji').textContent = c.emoji;
       document.getElementById('flashcard-answer').textContent = c.translation;
       document.getElementById('flashcard-answer-translit').textContent = '';
-      document.getElementById('flashcard-word').textContent = c.word;
-      document.getElementById('flashcard-translit').textContent = '[' + c.translit + ']';
+      document.getElementById('flashcard-word2').textContent = c.word;
+      document.getElementById('flashcard-translit2').textContent = '[' + c.translit + ']';
       document.getElementById('flashcard-back-sentence').innerHTML = c.sentenceNl;
     } else {
       // Voorkant: Nederlands
@@ -737,8 +737,8 @@ function renderCard() {
       document.getElementById('flashcard-back-emoji').textContent = c.emoji;
       document.getElementById('flashcard-answer').textContent = c.word;
       document.getElementById('flashcard-answer-translit').textContent = '[' + c.translit + ']';
-      document.getElementById('flashcard-word').textContent = c.translation;
-      document.getElementById('flashcard-translit').textContent = '';
+      document.getElementById('flashcard-word2').textContent = c.translation;
+      document.getElementById('flashcard-translit2').textContent = '';
       document.getElementById('flashcard-back-sentence').innerHTML = c.sentenceUk;
     }
 
