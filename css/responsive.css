@@ -1,5 +1,7 @@
+
 @import url('variables.css');
 @media(max-width:480px) {
+  /* Deze CSS regels ALLEEN op telefoons (max 480px breed) */
   .form-row { grid-template-columns:1fr; }
   .rating-btns { grid-template-columns:repeat(2,1fr); }
   .stats-grid { grid-template-columns:1fr; }
