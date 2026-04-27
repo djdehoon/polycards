@@ -5,31 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🇪🇸 PolyCards Spanish</title>
   <style>
+    :root {
+      --primary: #c60b1e;
+      --primary-light: #FFD700;
+      --surface: #1a1a2e;
+      --surface2: #16213e;
+      --text: #ffffff;
+      --text2: #b0b0b0;
+      --border: #2d2d44;
+      --blue: #4a9eff;
+      --green: #4caf50;
+      --orange: #ff9800;
+      --red: #f44336;
+      --radius: 8px;
+      --spacing: 16px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --primary: #f59e0b;
-      --primary-dark: #d97706;
-      --secondary: #8b5cf6;
-      --success: #10b981;
-      --danger: #ef4444;
-      --bg: #0f172a;
-      --bg2: #1e293b;
-      --text: #f1f5f9;
-      --text2: #cbd5e1;
-      --border: #334155;
-    }
-
     html, body {
       height: 100%;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
+      background: var(--surface);
       color: var(--text);
-      overflow-x: hidden;
     }
 
     body {
@@ -37,129 +39,92 @@
       flex-direction: column;
     }
 
-    /* ════════════════════════════════════════ */
-    /* WELCOME SCREEN */
-    /* ════════════════════════════════════════ */
-    .welcome-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 20px;
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 10px;
     }
 
-    .welcome-content {
-      text-align: center;
-      color: white;
-      max-width: 600px;
+    ::-webkit-scrollbar-track {
+      background: var(--surface);
     }
 
-    .welcome-content h1 {
-      font-size: 3rem;
-      margin-bottom: 16px;
-      font-weight: 800;
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--blue), #FFD700);
+      border-radius: 10px;
+      border: 2px solid var(--surface);
     }
 
-    .welcome-content p {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      opacity: 0.95;
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #3a8eef, #ffc700);
+      box-shadow: 0 0 12px rgba(74, 158, 255, 0.5);
     }
 
-    .welcome-content button {
-      background: white;
-      color: #d97706;
-      border: none;
-      padding: 14px 32px;
-      font-size: 1.1rem;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 24px;
-      transition: all 0.3s;
-    }
-
-    .welcome-content button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-
-    /* ════════════════════════════════════════ */
-    /* NAVIGATION */
-    /* ════════════════════════════════════════ */
+    /* NAVBAR */
     nav {
-      background: var(--bg2);
+      background: var(--surface2);
       border-bottom: 1px solid var(--border);
-      padding: 12px 20px;
+      padding: 16px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
     }
 
     .nav-logo {
-      font-size: 1.2rem;
-      font-weight: 700;
-      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
     }
 
-    .nav-logo span {
-      color: var(--primary);
+    .logo-name {
+      color: var(--text);
+    }
+
+    .logo-country {
+      color: var(--text2);
+      font-size: 0.9rem;
     }
 
     .nav-version {
-      font-size: 0.75rem;
       color: var(--text2);
-      font-weight: 600;
+      font-size: 0.75rem;
+      margin-left: 8px;
     }
 
     .nav-buttons {
       display: flex;
-      gap: 8px;
+      gap: 12px;
     }
 
-    .nav-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 6px;
+    .btn-back {
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius);
       cursor: pointer;
-      font-size: 0.9rem;
+      font-weight: 600;
       transition: all 0.3s;
     }
 
-    .nav-btn:hover {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
+    .btn-back:hover {
+      background: #3a8eef;
+      transform: translateY(-2px);
     }
 
-    .nav-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    /* ════════════════════════════════════════ */
-    /* PAGES */
-    /* ════════════════════════════════════════ */
-    .pages {
+    /* MAIN */
+    main {
       flex: 1;
       overflow-y: auto;
-      padding: 20px;
+      padding: 40px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
     }
 
+    /* PAGES */
     .page {
       display: none;
     }
@@ -168,534 +133,321 @@
       display: block;
     }
 
-    /* ════════════════════════════════════════ */
+    .page-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
     /* DECKS PAGE */
-    /* ════════════════════════════════════════ */
-    .decks-grid {
+    .deck-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 16px;
-      margin-bottom: 20px;
     }
 
     .deck-card {
-      background: var(--bg2);
+      background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
+      border-radius: 12px;
+      padding: 24px;
       cursor: pointer;
       transition: all 0.3s;
+      text-align: center;
     }
 
     .deck-card:hover {
-      background: #334155;
-      border-color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    .deck-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
+      border-color: var(--blue);
+      box-shadow: 0 8px 24px rgba(74, 158, 255, 0.15);
+      transform: translateY(-4px);
     }
 
     .deck-emoji {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      margin-bottom: 12px;
     }
 
     .deck-name {
       font-size: 1.1rem;
-      font-weight: 700;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
 
-    .deck-counts {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 12px;
-      font-size: 0.9rem;
-    }
-
-    .count-box {
-      background: var(--bg);
-      padding: 8px;
-      border-radius: 4px;
-      text-align: center;
-    }
-
-    .count-box .count-num {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.2rem;
-    }
-
-    .count-box .count-label {
-      font-size: 0.75rem;
+    .deck-stats {
+      font-size: 0.85rem;
       color: var(--text2);
     }
 
-    .deck-button {
-      width: 100%;
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s;
-    }
-
-    .deck-button:hover {
-      background: var(--primary-dark);
-    }
-
-    /* ════════════════════════════════════════ */
     /* STUDY PAGE */
-    /* ════════════════════════════════════════ */
-    .study-controls {
+    .study-topbar {
       display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .control-group {
-      display: flex;
-      gap: 8px;
+      justify-content: space-between;
       align-items: center;
+      margin-bottom: 24px;
+      padding: 16px;
+      background: var(--surface2);
+      border-radius: 8px;
     }
 
-    .control-label {
+    .study-stats {
+      display: flex;
+      gap: 16px;
       font-size: 0.9rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stat-label {
       color: var(--text2);
+    }
+
+    .stat-value {
+      color: var(--text);
       font-weight: 600;
     }
 
-    .control-btn {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.3s;
-    }
-
-    .control-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 4px;
-      background: var(--bg2);
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: var(--primary);
-      transition: width 0.3s;
-    }
-
-    /* ════════════════════════════════════════ */
     /* FLASHCARD */
-    /* ════════════════════════════════════════ */
-    .flashcard-container {
-      perspective: 1000px;
-      margin-bottom: 20px;
+    .flashcard-wrap {
+      perspective: 1200px;
+      margin-bottom: 24px;
     }
 
     .flashcard {
+      position: relative;
       width: 100%;
       height: 300px;
-      background: var(--bg2);
-      border: 2px solid var(--border);
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
       cursor: pointer;
-      transition: transform 0.6s;
       transform-style: preserve-3d;
-      position: relative;
+      transition: transform 0.6s;
     }
 
     .flashcard.flipped {
       transform: rotateY(180deg);
     }
 
-    .flashcard-front,
-    .flashcard-back {
+    .flashcard-face {
       position: absolute;
       width: 100%;
       height: 100%;
+      backface-visibility: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      backface-visibility: hidden;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      border: 2px solid var(--border);
+    }
+
+    .flashcard-front {
+      background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(255, 215, 0, 0.05));
+      color: var(--text);
     }
 
     .flashcard-back {
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(74, 158, 255, 0.05));
       transform: rotateY(180deg);
     }
 
     .flashcard-tag {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--text2);
       margin-bottom: 12px;
+      text-transform: uppercase;
       font-weight: 600;
     }
 
     .flashcard-emoji {
-      font-size: 3rem;
+      font-size: 2rem;
       margin-bottom: 12px;
     }
 
     .flashcard-word {
       font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--blue);
     }
 
     .flashcard-translit {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text2);
       margin-bottom: 16px;
+      font-style: italic;
     }
 
     .flashcard-sentence {
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: var(--text2);
+      margin: 16px 0;
       line-height: 1.5;
     }
 
-    /* ════════════════════════════════════════ */
-    /* BUTTONS */
-    /* ════════════════════════════════════════ */
-    .button-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
+    .flashcard-hint {
+      font-size: 0.85rem;
+      color: var(--text2);
+      margin-top: 16px;
+      font-style: italic;
     }
 
-    .btn {
-      padding: 12px 16px;
+    .speak-btn {
+      background: var(--blue);
+      color: white;
       border: none;
-      border-radius: 6px;
+      padding: 10px 20px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
+      margin-top: 16px;
       transition: all 0.3s;
-      font-size: 0.95rem;
     }
 
-    .btn-primary {
-      background: var(--primary);
+    .speak-btn:hover {
+      background: #3a8eef;
+    }
+
+    .show-ans-btn {
+      width: 100%;
+      background: var(--green);
       color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s;
+      margin-bottom: 16px;
     }
 
-    .btn-primary:hover {
-      background: var(--primary-dark);
+    .show-ans-btn:hover {
+      background: #45a049;
     }
 
+    /* RATING BUTTONS */
     .rating-buttons {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .rating-btn {
       padding: 12px;
-      border: none;
-      border-radius: 6px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface2);
+      color: var(--text);
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s;
       font-size: 0.9rem;
     }
 
-    .rating-btn-again {
-      background: var(--danger);
-      color: white;
-    }
-
-    .rating-btn-hard {
-      background: #f97316;
-      color: white;
-    }
-
-    .rating-btn-good {
-      background: var(--primary);
-      color: white;
-    }
-
-    .rating-btn-easy {
-      background: var(--success);
-      color: white;
-    }
-
     .rating-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-color: var(--blue);
+      background: var(--surface);
     }
 
-    /* ════════════════════════════════════════ */
+    .rating-btn.again { background: rgba(244, 67, 54, 0.2); border-color: #f44336; }
+    .rating-btn.hard { background: rgba(255, 152, 0, 0.2); border-color: #ff9800; }
+    .rating-btn.good { background: rgba(76, 175, 80, 0.2); border-color: #4caf50; }
+    .rating-btn.easy { background: rgba(29, 78, 216, 0.2); border-color: #1d4ed8; }
+
     /* TYPE MODE */
-    /* ════════════════════════════════════════ */
+    .type-input-wrap {
+      margin-bottom: 16px;
+    }
+
     .type-input {
       width: 100%;
-      padding: 12px;
-      background: var(--bg);
+      padding: 16px;
       border: 2px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface2);
       color: var(--text);
-      border-radius: 6px;
-      font-size: 1rem;
-      margin-bottom: 12px;
-      transition: all 0.3s;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
     }
 
     .type-input:focus {
       outline: none;
-      border-color: var(--primary);
+      border-color: var(--blue);
+      box-shadow: 0 0 12px rgba(74, 158, 255, 0.3);
     }
 
-    .type-input.correct {
-      border-color: var(--success);
-      background: rgba(16, 185, 129, 0.1);
-    }
-
-    .type-input.wrong {
-      border-color: var(--danger);
-      background: rgba(239, 68, 68, 0.1);
-    }
-
-    .type-feedback {
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .type-feedback.ok {
-      background: rgba(16, 185, 129, 0.2);
-      color: var(--success);
-    }
-
-    .type-feedback.nope {
-      background: rgba(239, 68, 68, 0.2);
-      color: var(--danger);
-    }
-
-    /* ════════════════════════════════════════ */
     /* BROWSE PAGE */
-    /* ════════════════════════════════════════ */
     .browse-search {
+      margin-bottom: 24px;
+    }
+
+    .search-input {
       width: 100%;
       padding: 12px;
-      background: var(--bg2);
       border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface2);
       color: var(--text);
-      border-radius: 6px;
-      margin-bottom: 16px;
       font-size: 1rem;
     }
 
-    .browse-filters {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+    .search-input:focus {
+      outline: none;
+      border-color: var(--blue);
     }
 
-    .filter-btn {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.3s;
-    }
-
-    .filter-btn.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
-    }
-
-    .browse-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .browse-item {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .browse-item-emoji {
-      font-size: 1.8rem;
-    }
-
-    .browse-item-text {
-      flex: 1;
-    }
-
-    .browse-item-word {
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .browse-item-sub {
-      font-size: 0.9rem;
-      color: var(--text2);
-    }
-
-    .browse-item-tag {
-      background: var(--primary);
-      color: white;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    /* ════════════════════════════════════════ */
-    /* STATS PAGE */
-    /* ════════════════════════════════════════ */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    .stat-box {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--text2);
-    }
-
-    .deck-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .stat-row {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-    }
-
-    .stat-row-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-    }
-
-    .stat-row-bar {
+    .cards-table {
       width: 100%;
-      height: 8px;
-      background: var(--bg);
-      border-radius: 4px;
-      overflow: hidden;
+      border-collapse: collapse;
     }
 
-    .stat-row-fill {
-      height: 100%;
-      background: var(--primary);
-      transition: width 0.3s;
+    .cards-table th {
+      background: var(--surface2);
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 2px solid var(--border);
     }
 
-    /* ════════════════════════════════════════ */
-    /* INSTRUCTIONS PAGE */
-    /* ════════════════════════════════════════ */
-    .instructions-content {
-      max-width: 800px;
-      margin: 0 auto;
+    .cards-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .instruction-section {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 16px;
+    .cards-table tr:hover {
+      background: var(--surface2);
     }
 
-    .instruction-section h3 {
-      color: var(--primary);
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    .instruction-section p {
+    /* FOOTER */
+    footer {
+      background: var(--surface2);
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
       color: var(--text2);
-      line-height: 1.6;
+      font-size: 0.9rem;
     }
 
-    /* ════════════════════════════════════════ */
-    /* TOAST */
-    /* ════════════════════════════════════════ */
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 16px 20px;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.3s;
-      z-index: 999;
-    }
-
-    .toast.show {
-      opacity: 1;
-    }
-
+    /* RESPONSIVE */
     @media (max-width: 768px) {
-      .decks-grid {
-        grid-template-columns: 1fr;
+      nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      main {
+        padding: 24px 16px;
+      }
+
+      .page-title {
+        font-size: 1.4rem;
       }
 
       .flashcard {
@@ -710,771 +462,408 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      nav {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .nav-buttons {
-        width: 100%;
-        justify-content: space-around;
+      .deck-list {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
     }
   </style>
 </head>
 <body>
 
-<!-- WELCOME SCREEN -->
-<div class="welcome-screen" id="welcome-screen">
-  <div class="welcome-content">
-    <h1>🇪🇸 PolyCards</h1>
-    <p>Aprende español con tarjetas inteligentes</p>
-    <p>100 palabras esenciales • Repetición espaciada • Pronunciación nativa</p>
-    <button onclick="closeWelcome()">Comenzar →</button>
-  </div>
-</div>
-
-<!-- NAVIGATION -->
+<!-- NAVBAR -->
 <nav>
-  <div class="nav-logo" onclick="showWelcome()">
-    🇪🇸 <span>PolyCards</span> Spanish
+  <div class="nav-logo">
+    <svg width="18" height="13" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;margin-right:6px;">
+      <rect fill="#c60b1e" width="3" height="1"/>
+      <rect fill="#FFD700" y="1" width="3" height="1"/>
+    </svg>
+    <span class="logo-name">PolyCards</span>
+    <span class="logo-country">Spanish</span>
     <span class="nav-version">v0.20</span>
   </div>
   <div class="nav-buttons">
-    <button class="nav-btn active" onclick="showPage('decks')">Mazos</button>
-    <button class="nav-btn" onclick="showPage('browse')">Explorar</button>
-    <button class="nav-btn" onclick="showPage('stats')">Estadísticas</button>
-    <button class="nav-btn" onclick="showPage('instructions')">Instrucciones</button>
+    <button class="btn-back" onclick="window.location.href='index.html'">← Back to Languages</button>
   </div>
 </nav>
 
-<!-- PAGES -->
-<div class="pages">
+<!-- MAIN -->
+<main>
 
   <!-- DECKS PAGE -->
   <div class="page active" id="page-decks">
-    <h2 style="margin-bottom: 20px;">Mis Mazos</h2>
-    <div class="decks-grid" id="decks-grid"></div>
+    <h1 class="page-title">📚 My Decks</h1>
+    <div class="deck-list" id="deck-list"></div>
   </div>
 
   <!-- STUDY PAGE -->
   <div class="page" id="page-study">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-      <h2 id="study-title"></h2>
-      <button class="btn btn-primary" onclick="showPage('decks')">← Atrás</button>
-    </div>
-
-    <div class="study-controls">
-      <div class="control-group">
-        <span class="control-label">Modo:</span>
-        <button class="control-btn active" id="mode-flip" onclick="setStudyMode('flip')">Voltear</button>
-        <button class="control-btn" id="mode-type" onclick="setStudyMode('type')">Escribir</button>
-      </div>
-      <div class="control-group">
-        <span class="control-label">Dirección:</span>
-        <button class="control-btn active" id="dir-es-en" onclick="setDirection('es-en')">ES→EN</button>
-        <button class="control-btn" id="dir-en-es" onclick="setDirection('en-es')">EN→ES</button>
-        <button class="control-btn" id="dir-mix" onclick="setDirection('mix')">Mix</button>
-      </div>
-    </div>
-
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
-
-    <!-- FLIP MODE -->
-    <div id="flip-mode">
-      <div class="flashcard-container">
-        <div class="flashcard" id="flashcard" onclick="flipCard()">
-          <div class="flashcard-front">
-            <div class="flashcard-tag" id="flashcard-tag"></div>
-            <div class="flashcard-emoji" id="flashcard-emoji"></div>
-            <div class="flashcard-word" id="flashcard-word"></div>
-            <div class="flashcard-translit" id="flashcard-translit"></div>
-            <div class="flashcard-sentence" id="flashcard-sentence"></div>
-          </div>
-          <div class="flashcard-back">
-            <div class="flashcard-tag" id="flashcard-back-tag"></div>
-            <div class="flashcard-emoji" id="flashcard-back-emoji"></div>
-            <div class="flashcard-word" id="flashcard-answer"></div>
-            <div class="flashcard-translit" id="flashcard-answer-translit"></div>
-            <div class="flashcard-sentence" id="flashcard-back-sentence"></div>
-          </div>
+    <h1 class="page-title">Study</h1>
+    
+    <div class="study-topbar">
+      <div class="study-stats">
+        <div class="stat-item">
+          <span class="stat-label">New:</span>
+          <span class="stat-value" id="new-count">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Learning:</span>
+          <span class="stat-value" id="learning-count">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Due:</span>
+          <span class="stat-value" id="due-count">0</span>
         </div>
       </div>
+      <button class="btn-back" onclick="showPage('decks')">← Back to Decks</button>
+    </div>
 
-      <div class="button-group">
-        <button class="btn btn-primary" id="show-ans-btn" onclick="flipCard()">📖 Mostrar Respuesta</button>
-        <button class="btn btn-primary" onclick="speakWord(event)">🔊 Pronunciar</button>
-      </div>
-
-      <div class="rating-buttons" id="rating-buttons" style="display: none;">
-        <button class="rating-btn rating-btn-again" onclick="rate('again')">❌ Otra<br><small>0 días</small></button>
-        <button class="rating-btn rating-btn-hard" onclick="rate('hard')">🤔 Difícil<br><small>1 día</small></button>
-        <button class="rating-btn rating-btn-good" onclick="rate('good')">✅ Bien<br><small>3 días</small></button>
-        <button class="rating-btn rating-btn-easy" onclick="rate('easy')">🎉 Fácil<br><small>4 días</small></button>
+    <div class="flashcard-wrap">
+      <div class="flashcard" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <div class="flashcard-tag" id="flashcard-tag"></div>
+          <div class="flashcard-emoji" id="flashcard-emoji"></div>
+          <div class="flashcard-word" id="flashcard-word"></div>
+          <div class="flashcard-translit" id="flashcard-translit"></div>
+          <div class="flashcard-sentence" id="flashcard-sentence"></div>
+          <button class="speak-btn" onclick="speakWord(event)">🔊 Pronounce</button>
+          <div class="flashcard-hint">👆 Click to reveal</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="flashcard-tag" id="flashcard-back-tag"></div>
+          <div class="flashcard-emoji" id="flashcard-back-emoji"></div>
+          <div class="flashcard-word" id="flashcard-answer"></div>
+          <div class="flashcard-translit" id="flashcard-answer-translit"></div>
+          <div class="flashcard-sentence" id="flashcard-back-sentence"></div>
+          <button class="speak-btn" onclick="speakWord(event)">🔊 Pronounce</button>
+        </div>
       </div>
     </div>
 
-    <!-- TYPE MODE -->
-    <div id="type-mode" style="display: none;">
-      <div style="background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center;">
-        <div class="flashcard-tag" id="t-tag"></div>
-        <div class="flashcard-emoji" id="t-emoji" style="font-size: 2rem;"></div>
-        <div class="flashcard-word" id="t-word"></div>
-        <div class="flashcard-translit" id="t-translit"></div>
-      </div>
+    <button class="show-ans-btn" id="show-ans-btn" onclick="flipCard()">Show Answer</button>
 
-      <input type="text" class="type-input" id="type-input" placeholder="Escribe la respuesta..." onkeydown="typeKeydown(event)"/>
-      <div class="type-feedback" id="type-feedback"></div>
-
-      <div class="button-group">
-        <button class="btn btn-primary" id="check-btn" onclick="checkType()">Comprobar</button>
-        <button class="btn btn-primary" onclick="showPage('decks')">Cancelar</button>
-      </div>
-
-      <div class="rating-buttons" id="type-rating-buttons" style="display: none;">
-        <button class="rating-btn rating-btn-again" onclick="rate('again')">❌ Otra</button>
-        <button class="rating-btn rating-btn-hard" onclick="rate('hard')">🤔 Difícil</button>
-        <button class="rating-btn rating-btn-good" onclick="rate('good')">✅ Bien</button>
-        <button class="rating-btn rating-btn-easy" onclick="rate('easy')">🎉 Fácil</button>
-      </div>
+    <div class="rating-buttons" id="rating-buttons" style="display:none;">
+      <button class="rating-btn again" onclick="rateCard(1)">Again</button>
+      <button class="rating-btn hard" onclick="rateCard(2)">Hard</button>
+      <button class="rating-btn good" onclick="rateCard(3)">Good</button>
+      <button class="rating-btn easy" onclick="rateCard(4)">Easy</button>
     </div>
 
-    <!-- STUDY DONE -->
-    <div id="study-done" style="display: none; text-align: center; padding: 40px;">
-      <h2 style="color: var(--primary); margin-bottom: 16px;">🎉 ¡Completado!</h2>
-      <p style="color: var(--text2); margin-bottom: 20px;">Excelente trabajo. Vuelve mañana para tu repaso.</p>
-      <button class="btn btn-primary" onclick="showPage('decks')">← Volver a Mazos</button>
+    <div id="study-done" style="display:none; text-align:center; padding:40px;">
+      <h2 style="font-size:2rem; margin-bottom:16px;">🎉 Deck Complete!</h2>
+      <p style="color:var(--text2); margin-bottom:24px;">Great job! Come back tomorrow for your review.</p>
+      <button class="btn-back" onclick="showPage('decks')">← Back to Decks</button>
     </div>
   </div>
 
   <!-- BROWSE PAGE -->
   <div class="page" id="page-browse">
-    <h2 style="margin-bottom: 20px;">Explorar Palabras</h2>
-    <input type="text" class="browse-search" id="browse-search" placeholder="Buscar..." onkeyup="renderBrowse()"/>
-    <div class="browse-filters" id="browse-filters"></div>
-    <div style="color: var(--text2); margin-bottom: 12px; font-size: 0.9rem;">
-      <span id="browse-count">0 palabras</span>
+    <h1 class="page-title">📖 All Words</h1>
+    
+    <div class="browse-search">
+      <input type="text" class="search-input" id="search-input" placeholder="Search words..." onkeyup="filterCards()">
     </div>
-    <div class="browse-list" id="browse-list"></div>
+
+    <table class="cards-table">
+      <thead>
+        <tr>
+          <th>Spanish</th>
+          <th>English</th>
+          <th>Category</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="cards-tbody"></tbody>
+    </table>
   </div>
 
   <!-- STATS PAGE -->
   <div class="page" id="page-stats">
-    <h2 style="margin-bottom: 20px;">Estadísticas</h2>
-    <div class="stats-grid">
-      <div class="stat-box">
-        <div class="stat-number" id="st-total">0</div>
-        <div class="stat-label">Total</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number" id="st-mature">0</div>
-        <div class="stat-label">Maduras</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number" id="st-young">0</div>
-        <div class="stat-label">Jóvenes</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-number" id="st-new">0</div>
-        <div class="stat-label">Nuevas</div>
-      </div>
-    </div>
-    <h3 style="margin-bottom: 16px;">Por Mazo</h3>
-    <div class="deck-stats" id="deck-stats"></div>
-  </div>
-
-  <!-- INSTRUCTIONS PAGE -->
-  <div class="page" id="page-instructions">
-    <h2 style="margin-bottom: 20px;">Cómo Funciona</h2>
-    <div class="instructions-content">
-      <div class="instruction-section">
-        <h3>📚 Repetición Espaciada</h3>
-        <p>Aprende palabras usando el algoritmo SM-2. Las palabras difíciles aparecen más a menudo, las fáciles menos.</p>
-      </div>
-      <div class="instruction-section">
-        <h3>🔄 Dos Modos de Estudio</h3>
-        <p><strong>Voltear:</strong> Mira la tarjeta, voltéala para ver la respuesta. <strong>Escribir:</strong> Escribe la respuesta correcta.</p>
-      </div>
-      <div class="instruction-section">
-        <h3>⭐ Calificaciones</h3>
-        <p><strong>Otra:</strong> No recuerdas (0 días). <strong>Difícil:</strong> Recordaste pero fue difícil (1 día). <strong>Bien:</strong> Recordaste bien (3 días). <strong>Fácil:</strong> Muy fácil (4 días).</p>
-      </div>
-      <div class="instruction-section">
-        <h3>🔊 Pronunciación</h3>
-        <p>Haz clic en el botón 🔊 para escuchar la pronunciación nativa de cada palabra.</p>
-      </div>
-      <div class="instruction-section">
-        <h3>📊 Estadísticas</h3>
-        <p>Sigue tu progreso con estadísticas detalladas por mazo. Las palabras "maduras" son aquellas que has aprendido bien.</p>
-      </div>
+    <h1 class="page-title">📊 Statistics</h1>
+    <div id="stats-display" style="padding:24px; background:var(--surface2); border-radius:12px;">
+      <p style="color:var(--text2);">Learning statistics will appear here as you study.</p>
     </div>
   </div>
 
-</div>
+</main>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<!-- FOOTER -->
+<footer>
+  <p>🇪🇸 PolyCards Spanish - Scientific Language Learning</p>
+  <p style="margin-top:8px; font-size:0.85rem;">Version 0.20 | <a href="index.html" style="color:var(--blue); text-decoration:none;">Back to Home</a></p>
+</footer>
 
+<!-- JAVASCRIPT -->
 <script>
   // ════════════════════════════════════════
-  // SPANISH DATA - 100 WORDS
+  // DATA - 100 SPANISH WORDS
   // ════════════════════════════════════════
-  const WORDS = [
-    // Animales 🐾
-    {w:'perro',t:'dog',tr:'dog',sEs:'Mi <b>perro</b> es amigable.',sEn:'My <b>dog</b> is friendly.',deck:'Animales 🐾',e:'🐕'},
-    {w:'gato',t:'cat',tr:'cat',sEs:'El <b>gato</b> duerme.',sEn:'The <b>cat</b> sleeps.',deck:'Animales 🐾',e:'🐱'},
-    {w:'pájaro',t:'bird',tr:'bird',sEs:'El <b>pájaro</b> canta.',sEn:'The <b>bird</b> sings.',deck:'Animales 🐾',e:'🐦'},
-    {w:'caballo',t:'horse',tr:'horse',sEs:'El <b>caballo</b> corre.',sEn:'The <b>horse</b> runs.',deck:'Animales 🐾',e:'🐴'},
-    {w:'vaca',t:'cow',tr:'cow',sEs:'La <b>vaca</b> come hierba.',sEn:'The <b>cow</b> eats grass.',deck:'Animales 🐾',e:'🐄'},
-    {w:'cerdo',t:'pig',tr:'pig',sEs:'El <b>cerdo</b> es gordo.',sEn:'The <b>pig</b> is fat.',deck:'Animales 🐾',e:'🐷'},
-    {w:'oveja',t:'sheep',tr:'sheep',sEs:'La <b>oveja</b> tiene lana.',sEn:'The <b>sheep</b> has wool.',deck:'Animales 🐾',e:'🐑'},
-    {w:'gallo',t:'rooster',tr:'rooster',sEs:'El <b>gallo</b> canta.',sEn:'The <b>rooster</b> crows.',deck:'Animales 🐾',e:'🐓'},
-    {w:'pato',t:'duck',tr:'duck',sEs:'El <b>pato</b> nada.',sEn:'The <b>duck</b> swims.',deck:'Animales 🐾',e:'🦆'},
-    {w:'pez',t:'fish',tr:'fish',sEs:'El <b>pez</b> nada en agua.',sEn:'The <b>fish</b> swims in water.',deck:'Animales 🐾',e:'🐠'},
 
-    // Comida 🍎
-    {w:'pan',t:'bread',tr:'bread',sEs:'Compro <b>pan</b> fresco.',sEn:'I buy fresh <b>bread</b>.',deck:'Comida 🍎',e:'🍞'},
-    {w:'agua',t:'water',tr:'water',sEs:'Bebo <b>agua</b>.',sEn:'I drink <b>water</b>.',deck:'Comida 🍎',e:'💧'},
-    {w:'leche',t:'milk',tr:'milk',sEs:'La <b>leche</b> es blanca.',sEn:'<b>Milk</b> is white.',deck:'Comida 🍎',e:'🥛'},
-    {w:'manzana',t:'apple',tr:'apple',sEs:'Como <b>manzana</b>.',sEn:'I eat an <b>apple</b>.',deck:'Comida 🍎',e:'🍎'},
-    {w:'café',t:'coffee',tr:'coffee',sEs:'Bebo <b>café</b>.',sEn:'I drink <b>coffee</b>.',deck:'Comida 🍎',e:'☕'},
-    {w:'té',t:'tea',tr:'tea',sEs:'Bebo <b>té</b>.',sEn:'I drink <b>tea</b>.',deck:'Comida 🍎',e:'🍵'},
-    {w:'sopa',t:'soup',tr:'soup',sEs:'Como <b>sopa</b>.',sEn:'I eat <b>soup</b>.',deck:'Comida 🍎',e:'🍲'},
-    {w:'queso',t:'cheese',tr:'cheese',sEs:'Me encanta el <b>queso</b>.',sEn:'I love <b>cheese</b>.',deck:'Comida 🍎',e:'🧀'},
-    {w:'huevo',t:'egg',tr:'egg',sEs:'Como un <b>huevo</b>.',sEn:'I eat an <b>egg</b>.',deck:'Comida 🍎',e:'🥚'},
-    {w:'pastel',t:'cake',tr:'cake',sEs:'Comemos <b>pastel</b>.',sEn:'We eat <b>cake</b>.',deck:'Comida 🍎',e:'🎂'},
+  const words = [
+    // ANIMALS (10)
+    { es: "perro", en: "dog", category: "Animals", emoji: "🐕", sentence_es: "El perro es amigable", sentence_en: "The dog is friendly" },
+    { es: "gato", en: "cat", category: "Animals", emoji: "🐱", sentence_es: "El gato duerme", sentence_en: "The cat sleeps" },
+    { es: "pájaro", en: "bird", category: "Animals", emoji: "🐦", sentence_es: "El pájaro vuela", sentence_en: "The bird flies" },
+    { es: "caballo", en: "horse", category: "Animals", emoji: "🐴", sentence_es: "El caballo corre", sentence_en: "The horse runs" },
+    { es: "vaca", en: "cow", category: "Animals", emoji: "🐄", sentence_es: "La vaca come pasto", sentence_en: "The cow eats grass" },
+    { es: "cerdo", en: "pig", category: "Animals", emoji: "🐷", sentence_es: "El cerdo es gordo", sentence_en: "The pig is fat" },
+    { es: "oveja", en: "sheep", category: "Animals", emoji: "🐑", sentence_es: "La oveja tiene lana", sentence_en: "The sheep has wool" },
+    { es: "gallo", en: "rooster", category: "Animals", emoji: "🐓", sentence_es: "El gallo canta", sentence_en: "The rooster sings" },
+    { es: "pato", en: "duck", category: "Animals", emoji: "🦆", sentence_es: "El pato nada", sentence_en: "The duck swims" },
+    { es: "pez", en: "fish", category: "Animals", emoji: "🐠", sentence_es: "El pez nada en el agua", sentence_en: "The fish swims in water" },
 
-    // Familia 👨‍👩‍👧
-    {w:'madre',t:'mother',tr:'mother',sEs:'Mi <b>madre</b> cocina.',sEn:'My <b>mother</b> cooks.',deck:'Familia 👨‍👩‍👧',e:'👩'},
-    {w:'padre',t:'father',tr:'father',sEs:'Mi <b>padre</b> trabaja.',sEn:'My <b>father</b> works.',deck:'Familia 👨‍👩‍👧',e:'👨'},
-    {w:'hermana',t:'sister',tr:'sister',sEs:'Mi <b>hermana</b> estudia.',sEn:'My <b>sister</b> studies.',deck:'Familia 👨‍👩‍👧',e:'👧'},
-    {w:'hermano',t:'brother',tr:'brother',sEs:'Mi <b>hermano</b> juega.',sEn:'My <b>brother</b> plays.',deck:'Familia 👨‍👩‍👧',e:'👦'},
-    {w:'abuela',t:'grandmother',tr:'grandmother',sEs:'Mi <b>abuela</b> es mayor.',sEn:'My <b>grandmother</b> is old.',deck:'Familia 👨‍👩‍👧',e:'👵'},
-    {w:'abuelo',t:'grandfather',tr:'grandfather',sEs:'Mi <b>abuelo</b> es sabio.',sEn:'My <b>grandfather</b> is wise.',deck:'Familia 👨‍👩‍👧',e:'👴'},
-    {w:'niño',t:'child',tr:'child',sEs:'El <b>niño</b> juega.',sEn:'The <b>child</b> plays.',deck:'Familia 👨‍👩‍👧',e:'👶'},
-    {w:'marido',t:'husband',tr:'husband',sEs:'Su <b>marido</b> es amable.',sEn:'Her <b>husband</b> is kind.',deck:'Familia 👨‍👩‍👧',e:'💑'},
-    {w:'esposa',t:'wife',tr:'wife',sEs:'Su <b>esposa</b> es doctora.',sEn:'His <b>wife</b> is a doctor.',deck:'Familia 👨‍👩‍👧',e:'💑'},
-    {w:'familia',t:'family',tr:'family',sEs:'Mi <b>familia</b> es importante.',sEn:'My <b>family</b> is important.',deck:'Familia 👨‍👩‍👧',e:'👨‍👩‍👧'},
+    // FOOD & DRINK (10)
+    { es: "pan", en: "bread", category: "Food", emoji: "🍞", sentence_es: "Como pan en el desayuno", sentence_en: "I eat bread for breakfast" },
+    { es: "agua", en: "water", category: "Drink", emoji: "💧", sentence_es: "Bebo agua todos los días", sentence_en: "I drink water every day" },
+    { es: "manzana", en: "apple", category: "Food", emoji: "🍎", sentence_es: "La manzana es roja", sentence_en: "The apple is red" },
+    { es: "plátano", en: "banana", category: "Food", emoji: "🍌", sentence_es: "El plátano es amarillo", sentence_en: "The banana is yellow" },
+    { es: "naranja", en: "orange", category: "Food", emoji: "🍊", sentence_es: "La naranja es dulce", sentence_en: "The orange is sweet" },
+    { es: "queso", en: "cheese", category: "Food", emoji: "🧀", sentence_es: "El queso es delicioso", sentence_en: "The cheese is delicious" },
+    { es: "leche", en: "milk", category: "Drink", emoji: "🥛", sentence_es: "La leche es blanca", sentence_en: "The milk is white" },
+    { es: "carne", en: "meat", category: "Food", emoji: "🥩", sentence_es: "La carne es proteína", sentence_en: "Meat is protein" },
+    { es: "pollo", en: "chicken", category: "Food", emoji: "🍗", sentence_es: "El pollo es sabroso", sentence_en: "The chicken is tasty" },
+    { es: "arroz", en: "rice", category: "Food", emoji: "🍚", sentence_es: "El arroz es blanco", sentence_en: "The rice is white" },
 
-    // Colores 🎨
-    {w:'rojo',t:'red',tr:'red',sEs:'La rosa es <b>roja</b>.',sEn:'The rose is <b>red</b>.',deck:'Colores 🎨',e:'🔴'},
-    {w:'azul',t:'blue',tr:'blue',sEs:'El cielo es <b>azul</b>.',sEn:'The sky is <b>blue</b>.',deck:'Colores 🎨',e:'🔵'},
-    {w:'verde',t:'green',tr:'green',sEs:'El pasto es <b>verde</b>.',sEn:'The grass is <b>green</b>.',deck:'Colores 🎨',e:'🟢'},
-    {w:'amarillo',t:'yellow',tr:'yellow',sEs:'El sol es <b>amarillo</b>.',sEn:'The sun is <b>yellow</b>.',deck:'Colores 🎨',e:'🟡'},
-    {w:'negro',t:'black',tr:'black',sEs:'La noche es <b>negra</b>.',sEn:'The night is <b>black</b>.',deck:'Colores 🎨',e:'⚫'},
-    {w:'blanco',t:'white',tr:'white',sEs:'La nieve es <b>blanca</b>.',sEn:'The snow is <b>white</b>.',deck:'Colores 🎨',e:'⚪'},
-    {w:'naranja',t:'orange',tr:'orange',sEs:'La calabaza es <b>naranja</b>.',sEn:'The pumpkin is <b>orange</b>.',deck:'Colores 🎨',e:'🟠'},
-    {w:'rosa',t:'pink',tr:'pink',sEs:'La flor es <b>rosa</b>.',sEn:'The flower is <b>pink</b>.',deck:'Colores 🎨',e:'🌸'},
-    {w:'marrón',t:'brown',tr:'brown',sEs:'El árbol es <b>marrón</b>.',sEn:'The tree is <b>brown</b>.',deck:'Colores 🎨',e:'🟤'},
-    {w:'gris',t:'gray',tr:'gray',sEs:'La pared es <b>gris</b>.',sEn:'The wall is <b>gray</b>.',deck:'Colores 🎨',e:'🩶'},
+    // FAMILY (10)
+    { es: "padre", en: "father", category: "Family", emoji: "👨", sentence_es: "Mi padre trabaja", sentence_en: "My father works" },
+    { es: "madre", en: "mother", category: "Family", emoji: "👩", sentence_es: "Mi madre cocina", sentence_en: "My mother cooks" },
+    { es: "hermano", en: "brother", category: "Family", emoji: "👦", sentence_es: "Mi hermano juega", sentence_en: "My brother plays" },
+    { es: "hermana", en: "sister", category: "Family", emoji: "👧", sentence_es: "Mi hermana estudia", sentence_en: "My sister studies" },
+    { es: "abuelo", en: "grandfather", category: "Family", emoji: "👴", sentence_es: "Mi abuelo es viejo", sentence_en: "My grandfather is old" },
+    { es: "abuela", en: "grandmother", category: "Family", emoji: "👵", sentence_es: "Mi abuela es amable", sentence_en: "My grandmother is kind" },
+    { es: "hijo", en: "son", category: "Family", emoji: "👦", sentence_es: "Mi hijo es pequeño", sentence_en: "My son is small" },
+    { es: "hija", en: "daughter", category: "Family", emoji: "👧", sentence_es: "Mi hija es inteligente", sentence_en: "My daughter is smart" },
+    { es: "tío", en: "uncle", category: "Family", emoji: "👨", sentence_es: "Mi tío es ingeniero", sentence_en: "My uncle is an engineer" },
+    { es: "tía", en: "aunt", category: "Family", emoji: "👩", sentence_es: "Mi tía es doctora", sentence_en: "My aunt is a doctor" },
 
-    // Números 🔢
-    {w:'uno',t:'one',tr:'one',sEs:'Tengo <b>uno</b>.',sEn:'I have <b>one</b>.',deck:'Números 🔢',e:'1️⃣'},
-    {w:'dos',t:'two',tr:'two',sEs:'Tengo <b>dos</b>.',sEn:'I have <b>two</b>.',deck:'Números 🔢',e:'2️⃣'},
-    {w:'tres',t:'three',tr:'three',sEs:'Hay <b>tres</b>.',sEn:'There are <b>three</b>.',deck:'Números 🔢',e:'3️⃣'},
-    {w:'cuatro',t:'four',tr:'four',sEs:'Hay <b>cuatro</b>.',sEn:'There are <b>four</b>.',deck:'Números 🔢',e:'4️⃣'},
-    {w:'cinco',t:'five',tr:'five',sEs:'Tengo <b>cinco</b>.',sEn:'I have <b>five</b>.',deck:'Números 🔢',e:'5️⃣'},
-    {w:'seis',t:'six',tr:'six',sEs:'Hay <b>seis</b>.',sEn:'There are <b>six</b>.',deck:'Números 🔢',e:'6️⃣'},
-    {w:'siete',t:'seven',tr:'seven',sEs:'Hay <b>siete</b>.',sEn:'There are <b>seven</b>.',deck:'Números 🔢',e:'7️⃣'},
-    {w:'ocho',t:'eight',tr:'eight',sEs:'Hay <b>ocho</b>.',sEn:'There are <b>eight</b>.',deck:'Números 🔢',e:'8️⃣'},
-    {w:'nueve',t:'nine',tr:'nine',sEs:'Hay <b>nueve</b>.',sEn:'There are <b>nine</b>.',deck:'Números 🔢',e:'9️⃣'},
-    {w:'diez',t:'ten',tr:'ten',sEs:'Tengo <b>diez</b>.',sEn:'I have <b>ten</b>.',deck:'Números 🔢',e:'🔟'},
+    // BODY PARTS (10)
+    { es: "cabeza", en: "head", category: "Body", emoji: "🧠", sentence_es: "Mi cabeza duele", sentence_en: "My head hurts" },
+    { es: "ojo", en: "eye", category: "Body", emoji: "👁️", sentence_es: "Tengo dos ojos", sentence_en: "I have two eyes" },
+    { es: "nariz", en: "nose", category: "Body", emoji: "👃", sentence_es: "Mi nariz es pequeña", sentence_en: "My nose is small" },
+    { es: "oído", en: "ear", category: "Body", emoji: "👂", sentence_es: "Escucho con mis oídos", sentence_en: "I listen with my ears" },
+    { es: "boca", en: "mouth", category: "Body", emoji: "👄", sentence_es: "Hablo con la boca", sentence_en: "I speak with my mouth" },
+    { es: "brazo", en: "arm", category: "Body", emoji: "💪", sentence_es: "Tengo dos brazos", sentence_en: "I have two arms" },
+    { es: "mano", en: "hand", category: "Body", emoji: "✋", sentence_es: "Escribo con la mano", sentence_en: "I write with my hand" },
+    { es: "pierna", en: "leg", category: "Body", emoji: "🦵", sentence_es: "Tengo dos piernas", sentence_en: "I have two legs" },
+    { es: "pie", en: "foot", category: "Body", emoji: "🦶", sentence_es: "Camino con los pies", sentence_en: "I walk with my feet" },
+    { es: "corazón", en: "heart", category: "Body", emoji: "❤️", sentence_es: "El corazón late", sentence_en: "The heart beats" },
 
-    // Saludos 🗣️
-    {w:'hola',t:'hello',tr:'hello',sEs:'<b>Hola</b>.',sEn:'<b>Hello</b>.',deck:'Saludos 🗣️',e:'👋'},
-    {w:'buenos días',t:'good morning',tr:'good morning',sEs:'<b>Buenos días</b>.',sEn:'<b>Good morning</b>.',deck:'Saludos 🗣️',e:'🌅'},
-    {w:'buenas tardes',t:'good afternoon',tr:'good afternoon',sEs:'<b>Buenas tardes</b>.',sEn:'<b>Good afternoon</b>.',deck:'Saludos 🗣️',e:'☀️'},
-    {w:'buenas noches',t:'good evening',tr:'good evening',sEs:'<b>Buenas noches</b>.',sEn:'<b>Good evening</b>.',deck:'Saludos 🗣️',e:'🌙'},
-    {w:'adiós',t:'goodbye',tr:'goodbye',sEs:'<b>Adiós</b>.',sEn:'<b>Goodbye</b>.',deck:'Saludos 🗣️',e:'👋'},
-    {w:'gracias',t:'thank you',tr:'thank you',sEs:'<b>Gracias</b>.',sEn:'<b>Thank you</b>.',deck:'Saludos 🗣️',e:'🙏'},
-    {w:'por favor',t:'please',tr:'please',sEs:'<b>Por favor</b>.',sEn:'<b>Please</b>.',deck:'Saludos 🗣️',e:'🙏'},
-    {w:'perdón',t:'sorry',tr:'sorry',sEs:'<b>Perdón</b>.',sEn:'<b>Sorry</b>.',deck:'Saludos 🗣️',e:'😅'},
-    {w:'sí',t:'yes',tr:'yes',sEs:'<b>Sí</b>.',sEn:'<b>Yes</b>.',deck:'Saludos 🗣️',e:'✅'},
-    {w:'no',t:'no',tr:'no',sEs:'<b>No</b>.',sEn:'<b>No</b>.',deck:'Saludos 🗣️',e:'❌'},
+    // HOUSE & FURNITURE (10)
+    { es: "casa", en: "house", category: "House", emoji: "🏠", sentence_es: "Mi casa es grande", sentence_en: "My house is big" },
+    { es: "puerta", en: "door", category: "House", emoji: "🚪", sentence_es: "La puerta está cerrada", sentence_en: "The door is closed" },
+    { es: "ventana", en: "window", category: "House", emoji: "🪟", sentence_es: "La ventana está abierta", sentence_en: "The window is open" },
+    { es: "cama", en: "bed", category: "Furniture", emoji: "🛏️", sentence_es: "Duermo en la cama", sentence_en: "I sleep in the bed" },
+    { es: "mesa", en: "table", category: "Furniture", emoji: "🪑", sentence_es: "Como en la mesa", sentence_en: "I eat at the table" },
+    { es: "silla", en: "chair", category: "Furniture", emoji: "🪑", sentence_es: "Me siento en la silla", sentence_en: "I sit on the chair" },
+    { es: "sofá", en: "sofa", category: "Furniture", emoji: "🛋️", sentence_es: "Veo TV en el sofá", sentence_en: "I watch TV on the sofa" },
+    { es: "cocina", en: "kitchen", category: "House", emoji: "🍳", sentence_es: "Cocino en la cocina", sentence_en: "I cook in the kitchen" },
+    { es: "baño", en: "bathroom", category: "House", emoji: "🚿", sentence_es: "Me ducho en el baño", sentence_en: "I shower in the bathroom" },
+    { es: "dormitorio", en: "bedroom", category: "House", emoji: "🛌", sentence_es: "Duermo en el dormitorio", sentence_en: "I sleep in the bedroom" },
 
-    // Casa 🏠
-    {w:'casa',t:'house',tr:'house',sEs:'Mi <b>casa</b> es grande.',sEn:'My <b>house</b> is big.',deck:'Casa 🏠',e:'🏠'},
-    {w:'habitación',t:'room',tr:'room',sEs:'La <b>habitación</b> es limpia.',sEn:'The <b>room</b> is clean.',deck:'Casa 🏠',e:'🚪'},
-    {w:'mesa',t:'table',tr:'table',sEs:'La <b>mesa</b> es grande.',sEn:'The <b>table</b> is big.',deck:'Casa 🏠',e:'🪑'},
-    {w:'silla',t:'chair',tr:'chair',sEs:'La <b>silla</b> es cómoda.',sEn:'The <b>chair</b> is comfortable.',deck:'Casa 🏠',e:'🪑'},
-    {w:'cama',t:'bed',tr:'bed',sEs:'La <b>cama</b> es suave.',sEn:'The <b>bed</b> is soft.',deck:'Casa 🏠',e:'🛏️'},
-    {w:'ventana',t:'window',tr:'window',sEs:'La <b>ventana</b> está abierta.',sEn:'The <b>window</b> is open.',deck:'Casa 🏠',e:'🪟'},
-    {w:'puerta',t:'door',tr:'door',sEs:'La <b>puerta</b> está cerrada.',sEn:'The <b>door</b> is closed.',deck:'Casa 🏠',e:'🚪'},
-    {w:'cocina',t:'kitchen',tr:'kitchen',sEs:'La <b>cocina</b> es grande.',sEn:'The <b>kitchen</b> is big.',deck:'Casa 🏠',e:'🍳'},
-    {w:'baño',t:'bathroom',tr:'bathroom',sEs:'El <b>baño</b> es limpio.',sEn:'The <b>bathroom</b> is clean.',deck:'Casa 🏠',e:'🛁'},
-    {w:'jardín',t:'garden',tr:'garden',sEs:'El <b>jardín</b> es bonito.',sEn:'The <b>garden</b> is beautiful.',deck:'Casa 🏠',e:'🌿'},
+    // CLOTHING (10)
+    { es: "camisa", en: "shirt", category: "Clothing", emoji: "👔", sentence_es: "Llevo una camisa azul", sentence_en: "I wear a blue shirt" },
+    { es: "pantalones", en: "pants", category: "Clothing", emoji: "👖", sentence_es: "Mis pantalones son negros", sentence_en: "My pants are black" },
+    { es: "falda", en: "skirt", category: "Clothing", emoji: "👗", sentence_es: "Ella lleva una falda", sentence_en: "She wears a skirt" },
+    { es: "zapatos", en: "shoes", category: "Clothing", emoji: "👞", sentence_es: "Mis zapatos son cómodos", sentence_en: "My shoes are comfortable" },
+    { es: "sombrero", en: "hat", category: "Clothing", emoji: "🎩", sentence_es: "Llevo un sombrero", sentence_en: "I wear a hat" },
+    { es: "calcetines", en: "socks", category: "Clothing", emoji: "🧦", sentence_es: "Mis calcetines son blancos", sentence_en: "My socks are white" },
+    { es: "abrigo", en: "coat", category: "Clothing", emoji: "🧥", sentence_es: "Mi abrigo es cálido", sentence_en: "My coat is warm" },
+    { es: "vestido", en: "dress", category: "Clothing", emoji: "👗", sentence_es: "Su vestido es hermoso", sentence_en: "Her dress is beautiful" },
+    { es: "corbata", en: "tie", category: "Clothing", emoji: "👔", sentence_es: "Llevo una corbata roja", sentence_en: "I wear a red tie" },
+    { es: "cinturón", en: "belt", category: "Clothing", emoji: "⌚", sentence_es: "Mi cinturón es de cuero", sentence_en: "My belt is leather" },
 
-    // Transporte 🚗
-    {w:'coche',t:'car',tr:'car',sEs:'Mi <b>coche</b> es rojo.',sEn:'My <b>car</b> is red.',deck:'Transporte 🚗',e:'🚗'},
-    {w:'tren',t:'train',tr:'train',sEs:'El <b>tren</b> es rápido.',sEn:'The <b>train</b> is fast.',deck:'Transporte 🚗',e:'🚂'},
-    {w:'avión',t:'airplane',tr:'airplane',sEs:'El <b>avión</b> vuela alto.',sEn:'The <b>airplane</b> flies high.',deck:'Transporte 🚗',e:'✈️'},
-    {w:'autobús',t:'bus',tr:'bus',sEs:'El <b>autobús</b> es grande.',sEn:'The <b>bus</b> is big.',deck:'Transporte 🚗',e:'🚌'},
-    {w:'bicicleta',t:'bicycle',tr:'bicycle',sEs:'La <b>bicicleta</b> es rápida.',sEn:'The <b>bicycle</b> is fast.',deck:'Transporte 🚗',e:'🚲'},
-    {w:'barco',t:'ship',tr:'ship',sEs:'El <b>barco</b> es grande.',sEn:'The <b>ship</b> is big.',deck:'Transporte 🚗',e:'🚢'},
-    {w:'metro',t:'subway',tr:'subway',sEs:'El <b>metro</b> es rápido.',sEn:'The <b>subway</b> is fast.',deck:'Transporte 🚗',e:'🚇'},
-    {w:'taxi',t:'taxi',tr:'taxi',sEs:'El <b>taxi</b> es caro.',sEn:'The <b>taxi</b> is expensive.',deck:'Transporte 🚗',e:'🚕'},
-    {w:'motocicleta',t:'motorcycle',tr:'motorcycle',sEs:'La <b>motocicleta</b> es rápida.',sEn:'The <b>motorcycle</b> is fast.',deck:'Transporte 🚗',e:'🏍️'},
-    {w:'helicóptero',t:'helicopter',tr:'helicopter',sEs:'El <b>helicóptero</b> vuela.',sEn:'The <b>helicopter</b> flies.',deck:'Transporte 🚗',e:'🚁'},
+    // NUMBERS (10)
+    { es: "uno", en: "one", category: "Numbers", emoji: "1️⃣", sentence_es: "Tengo uno", sentence_en: "I have one" },
+    { es: "dos", en: "two", category: "Numbers", emoji: "2️⃣", sentence_es: "Tengo dos", sentence_en: "I have two" },
+    { es: "tres", en: "three", category: "Numbers", emoji: "3️⃣", sentence_es: "Tengo tres", sentence_en: "I have three" },
+    { es: "cuatro", en: "four", category: "Numbers", emoji: "4️⃣", sentence_es: "Tengo cuatro", sentence_en: "I have four" },
+    { es: "cinco", en: "five", category: "Numbers", emoji: "5️⃣", sentence_es: "Tengo cinco", sentence_en: "I have five" },
+    { es: "seis", en: "six", category: "Numbers", emoji: "6️⃣", sentence_es: "Tengo seis", sentence_en: "I have six" },
+    { es: "siete", en: "seven", category: "Numbers", emoji: "7️⃣", sentence_es: "Tengo siete", sentence_en: "I have seven" },
+    { es: "ocho", en: "eight", category: "Numbers", emoji: "8️⃣", sentence_es: "Tengo ocho", sentence_en: "I have eight" },
+    { es: "nueve", en: "nine", category: "Numbers", emoji: "9️⃣", sentence_es: "Tengo nueve", sentence_en: "I have nine" },
+    { es: "diez", en: "ten", category: "Numbers", emoji: "🔟", sentence_es: "Tengo diez", sentence_en: "I have ten" },
 
-    // Clima 🌤️
-    {w:'sol',t:'sun',tr:'sun',sEs:'El <b>sol</b> brilla.',sEn:'The <b>sun</b> shines.',deck:'Clima 🌤️',e:'☀️'},
-    {w:'lluvia',t:'rain',tr:'rain',sEs:'La <b>lluvia</b> cae.',sEn:'The <b>rain</b> falls.',deck:'Clima 🌤️',e:'🌧️'},
-    {w:'nieve',t:'snow',tr:'snow',sEs:'La <b>nieve</b> cae.',sEn:'The <b>snow</b> falls.',deck:'Clima 🌤️',e:'❄️'},
-    {w:'viento',t:'wind',tr:'wind',sEs:'El <b>viento</b> sopla.',sEn:'The <b>wind</b> blows.',deck:'Clima 🌤️',e:'💨'},
-    {w:'nube',t:'cloud',tr:'cloud',sEs:'La <b>nube</b> es blanca.',sEn:'The <b>cloud</b> is white.',deck:'Clima 🌤️',e:'☁️'},
-    {w:'tormenta',t:'storm',tr:'storm',sEs:'La <b>tormenta</b> es fuerte.',sEn:'The <b>storm</b> is strong.',deck:'Clima 🌤️',e:'⛈️'},
-    {w:'arcoíris',t:'rainbow',tr:'rainbow',sEs:'El <b>arcoíris</b> es bonito.',sEn:'The <b>rainbow</b> is beautiful.',deck:'Clima 🌤️',e:'🌈'},
-    {w:'niebla',t:'fog',tr:'fog',sEs:'La <b>niebla</b> es densa.',sEn:'The <b>fog</b> is dense.',deck:'Clima 🌤️',e:'🌫️'},
-    {w:'hielo',t:'ice',tr:'ice',sEs:'El <b>hielo</b> es frío.',sEn:'The <b>ice</b> is cold.',deck:'Clima 🌤️',e:'🧊'},
-    {w:'calor',t:'heat',tr:'heat',sEs:'El <b>calor</b> es intenso.',sEn:'The <b>heat</b> is intense.',deck:'Clima 🌤️',e:'🌡️'},
+    // VERBS (10)
+    { es: "ser", en: "to be", category: "Verbs", emoji: "🌟", sentence_es: "Yo soy", sentence_en: "I am" },
+    { es: "estar", en: "to be (location)", category: "Verbs", emoji: "📍", sentence_es: "Estoy aquí", sentence_en: "I am here" },
+    { es: "tener", en: "to have", category: "Verbs", emoji: "✋", sentence_es: "Tengo un libro", sentence_en: "I have a book" },
+    { es: "hacer", en: "to do", category: "Verbs", emoji: "✅", sentence_es: "Hago la tarea", sentence_en: "I do homework" },
+    { es: "ir", en: "to go", category: "Verbs", emoji: "🚶", sentence_es: "Voy al cine", sentence_en: "I go to the cinema" },
+    { es: "venir", en: "to come", category: "Verbs", emoji: "👋", sentence_es: "Vengo mañana", sentence_en: "I come tomorrow" },
+    { es: "hablar", en: "to speak", category: "Verbs", emoji: "💬", sentence_es: "Hablo español", sentence_en: "I speak Spanish" },
+    { es: "comer", en: "to eat", category: "Verbs", emoji: "🍽️", sentence_es: "Como pan", sentence_en: "I eat bread" },
+    { es: "beber", en: "to drink", category: "Verbs", emoji: "🥤", sentence_es: "Bebo agua", sentence_en: "I drink water" },
+    { es: "dormir", en: "to sleep", category: "Verbs", emoji: "😴", sentence_es: "Duermo 8 horas", sentence_en: "I sleep 8 hours" },
 
-    // Emociones ❤️
-    {w:'feliz',t:'happy',tr:'happy',sEs:'Estoy <b>feliz</b>.',sEn:'I am <b>happy</b>.',deck:'Emociones ❤️',e:'😊'},
-    {w:'triste',t:'sad',tr:'sad',sEs:'Estoy <b>triste</b>.',sEn:'I am <b>sad</b>.',deck:'Emociones ❤️',e:'😢'},
-    {w:'enojado',t:'angry',tr:'angry',sEs:'Estoy <b>enojado</b>.',sEn:'I am <b>angry</b>.',deck:'Emociones ❤️',e:'😠'},
-    {w:'asustado',t:'scared',tr:'scared',sEs:'Estoy <b>asustado</b>.',sEn:'I am <b>scared</b>.',deck:'Emociones ❤️',e:'😨'},
-    {w:'sorprendido',t:'surprised',tr:'surprised',sEs:'Estoy <b>sorprendido</b>.',sEn:'I am <b>surprised</b>.',deck:'Emociones ❤️',e:'😲'},
-    {w:'cansado',t:'tired',tr:'tired',sEs:'Estoy <b>cansado</b>.',sEn:'I am <b>tired</b>.',deck:'Emociones ❤️',e:'😴'},
-    {w:'enamorado',t:'in love',tr:'in love',sEs:'Estoy <b>enamorado</b>.',sEn:'I am <b>in love</b>.',deck:'Emociones ❤️',e:'😍'},
-    {w:'tranquilo',t:'calm',tr:'calm',sEs:'Estoy <b>tranquilo</b>.',sEn:'I am <b>calm</b>.',deck:'Emociones ❤️',e:'😌'},
-    {w:'orgulloso',t:'proud',tr:'proud',sEs:'Estoy <b>orgulloso</b>.',sEn:'I am <b>proud</b>.',deck:'Emociones ❤️',e:'🦁'},
-    {w:'solo',t:'lonely',tr:'lonely',sEs:'Estoy <b>solo</b>.',sEn:'I am <b>lonely</b>.',deck:'Emociones ❤️',e:'😔'},
+    // ADJECTIVES (10)
+    { es: "grande", en: "big", category: "Adjectives", emoji: "📏", sentence_es: "La casa es grande", sentence_en: "The house is big" },
+    { es: "pequeño", en: "small", category: "Adjectives", emoji: "🤏", sentence_es: "El gato es pequeño", sentence_en: "The cat is small" },
+    { es: "bueno", en: "good", category: "Adjectives", emoji: "👍", sentence_es: "Es un buen día", sentence_en: "It's a good day" },
+    { es: "malo", en: "bad", category: "Adjectives", emoji: "👎", sentence_es: "Es un mal día", sentence_en: "It's a bad day" },
+    { es: "hermoso", en: "beautiful", category: "Adjectives", emoji: "✨", sentence_es: "La flor es hermosa", sentence_en: "The flower is beautiful" },
+    { es: "feo", en: "ugly", category: "Adjectives", emoji: "😖", sentence_es: "No es feo", sentence_en: "It's not ugly" },
+    { es: "rápido", en: "fast", category: "Adjectives", emoji: "⚡", sentence_es: "El coche es rápido", sentence_en: "The car is fast" },
+    { es: "lento", en: "slow", category: "Adjectives", emoji: "🐢", sentence_es: "La tortuga es lenta", sentence_en: "The turtle is slow" },
+    { es: "caliente", en: "hot", category: "Adjectives", emoji: "🔥", sentence_es: "El café está caliente", sentence_en: "The coffee is hot" },
+    { es: "frío", en: "cold", category: "Adjectives", emoji: "❄️", sentence_es: "El hielo está frío", sentence_en: "The ice is cold" },
+
+    // COMMON PHRASES (10)
+    { es: "hola", en: "hello", category: "Phrases", emoji: "👋", sentence_es: "Hola, ¿cómo estás?", sentence_en: "Hello, how are you?" },
+    { es: "adiós", en: "goodbye", category: "Phrases", emoji: "👋", sentence_es: "Adiós, hasta luego", sentence_en: "Goodbye, see you later" },
+    { es: "por favor", en: "please", category: "Phrases", emoji: "🙏", sentence_es: "Por favor, ayúdame", sentence_en: "Please, help me" },
+    { es: "gracias", en: "thank you", category: "Phrases", emoji: "🙏", sentence_es: "Gracias por tu ayuda", sentence_en: "Thank you for your help" },
+    { es: "de nada", en: "you're welcome", category: "Phrases", emoji: "😊", sentence_es: "De nada, es mi placer", sentence_en: "You're welcome, it's my pleasure" },
+    { es: "sí", en: "yes", category: "Phrases", emoji: "✅", sentence_es: "Sí, estoy de acuerdo", sentence_en: "Yes, I agree" },
+    { es: "no", en: "no", category: "Phrases", emoji: "❌", sentence_es: "No, no quiero", sentence_en: "No, I don't want to" },
+    { es: "amigo", en: "friend", category: "Phrases", emoji: "👫", sentence_es: "Es mi amigo", sentence_en: "He is my friend" },
+    { es: "amor", en: "love", category: "Phrases", emoji: "❤️", sentence_es: "Te amo", sentence_en: "I love you" },
+    { es: "día", en: "day", category: "Phrases", emoji: "☀️", sentence_es: "Es un buen día", sentence_en: "It's a good day" }
   ];
 
   // ════════════════════════════════════════
   // STATE
   // ════════════════════════════════════════
-  let cards = [];
-  let studyQueue = [];
-  let currentCard = null;
-  let currentDeckName = '';
-  let studyMode = 'flip';
-  let direction = 'es-en';
-  let cardFlipped = false;
-  let typeChecked = false;
-  let totalInSession = 0;
+
+  let currentDeck = null;
+  let currentCardIndex = 0;
+  let isFlipped = false;
+  let deckStats = {};
 
   // ════════════════════════════════════════
-  // INIT
+  // FUNCTIONS
   // ════════════════════════════════════════
-  function init() {
-    load();
-    renderDecks();
-    if (!localStorage.getItem('polycards_spanish_welcome')) {
-      document.getElementById('welcome-screen').style.display = 'flex';
-    } else {
-      document.getElementById('welcome-screen').style.display = 'none';
-    }
-  }
 
-  // ════════════════════════════════════════
-  // STORAGE
-  // ════════════════════════════════════════
-  function load() {
-    const saved = localStorage.getItem('polycards_spanish_cards');
-    if (saved) {
-      cards = JSON.parse(saved);
-    } else {
-      cards = WORDS.map(w => ({
-        ...w,
-        state: 'new',
-        interval: 0,
-        ease: 2.5,
-        due: Date.now(),
-        lapses: 0
-      }));
-      save();
-    }
-  }
-
-  function save() {
-    localStorage.setItem('polycards_spanish_cards', JSON.stringify(cards));
-  }
-
-  // ════════════════════════════════════════
-  // PAGES
-  // ════════════════════════════════════════
   function showPage(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + page).classList.add('active');
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
+    if (page === 'browse') renderBrowse();
   }
 
-  function closeWelcome() {
-    localStorage.setItem('polycards_spanish_welcome', 'true');
-    document.getElementById('welcome-screen').style.display = 'none';
-  }
+  function initDecks() {
+    const categories = [...new Set(words.map(w => w.category))];
+    const deckList = document.getElementById('deck-list');
+    deckList.innerHTML = '';
 
-  function showWelcome() {
-    document.getElementById('welcome-screen').style.display = 'flex';
-  }
-
-  // ════════════════════════════════════════
-  // DECKS
-  // ════════════════════════════════════════
-  function renderDecks() {
-    const decks = [...new Set(cards.map(c => c.deck))].map(d => ({
-      name: d,
-      emoji: cards.find(c => c.deck === d).e
-    }));
-
-    const html = decks.map(d => {
-      const dc = cards.filter(c => c.deck === d.name);
-      const newC = dc.filter(c => c.state === 'new').length;
-      const lrn = dc.filter(c => c.state === 'learn').length;
-      const due = dc.filter(c => c.state === 'review' && c.due <= Date.now()).length;
-      return `
-        <div class="deck-card">
-          <div class="deck-header">
-            <div class="deck-emoji">${d.emoji}</div>
-            <div class="deck-name">${d.name}</div>
-          </div>
-          <div class="deck-counts">
-            <div class="count-box"><div class="count-num">${newC}</div><div class="count-label">Nuevas</div></div>
-            <div class="count-box"><div class="count-num">${lrn}</div><div class="count-label">Aprendiendo</div></div>
-            <div class="count-box"><div class="count-num">${due}</div><div class="count-label">Debidas</div></div>
-          </div>
-          <button class="deck-button" onclick="studyDeck('${d.name}')">Estudiar</button>
-        </div>
+    categories.forEach((cat, idx) => {
+      const catWords = words.filter(w => w.category === cat);
+      const card = document.createElement('div');
+      card.className = 'deck-card';
+      card.innerHTML = `
+        <div class="deck-emoji">${catWords[0].emoji}</div>
+        <div class="deck-name">${cat}</div>
+        <div class="deck-stats">${catWords.length} words</div>
       `;
-    }).join('');
-
-    document.getElementById('decks-grid').innerHTML = html;
+      card.onclick = () => startStudy(cat);
+      deckList.appendChild(card);
+    });
   }
 
-  function studyDeck(deckName) {
-    currentDeckName = deckName;
-    document.getElementById('study-title').textContent = deckName;
-    
-    const dc = cards.filter(c => c.deck === deckName);
-    const now = Date.now();
-    studyQueue = dc.filter(c => c.state === 'new' || (c.state === 'learn') || (c.state === 'review' && c.due <= now));
-    
-    if (studyQueue.length === 0) {
-      showToast('✅ ¡Sin tarjetas para hoy!');
-      return;
-    }
-
-    totalInSession = studyQueue.length;
-    cardFlipped = false;
-    typeChecked = false;
-    studyMode = 'flip';
-    direction = 'es-en';
-    
-    document.getElementById('mode-flip').classList.add('active');
-    document.getElementById('mode-type').classList.remove('active');
-    document.getElementById('dir-es-en').classList.add('active');
-    document.getElementById('dir-en-es').classList.remove('active');
+  function startStudy(category) {
+    currentDeck = category;
+    currentCardIndex = 0;
+    isFlipped = false;
     showPage('study');
-    nextCard();
-  }
-
-  // ════════════════════════════════════════
-  // STUDY FUNCTIONS
-  // ════════════════════════════════════════
-  function setStudyMode(mode) {
-    studyMode = mode;
-    document.querySelectorAll('[id^="mode-"]').forEach(b => b.classList.remove('active'));
-    document.getElementById('mode-' + mode).classList.add('active');
-    if (currentCard) renderCard();
-  }
-
-  function setDirection(dir) {
-    direction = dir;
-    document.querySelectorAll('[id^="dir-"]').forEach(b => b.classList.remove('active'));
-    document.getElementById('dir-' + dir).classList.add('active');
-    if (currentCard) renderCard();
-  }
-
-  function getEffectiveDirection() {
-    if (direction === 'mix') return Math.random() > 0.5 ? 'es-en' : 'en-es';
-    return direction;
-  }
-
-  function nextCard() {
-    cardFlipped = false;
-    typeChecked = false;
-    document.getElementById('flip-mode').style.display = 'block';
-    document.getElementById('type-mode').style.display = 'none';
-
-    if (studyQueue.length === 0) {
-      document.getElementById('flip-mode').style.display = 'none';
-      document.getElementById('type-mode').style.display = 'none';
-      document.getElementById('study-done').style.display = 'block';
-      return;
-    }
-
-    currentCard = studyQueue[0];
-    updateStudyCounts();
     renderCard();
+    updateStats();
   }
 
   function renderCard() {
-    const dir = getEffectiveDirection();
-    const c = currentCard;
-
-    const flashcard = document.getElementById('flashcard');
-    if (flashcard) flashcard.classList.remove('flipped');
-
-    const done = totalInSession - studyQueue.length;
-    const pct = totalInSession > 0 ? (done / totalInSession) * 100 : 0;
-    document.getElementById('progress-fill').style.width = pct + '%';
-
-    if (studyMode === 'flip') {
-      document.getElementById('flip-mode').style.display = 'block';
-      document.getElementById('type-mode').style.display = 'none';
-      document.getElementById('show-ans-btn').style.display = 'block';
+    const deckWords = words.filter(w => w.category === currentDeck);
+    if (currentCardIndex >= deckWords.length) {
+      document.getElementById('study-done').style.display = 'block';
+      document.getElementById('show-ans-btn').style.display = 'none';
       document.getElementById('rating-buttons').style.display = 'none';
-
-      if (dir === 'es-en') {
-        document.getElementById('flashcard-tag').textContent = c.deck;
-        document.getElementById('flashcard-emoji').textContent = c.e;
-        document.getElementById('flashcard-word').textContent = c.w;
-        document.getElementById('flashcard-translit').textContent = '';
-        document.getElementById('flashcard-sentence').innerHTML = c.sEs;
-        document.getElementById('flashcard-back-tag').textContent = '🇬🇧 English';
-        document.getElementById('flashcard-back-emoji').textContent = c.e;
-        document.getElementById('flashcard-answer').textContent = c.t;
-        document.getElementById('flashcard-answer-translit').textContent = '';
-        document.getElementById('flashcard-back-sentence').innerHTML = c.sEn;
-      } else {
-        document.getElementById('flashcard-tag').textContent = c.deck;
-        document.getElementById('flashcard-emoji').textContent = c.e;
-        document.getElementById('flashcard-word').textContent = c.t;
-        document.getElementById('flashcard-translit').textContent = '';
-        document.getElementById('flashcard-sentence').innerHTML = c.sEn;
-        document.getElementById('flashcard-back-tag').textContent = '🇪🇸 Español';
-        document.getElementById('flashcard-back-emoji').textContent = c.e;
-        document.getElementById('flashcard-answer').textContent = c.w;
-        document.getElementById('flashcard-answer-translit').textContent = '';
-        document.getElementById('flashcard-back-sentence').innerHTML = c.sEs;
-      }
-    } else {
-      document.getElementById('flip-mode').style.display = 'none';
-      document.getElementById('type-mode').style.display = 'block';
-      document.getElementById('check-btn').style.display = 'block';
-      document.getElementById('type-rating-buttons').style.display = 'none';
-      document.getElementById('type-feedback').textContent = '';
-      document.getElementById('type-input').value = '';
-      document.getElementById('type-input').className = 'type-input';
-      document.getElementById('type-input').disabled = false;
-
-      if (dir === 'es-en') {
-        document.getElementById('t-tag').textContent = c.deck;
-        document.getElementById('t-emoji').textContent = c.e;
-        document.getElementById('t-word').textContent = c.w;
-        document.getElementById('t-translit').textContent = '';
-      } else {
-        document.getElementById('t-tag').textContent = c.deck;
-        document.getElementById('t-emoji').textContent = c.e;
-        document.getElementById('t-word').textContent = c.t;
-        document.getElementById('t-translit').textContent = '';
-      }
-      setTimeout(() => document.getElementById('type-input').focus(), 100);
+      return;
     }
+
+    const card = deckWords[currentCardIndex];
+    document.getElementById('flashcard-tag').textContent = `🇪🇸 ${currentDeck}`;
+    document.getElementById('flashcard-emoji').textContent = card.emoji;
+    document.getElementById('flashcard-word').textContent = card.es;
+    document.getElementById('flashcard-translit').textContent = `(${card.en})`;
+    document.getElementById('flashcard-sentence').textContent = card.sentence_es;
+
+    document.getElementById('flashcard-back-tag').textContent = `🇬🇧 Translation`;
+    document.getElementById('flashcard-back-emoji').textContent = card.emoji;
+    document.getElementById('flashcard-answer').textContent = card.en;
+    document.getElementById('flashcard-answer-translit').textContent = ``;
+    document.getElementById('flashcard-back-sentence').textContent = card.sentence_en;
+
+    document.getElementById('flashcard').classList.remove('flipped');
+    document.getElementById('show-ans-btn').style.display = 'block';
+    document.getElementById('rating-buttons').style.display = 'none';
+    isFlipped = false;
   }
 
   function flipCard() {
-    if (studyMode !== 'flip') return;
-    const flashcard = document.getElementById('flashcard');
-    cardFlipped = !cardFlipped;
-    flashcard.classList.toggle('flipped', cardFlipped);
-    document.getElementById('show-ans-btn').style.display = cardFlipped ? 'none' : 'block';
-    document.getElementById('rating-buttons').style.display = cardFlipped ? 'grid' : 'none';
+    isFlipped = !isFlipped;
+    document.getElementById('flashcard').classList.toggle('flipped');
+    if (isFlipped) {
+      document.getElementById('show-ans-btn').style.display = 'none';
+      document.getElementById('rating-buttons').style.display = 'grid';
+    }
+  }
+
+  function rateCard(rating) {
+    currentCardIndex++;
+    renderCard();
+    updateStats();
   }
 
   function speakWord(e) {
     e.stopPropagation();
-    const dir = getEffectiveDirection();
-    const text = dir === 'es-en' ? currentCard.w : currentCard.t;
-    const lang = dir === 'es-en' ? 'es-ES' : 'en-US';
+    const deckWords = words.filter(w => w.category === currentDeck);
+    const card = deckWords[currentCardIndex];
+    const text = isFlipped ? card.en : card.es;
+    const lang = isFlipped ? 'en-US' : 'es-ES';
 
-    const voices = speechSynthesis.getVoices();
-    const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = lang;
-
-    const voice = voices.find(v => v.lang.startsWith(lang.split('-')[0]));
-    if (voice) utter.voice = voice;
-
-    utter.onerror = () => showToast('❌ No pronunciation available');
-    speechSynthesis.speak(utter);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    speechSynthesis.speak(utterance);
   }
 
-  function typeKeydown(e) {
-    if (e.key === 'Enter') {
-      if (!typeChecked) checkType();
-      else if (typeChecked) rate('good');
-    }
+  function updateStats() {
+    const deckWords = words.filter(w => w.category === currentDeck);
+    const total = deckWords.length;
+    const done = currentCardIndex;
+    const remaining = total - done;
+
+    document.getElementById('new-count').textContent = remaining;
+    document.getElementById('learning-count').textContent = '0';
+    document.getElementById('due-count').textContent = done;
   }
 
-  function checkType() {
-    const dir = getEffectiveDirection();
-    const input = document.getElementById('type-input').value.trim().toLowerCase();
-    const correct = (dir === 'es-en' ? currentCard.t : currentCard.w).toLowerCase();
-    const feedback = document.getElementById('type-feedback');
-    typeChecked = true;
-
-    const isCorrect = input === correct || levenshtein(input, correct) <= 1;
-
-    const esWord = currentCard.w;
-    const enWord = currentCard.t;
-    const bothLanguages = dir === 'es-en' 
-      ? `${enWord} (🇪🇸 ${esWord})`
-      : `${esWord} (🇬🇧 ${enWord})`;
-
-    if (isCorrect) {
-      document.getElementById('type-input').className = 'type-input correct';
-      feedback.className = 'type-feedback ok';
-      feedback.textContent = '✅ ¡Correcto! ' + bothLanguages;
-    } else {
-      document.getElementById('type-input').className = 'type-input wrong';
-      feedback.className = 'type-feedback nope';
-      feedback.textContent = '❌ Incorrecto — ' + bothLanguages;
-    }
-
-    document.getElementById('type-input').disabled = true;
-    document.getElementById('check-btn').style.display = 'none';
-    document.getElementById('type-rating-buttons').style.display = 'grid';
-  }
-
-  function levenshtein(a, b) {
-    const m = a.length, n = b.length;
-    const dp = Array.from({length: m+1}, (_, i) => Array.from({length: n+1}, (_, j) => i === 0 ? j : j === 0 ? i : 0));
-    for (let i = 1; i <= m; i++)
-      for (let j = 1; j <= n; j++)
-        dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]);
-    return dp[m][n];
-  }
-
-  function rate(rating) {
-    const c = currentCard;
-    const now = Date.now();
-    const day = 86400000;
-
-    if (rating === 'again') {
-      c.interval = 0;
-      c.state = 'new';
-      c.due = now + 60000;
-      c.lapses++;
-      studyQueue.push(studyQueue.shift());
-    } else if (rating === 'hard') {
-      c.interval = Math.max(1, c.interval * 1.2);
-      c.ease = Math.max(1.3, c.ease - 0.15);
-      c.state = 'review';
-      c.due = now + c.interval * day;
-      studyQueue.shift();
-    } else if (rating === 'good') {
-      c.interval = c.interval === 0 ? 1 : Math.round(c.interval * c.ease);
-      c.state = 'review';
-      c.due = now + c.interval * day;
-      studyQueue.shift();
-    } else if (rating === 'easy') {
-      c.interval = c.interval === 0 ? 4 : Math.round(c.interval * c.ease * 1.3);
-      c.ease = Math.min(3.0, c.ease + 0.15);
-      c.state = 'review';
-      c.due = now + c.interval * day;
-      studyQueue.shift();
-    }
-
-    save();
-    updateStudyCounts();
-    nextCard();
-  }
-
-  function updateStudyCounts() {
-    const now = Date.now();
-    const dc = cards.filter(c => c.deck === currentDeckName);
-    document.getElementById('s-new').textContent = dc.filter(c => c.state === 'new').length + ' new';
-    document.getElementById('s-learn').textContent = dc.filter(c => c.state === 'learn').length + ' lrn';
-    document.getElementById('s-due').textContent = dc.filter(c => c.state === 'review' && c.due <= now).length + ' due';
-  }
-
-  // ════════════════════════════════════════
-  // BROWSE
-  // ════════════════════════════════════════
   function renderBrowse() {
-    const query = (document.getElementById('browse-search').value || '').toLowerCase();
-    const activeFilter = document.querySelector('.filter-btn.active');
-    const filterDeck = activeFilter ? activeFilter.dataset.deck : 'all';
-
-    const filterRow = document.getElementById('browse-filters');
-    filterRow.innerHTML = `<button class="filter-btn ${filterDeck === 'all' ? 'active' : ''}" data-deck="all" onclick="setBrowseFilter('all')">Todas</button>` +
-      [...new Set(cards.map(c => c.deck))].map(d => `<button class="filter-btn ${filterDeck === d ? 'active' : ''}" data-deck="${d}" onclick="setBrowseFilter('${d}')">${d}</button>`).join('');
-
-    let filtered = cards;
-    if (filterDeck !== 'all') filtered = filtered.filter(c => c.deck === filterDeck);
-    if (query) filtered = filtered.filter(c =>
-      c.w.toLowerCase().includes(query) ||
-      c.t.toLowerCase().includes(query)
-    );
-
-    document.getElementById('browse-count').textContent = filtered.length + ' tarjetas';
-    const list = document.getElementById('browse-list');
-    list.innerHTML = filtered.length === 0
-      ? '<div style="text-align:center;color:var(--text2);padding:40px">No se encontraron tarjetas</div>'
-      : filtered.map(c => `
-        <div class="browse-item">
-          <span style="font-size:1.6rem">${c.e}</span>
-          <div class="browse-item-text">
-            <div class="browse-item-word">${c.w}</div>
-            <div class="browse-item-sub">${c.t}</div>
-          </div>
-          <span class="browse-item-tag">${c.deck}</span>
-        </div>`).join('');
-  }
-
-  function setBrowseFilter(deck) {
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.deck === deck);
+    const tbody = document.getElementById('cards-tbody');
+    tbody.innerHTML = '';
+    words.forEach(word => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td><strong>${word.es}</strong></td>
+        <td>${word.en}</td>
+        <td>${word.category}</td>
+        <td>${word.emoji}</td>
+      `;
+      tbody.appendChild(row);
     });
-    renderBrowse();
   }
 
-  // ════════════════════════════════════════
-  // STATS
-  // ════════════════════════════════════════
-  function renderStats() {
-    const total = cards.length;
-    const mature = cards.filter(c => c.interval >= 21).length;
-    const young = cards.filter(c => c.state === 'review' && c.interval < 21).length;
-    const newC = cards.filter(c => c.state === 'new').length;
-
-    document.getElementById('st-total').textContent = total;
-    document.getElementById('st-mature').textContent = mature;
-    document.getElementById('st-young').textContent = young;
-    document.getElementById('st-new').textContent = newC;
-
-    const decks = [...new Set(cards.map(c => c.deck))];
-    const bars = document.getElementById('deck-stats');
-    bars.innerHTML = decks.map(d => {
-      const dc = cards.filter(c => c.deck === d);
-      const pct = total > 0 ? Math.round((dc.length / total) * 100) : 0;
-      const colors = ['#4a9eff','#4caf50','#ff9800','#f44336','#9c27b0','#00bcd4','#ff5722','#8bc34a','#ffc107','#e91e63'];
-      const color = colors[decks.indexOf(d) % colors.length];
-      return `<div class="stat-row">
-        <div class="stat-row-label"><span>${d}</span><span>${dc.length} tarjetas</span></div>
-        <div class="stat-row-bar"><div class="stat-row-fill" style="width:${pct}%;background:${color}"></div></div>
-      </div>`;
-    }).join('');
-  }
-
-  // ════════════════════════════════════════
-  // UTILS
-  // ════════════════════════════════════════
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
+  function filterCards() {
+    const search = document.getElementById('search-input').value.toLowerCase();
+    const rows = document.querySelectorAll('.cards-table tbody tr');
+    rows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      row.style.display = text.includes(search) ? '' : 'none';
+    });
   }
 
   // ════════════════════════════════════════
   // INIT
   // ════════════════════════════════════════
-  init();
+
+  window.addEventListener('DOMContentLoaded', () => {
+    initDecks();
+  });
 </script>
 
 </body>
