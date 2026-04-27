@@ -114,6 +114,69 @@
       width: 100%;
     }
 
+    /* ═════════════════════════════════════════════════════════ */
+    /* THEORY ICONS NAVIGATION */
+    /* ═════════════════════════════════════════════════════════ */
+    .theory-icons-section {
+      margin-bottom: 48px;
+      padding: 32px 0;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .theory-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-bottom: 0;
+    }
+
+    .theory-icon-card {
+      background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(255, 215, 0, 0.05));
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 180px;
+    }
+
+    .theory-icon-card:hover {
+      border-color: var(--blue);
+      background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), rgba(255, 215, 0, 0.1));
+      box-shadow: 0 12px 32px rgba(74, 158, 255, 0.25);
+      transform: translateY(-8px);
+    }
+
+    .theory-icon-card:active {
+      transform: translateY(-4px);
+    }
+
+    .icon-emoji {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    .icon-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .icon-subtitle {
+      font-size: 0.75rem;
+      color: var(--text2);
+      margin: 0;
+      font-weight: 500;
+    }
+
     .page-header {
       text-align: center;
       margin-bottom: 48px;
@@ -353,6 +416,42 @@
       main {
         padding: 24px 16px;
       }
+
+      .theory-icons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+      }
+
+      .theory-icon-card {
+        padding: 16px 12px;
+        min-height: 150px;
+      }
+
+      .icon-emoji {
+        font-size: 2.5rem;
+      }
+
+      .icon-title {
+        font-size: 0.85rem;
+      }
+
+      .icon-subtitle {
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .theory-icons-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      }
+
+      .icon-emoji {
+        font-size: 2rem;
+      }
+
+      .icon-title {
+        font-size: 0.75rem;
+      }
     }
   </style>
 </head>
@@ -376,6 +475,48 @@
 
 <!-- MAIN CONTENT -->
 <main>
+  <!-- THEORY ICONS NAVIGATION -->
+  <section class="theory-icons-section">
+    <div class="theory-icons-grid">
+      
+      <!-- ICON 1: Spaced Repetition -->
+      <div class="theory-icon-card" onclick="scrollToTheory(1)">
+        <div class="icon-emoji">🔄</div>
+        <h3 class="icon-title">Spaced<br>Repetition</h3>
+        <p class="icon-subtitle">Herhaal op het juiste moment</p>
+      </div>
+
+      <!-- ICON 2: Comprehensible Input -->
+      <div class="theory-icon-card" onclick="scrollToTheory(2)">
+        <div class="icon-emoji">🌍</div>
+        <h3 class="icon-title">Comprehensible<br>Input</h3>
+        <p class="icon-subtitle">Leer door context</p>
+      </div>
+
+      <!-- ICON 3: Active Recall -->
+      <div class="theory-icon-card" onclick="scrollToTheory(3)">
+        <div class="icon-emoji">🎯</div>
+        <h3 class="icon-title">Active<br>Recall</h3>
+        <p class="icon-subtitle">Testen > Studeren</p>
+      </div>
+
+      <!-- ICON 4: Frequency-Based -->
+      <div class="theory-icon-card" onclick="scrollToTheory(4)">
+        <div class="icon-emoji">📈</div>
+        <h3 class="icon-title">Frequency<br>Based</h3>
+        <p class="icon-subtitle">Top 1000 woorden</p>
+      </div>
+
+      <!-- ICON 5: Sentence-Based -->
+      <div class="theory-icon-card" onclick="scrollToTheory(5)">
+        <div class="icon-emoji">📝</div>
+        <h3 class="icon-title">Sentence<br>Based</h3>
+        <p class="icon-subtitle">Woorden in zinnen</p>
+      </div>
+
+    </div>
+  </section>
+
   <div class="page-header">
     <h1 class="page-title">🧠 Waarom PolyCards Werkt</h1>
     <p class="page-subtitle">Ontdek de 5 wetenschappelijke theorieën achter effectief taalleren</p>
@@ -700,6 +841,19 @@
       details.classList.toggle('open');
       btn.classList.toggle('active');
       btn.textContent = details.classList.contains('open') ? '📖 Minder lezen' : '📖 Meer lezen';
+    }
+  }
+
+  // Scroll to theory section
+  function scrollToTheory(num) {
+    const cards = document.querySelectorAll('.theory-card');
+    if (cards[num - 1]) {
+      cards[num - 1].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Highlight effect
+      cards[num - 1].style.borderColor = 'var(--blue)';
+      setTimeout(() => {
+        cards[num - 1].style.borderColor = '';
+      }, 2000);
     }
   }
 </script>
