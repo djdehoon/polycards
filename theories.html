@@ -25,6 +25,41 @@
     }
 
     /* ═════════════════════════════════════════════════════════ */
+    /* SCROLLBAR STYLING */
+    /* ═════════════════════════════════════════════════════════ */
+    /* Chrome, Safari, Edge */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--surface);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--blue), var(--primary-light));
+      border-radius: 10px;
+      border: 2px solid var(--surface);
+      transition: all 0.3s ease;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #3a8eef, #ffc700);
+      box-shadow: 0 0 12px rgba(74, 158, 255, 0.5);
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+      background: linear-gradient(180deg, var(--blue), var(--primary-light));
+    }
+
+    /* Firefox */
+    * {
+      scrollbar-color: var(--blue) var(--surface);
+      scrollbar-width: thin;
+    }
+
+    /* ═════════════════════════════════════════════════════════ */
     /* GLOBAL STYLES */
     /* ═════════════════════════════════════════════════════════ */
     * {
@@ -820,6 +855,91 @@
     </ul>
     <p style="color: var(--text2); margin-top: 16px; font-style: italic;">
       Dit is waarom PolyCards 2-3x effectiever is dan traditionele taallessen.
+    </p>
+  </div>
+
+  <!-- COMPARISON SECTION -->
+  <div class="theory-card" style="background: rgba(74, 158, 255, 0.05); border-color: var(--blue); margin-top: 48px;">
+    <h2 style="color: var(--blue); margin-bottom: 24px; font-size: 1.5rem;">📊 Verschil Tussen de 5 Theorieën</h2>
+    
+    <div style="overflow-x: auto; margin-bottom: 24px;">
+      <table style="width: 100%; border-collapse: collapse; color: var(--text2); font-size: 0.9rem;">
+        <thead>
+          <tr style="background: rgba(74, 158, 255, 0.1); border-bottom: 2px solid var(--border);">
+            <th style="padding: 12px; text-align: left; color: var(--text); font-weight: 700;">Theorie</th>
+            <th style="padding: 12px; text-align: left; color: var(--text); font-weight: 700;">Vraag</th>
+            <th style="padding: 12px; text-align: left; color: var(--text); font-weight: 700;">Antwoord</th>
+            <th style="padding: 12px; text-align: left; color: var(--text); font-weight: 700;">Bewijs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px;"><strong>🔄 Spaced Repetition</strong></td>
+            <td style="padding: 12px;"><strong>WANNEER</strong> herhalen?</td>
+            <td style="padding: 12px;">Op optimale momenten (dag 1, 3, 7, 30...)</td>
+            <td style="padding: 12px;">2-3x effectiever</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px;"><strong>🌍 Comprehensible Input</strong></td>
+            <td style="padding: 12px;"><strong>WAT</strong> leren?</td>
+            <td style="padding: 12px;">Woorden op je niveau (i+1 principe)</td>
+            <td style="padding: 12px;">Kinderen leren zonder les</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px;"><strong>🎯 Active Recall</strong></td>
+            <td style="padding: 12px;"><strong>HOE</strong> oefenen?</td>
+            <td style="padding: 12px;">Jezelf testen (niet passief lezen)</td>
+            <td style="padding: 12px;">50% hoger scoren</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 12px;"><strong>📈 Frequency-Based</strong></td>
+            <td style="padding: 12px;"><strong>WELKE</strong> woorden?</td>
+            <td style="padding: 12px;">Top 1000 woorden eerst</td>
+            <td style="padding: 12px;">80% van taal</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px;"><strong>📝 Sentence-Based</strong></td>
+            <td style="padding: 12px;"><strong>CONTEXT</strong> toevoegen?</td>
+            <td style="padding: 12px;">Leer woorden in volledige zinnen</td>
+            <td style="padding: 12px;">40% beter geheugen</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="color: var(--blue); margin: 24px 0 16px 0; font-size: 1.1rem;">🎯 Hoe werken ze samen?</h3>
+    <div style="background: rgba(74, 158, 255, 0.1); padding: 16px; border-radius: 8px; margin-bottom: 24px; line-height: 2;">
+      <strong style="color: var(--blue);">FREQUENCY-BASED</strong> (welke woorden?)<br>
+      ↓<br>
+      <strong style="color: var(--blue);">SENTENCE-BASED</strong> (in welke zinnen?)<br>
+      ↓<br>
+      <strong style="color: var(--blue);">COMPREHENSIBLE INPUT</strong> (begrijpelijk niveau?)<br>
+      ↓<br>
+      <strong style="color: var(--blue);">ACTIVE RECALL</strong> (jezelf testen?)<br>
+      ↓<br>
+      <strong style="color: var(--blue);">SPACED REPETITION</strong> (optimale timing?)<br>
+      ↓<br>
+      <strong style="color: var(--green);">RESULTAAT: 2-3x effectiever! 🚀</strong>
+    </div>
+
+    <h3 style="color: var(--blue); margin: 24px 0 16px 0; font-size: 1.1rem;">💡 Praktisch Voorbeeld: "кіт" (kat)</h3>
+    
+    <p style="color: var(--text2); margin-bottom: 12px;"><strong style="color: var(--text);">Zonder theorieën:</strong></p>
+    <p style="background: rgba(244, 67, 54, 0.1); padding: 12px; border-left: 4px solid #f44336; border-radius: 4px; color: var(--text2); margin-bottom: 16px;">
+      Leer: "кіт = kat" → Herhaal → Herhaal → Vergeet na 1 week ❌
+    </p>
+
+    <p style="color: var(--text2); margin-bottom: 12px;"><strong style="color: var(--text);">Met PolyCards (alle 5 theorieën):</strong></p>
+    <ul class="theory-list" style="margin-bottom: 16px;">
+      <li><strong>Frequency-Based:</strong> "кіт" is een van top 1000 woorden ✅</li>
+      <li><strong>Sentence-Based:</strong> "Мій кот спить на диване" (in zin) ✅</li>
+      <li><strong>Comprehensible Input:</strong> A1 niveau (perfect voor beginners) ✅</li>
+      <li><strong>Active Recall:</strong> Je probeert het antwoord ✅</li>
+      <li><strong>Spaced Repetition:</strong> Herhaal dag 1, 3, 7, 30 → PERMANENT GEHEUGEN! ✅</li>
+    </ul>
+
+    <p style="color: var(--text2); margin-top: 16px; padding: 16px; background: rgba(76, 175, 80, 0.1); border-left: 4px solid var(--green); border-radius: 4px;">
+      <strong style="color: var(--green);">Dit is waarom PolyCards 2-3x effectiever is dan traditionele taallessen!</strong>
     </p>
   </div>
 
