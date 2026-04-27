@@ -145,6 +145,10 @@
       font-size: 1.3rem;
       font-weight: 700;
       color: var(--text);
+      background: linear-gradient(135deg, var(--blue), #FFD700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .language-status {
@@ -182,6 +186,16 @@
       text-align: center;
       color: var(--text2);
       font-size: 0.9rem;
+    }
+
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    footer a:hover {
+      color: #FFD700;
     }
 
     /* RESPONSIVE */
@@ -286,7 +300,7 @@
 <!-- FOOTER -->
 <footer>
   <p>🧠 PolyCards - Scientific Language Learning</p>
-  <p style="margin-top: 8px; font-size: 0.85rem;">Version 0.20 | <a href="theories.html" style="color: var(--blue); text-decoration: none;">Learn the Science</a></p>
+  <p style="margin-top: 8px; font-size: 0.85rem;">Version 0.20 | <a href="theories.html">Learn the Science</a></p>
 </footer>
 
 </body>
