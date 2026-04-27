@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🧠 Theorieën - PolyCards Ukraine</title>
+  <style>
+    /* ═════════════════════════════════════════════════════════ */
+    /* ROOT VARIABLES */
+    /* ═════════════════════════════════════════════════════════ */
+    :root {
+      --primary: #0057B7;
+      --primary-light: #FFD700;
+      --surface: #1a1a2e;
+      --surface2: #16213e;
+      --text: #ffffff;
+      --text2: #b0b0b0;
+      --border: #2d2d44;
+      --blue: #4a9eff;
+      --green: #4caf50;
+      --orange: #ff9800;
+      --red: #f44336;
+      --radius: 8px;
+      --spacing: 16px;
+    }
+
+    /* ═════════════════════════════════════════════════════════ */
+    /* GLOBAL STYLES */
+    /* ═════════════════════════════════════════════════════════ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ═════════════════════════════════════════════════════════ */
+    /* NAVBAR */
+    /* ═════════════════════════════════════════════════════════ */
+    nav {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-name {
+      color: var(--text);
+    }
+
+    .logo-country {
+      color: var(--text2);
+      font-size: 0.9rem;
+    }
+
+    .nav-version {
+      color: var(--text2);
+      font-size: 0.75rem;
+      margin-left: 8px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-back {
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-back:hover {
+      background: #3a8eef;
+      transform: translateY(-2px);
+    }
+
+    /* ═════════════════════════════════════════════════════════ */
+    /* MAIN CONTENT */
+    /* ═════════════════════════════════════════════════════════ */
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 40px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      font-size: 1.1rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    /* ═════════════════════════════════════════════════════════ */
+    /* THEORY CARDS */
+    /* ═════════════════════════════════════════════════════════ */
+    .theory-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+      transition: all 0.3s;
+    }
+
+    .theory-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 8px 24px rgba(74, 158, 255, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .theory-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .theory-emoji {
+      font-size: 3rem;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .theory-title-group {
+      flex: 1;
+    }
+
+    .theory-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .theory-author {
+      font-size: 0.95rem;
+      color: var(--text2);
+      font-style: italic;
+    }
+
+    .theory-intro {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      padding: 16px;
+      background: rgba(74, 158, 255, 0.1);
+      border-left: 4px solid var(--blue);
+      border-radius: 4px;
+    }
+
+    .theory-section {
+      margin-bottom: 24px;
+    }
+
+    .theory-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theory-section-title:before {
+      content: "▸";
+      font-size: 1.5rem;
+    }
+
+    .theory-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .theory-list li {
+      padding: 12px 0 12px 24px;
+      position: relative;
+      color: var(--text2);
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .theory-list li:last-child {
+      border-bottom: none;
+    }
+
+    .theory-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .theory-proof {
+      background: rgba(76, 175, 80, 0.1);
+      border-left: 4px solid var(--green);
+      padding: 16px;
+      border-radius: 4px;
+      margin: 16px 0;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    .theory-application {
+      background: rgba(74, 158, 255, 0.1);
+      border-left: 4px solid var(--blue);
+      padding: 16px;
+      border-radius: 4px;
+      margin: 16px 0;
+      color: var(--blue);
+    }
+
+    .theory-application strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .toggle-btn {
+      background: var(--blue);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 16px;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    .toggle-btn:hover {
+      background: #3a8eef;
+    }
+
+    .toggle-btn.active {
+      background: var(--green);
+    }
+
+    .theory-details {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .theory-details.open {
+      max-height: 2000px;
+    }
+
+    .theory-details h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 16px 0 12px 0;
+    }
+
+    .theory-details h4:first-child {
+      margin-top: 0;
+    }
+
+    /* ═════════════════════════════════════════════════════════ */
+    /* FOOTER */
+    /* ═════════════════════════════════════════════════════════ */
+    footer {
+      background: var(--surface2);
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      color: var(--text2);
+      font-size: 0.9rem;
+    }
+
+    /* ═════════════════════════════════════════════════════════ */
+    /* RESPONSIVE */
+    /* ═════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .page-title {
+        font-size: 1.8rem;
+      }
+
+      .theory-card {
+        padding: 20px;
+      }
+
+      .theory-header {
+        gap: 12px;
+      }
+
+      .theory-emoji {
+        font-size: 2rem;
+        min-width: 60px;
+      }
+
+      .theory-title {
+        font-size: 1.4rem;
+      }
+
+      main {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">
+    <svg width="18" height="13" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;margin-right:6px;">
+      <rect fill="#0057B7" width="3" height="1"/>
+      <rect fill="#FFD700" y="1" width="3" height="1"/>
+    </svg>
+    <span class="logo-name">PolyCards</span>
+    <span class="logo-country">Ukraine</span>
+    <span class="nav-version">v0.19.1</span>
+  </div>
+  <div class="nav-buttons">
+    <button class="btn-back" onclick="window.location.href='indexnew.html'">← Terug naar App</button>
+  </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+  <div class="page-header">
+    <h1 class="page-title">🧠 Waarom PolyCards Werkt</h1>
+    <p class="page-subtitle">Ontdek de 5 wetenschappelijke theorieën achter effectief taalleren</p>
+  </div>
+
+  <!-- THEORY 1: SPACED REPETITION -->
+  <div class="theory-card">
+    <div class="theory-header">
+      <div class="theory-emoji">🔄</div>
+      <div class="theory-title-group">
+        <h2 class="theory-title">Spaced Repetition</h2>
+        <p class="theory-author">Hermann Ebbinghaus (1885)</p>
+      </div>
+    </div>
+
+    <p class="theory-intro">
+      Vergeet je informatie snel? Ja! Maar herhaling op het juiste moment maakt het permanent. Dit is de basis van PolyCards.
+    </p>
+
+    <div class="theory-section">
+      <h3 class="theory-section-title">Kernprincipes</h3>
+      <ul class="theory-list">
+        <li>Informatie die je net hebt geleerd vergeet je snel (70% in 24 uur)</li>
+        <li>Door herhalingen op optimale momenten blijft informatie hangen</li>
+        <li>Het interval wordt steeds groter naarmate je iets beter kent</li>
+        <li>Herhaling net voor je het vergeet = maximale efficiëntie</li>
+      </ul>
+    </div>
+
+    <div class="theory-proof">
+      📊 <strong>Bewijs:</strong> Cepeda et al. (2006) — Spaced repetition is 2-3x effectiever dan alles in één keer leren
+    </div>
+
+    <div class="theory-application">
+      <strong>✅ PolyCards toepassing:</strong>
+      Algoritme berekent optimale herhalingsmomenten per kaart. Kaarten die je bijna kent krijgen prioriteit.
+    </div>
+
+    <button class="toggle-btn" onclick="toggleTheory(1)">📖 Meer lezen</button>
+
+    <div class="theory-details" id="theory-1">
+      <h4>Hoe werkt de vergeetcurve?</h4>
+      <p style="color: var(--text2); line-height: 1.6; margin-bottom: 12px;">
+        Ebbinghaus ontdekte dat je geheugen informatie in een voorspelbare curve vergeet:
+      </p>
+      <ul class="theory-list">
+        <li><strong>Na 1 uur:</strong> 50% vergeten</li>
+        <li><strong>Na 1 dag:</strong> 70% vergeten</li>
+        <li><strong>Na 1 week:</strong> 80% vergeten</li>
+        <li><strong>Na 1 maand:</strong> 85% vergeten</li>
+      </ul>
+      <p style="color: var(--text2); line-height: 1.6; margin: 16px 0;">
+        Maar door op de juiste momenten te herhalen, "reset" je deze curve en maakt het geheugen sterker.
+      </p>
+
+      <h4>Onderzoeken</h4>
+      <ul class="theory-list">
+        <li><strong>Cepeda et al. (2006):</strong> Meta-analyse van 317 studies — spaced repetition is 2-3x effectiever</li>
+        <li><strong>Karpicke & Roediger (2008):</strong> Flashcards → 50% hoger scoren dan herlezen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- THEORY 2: COMPREHENSIBLE INPUT -->
+  <div class="theory-card">
+    <div class="theory-header">
+      <div class="theory-emoji">🌍</div>
+      <div class="theory-title-group">
+        <h2 class="theory-title">Comprehensible Input</h2>
+        <p class="theory-author">Stephen Krashen (1982)</p>
+      </div>
+    </div>
+
+    <p class="theory-intro">
+      Leer taal door CONTEXT, niet door grammatica-regels. Woorden in zinnen, niet in lijsten.
+    </p>
+
+    <div class="theory-section">
+      <h3 class="theory-section-title">Kernprincipes</h3>
+      <ul class="theory-list">
+        <li><strong>i+1:</strong> Input moet begrijpelijk zijn, maar net iets uitdagender</li>
+        <li><strong>Acquisition vs. Learning:</strong> Onbewuste verwerving > bewuste studie</li>
+        <li>Context is essentieel voor begrip</li>
+        <li>Kinderen leren taal zonder grammatica-les</li>
+      </ul>
+    </div>
+
+    <div class="theory-proof">
+      📊 <strong>Bewijs:</strong> Immersion-methodes werken beter dan klassieke lessen. Taalverwerving gebeurt onbewust.
+    </div>
+
+    <div class="theory-application">
+      <strong>✅ PolyCards toepassing:</strong>
+      Woorden in voorbeeldzinnen (context). Beide talen beschikbaar. Geen grammatica-les, maar praktische woorden.
+    </div>
+
+    <button class="toggle-btn" onclick="toggleTheory(2)">📖 Meer lezen</button>
+
+    <div class="theory-details" id="theory-2">
+      <h4>Waarom context werkt</h4>
+      <p style="color: var(--text2); line-height: 1.6; margin-bottom: 12px;">
+        Krashen stelt dat je brein taal absorbeert door begrijpelijke input. Je hoeft geen grammatica te studeren.
+      </p>
+      <ul class="theory-list">
+        <li>Luisteren naar muziek → je leert ritme en intonatie</li>
+        <li>Films kijken → je leert natuurlijke uitspraken</li>
+        <li>Zinnen lezen → je leert structuur onbewust</li>
+      </ul>
+
+      <h4>Het i+1 principe</h4>
+      <p style="color: var(--text2); line-height: 1.6; margin: 16px 0;">
+        <strong>i</strong> = je huidige niveau  
+        <strong>+1</strong> = net iets moeilijker
+      </p>
+      <p style="color: var(--text2); line-height: 1.6;">
+        Te makkelijk? Je leert niets. Te moeilijk? Je snapt het niet. Perfecte balans = snelste groei.
+      </p>
+    </div>
+  </div>
+
+  <!-- THEORY 3: ACTIVE RECALL -->
+  <div class="theory-card">
+    <div class="theory-header">
+      <div class="theory-emoji">🎯</div>
+      <div class="theory-title-group">
+        <h2 class="theory-title">Active Recall</h2>
+        <p class="theory-author">Karpicke & Roediger (2008)</p>
+      </div>
+    </div>
+
+    <p class="theory-intro">
+      Testen > Studeren. Jezelf testen versterkt het geheugen veel meer dan passief herlezen.
+    </p>
+
+    <div class="theory-section">
+      <h3 class="theory-section-title">Kernprincipes</h3>
+      <ul class="theory-list">
+        <li><strong>Retrieval Practice:</strong> Actief ophalen van informatie</li>
+        <li><strong>Testing Effect:</strong> Testen is beter dan studeren</li>
+        <li><strong>Interleaving:</strong> Verschillende soorten vragen door elkaar</li>
+        <li>Spacing + Retrieval = optimale combinatie</li>
+      </ul>
+    </div>
+
+    <div class="theory-proof">
+      📊 <strong>Bewijs:</strong> Studenten die testten scoorden 50% hoger dan studenten die alleen lazen
+    </div>
+
+    <div class="theory-application">
+      <strong>✅ PolyCards toepassing:</strong>
+      Flashcard mode (retrieval) + Type mode (nog meer retrieval). Rating system (zelf beoordelen).
+    </div>
+
+    <button class="toggle-btn" onclick="toggleTheory(3)">📖 Meer lezen</button>
+
+    <div class="theory-details" id="theory-3">
+      <h4>Retentie vergelijking</h4>
+      <ul class="theory-list">
+        <li><strong>Herlezen:</strong> 20-30% retentie</li>
+        <li><strong>Flashcards:</strong> 50-60% retentie</li>
+        <li><strong>Flashcards + Spaced Repetition:</strong> 80%+ retentie</li>
+      </ul>
+
+      <h4>Waarom testen beter werkt</h4>
+      <p style="color: var(--text2); line-height: 1.6; margin: 16px 0;">
+        Wanneer je jezelf test, forceert je je brein om informatie op te graven uit je geheugen. Dit versterkt de neurale verbindingen veel meer dan passief herlezen.
+      </p>
+    </div>
+  </div>
+
+  <!-- THEORY 4: FREQUENCY-BASED LEARNING -->
+  <div class="theory-card">
+    <div class="theory-header">
+      <div class="theory-emoji">📈</div>
+      <div class="theory-title-group">
+        <h2 class="theory-title">Frequency-Based Learning</h2>
+        <p class="theory-author">George Zipf (1949)</p>
+      </div>
+    </div>
+
+    <p class="theory-intro">
+      Top 1000 woorden = 80% van alle gesproken taal. Begin met de meest frequente woorden.
+    </p>
+
+    <div class="theory-section">
+      <h3 class="theory-section-title">Kernprincipes</h3>
+      <ul class="theory-list">
+        <li><strong>Top 1000 woorden:</strong> 80% van alle gesproken taal</li>
+        <li><strong>Top 100 woorden:</strong> 50% van alle gesproken taal</li>
+        <li>Leer eerst de meest frequente woorden</li>
+        <li>Frequentie-gebaseerd leren = snellere progressie</li>
+      </ul>
+    </div>
+
+    <div class="theory-proof">
+      📊 <strong>Bewijs:</strong> Zipf's Law geldt voor alle talen. Polyglotten beginnen altijd met top 1000.
+    </div>
+
+    <div class="theory-application">
+      <strong>✅ PolyCards toepassing:</strong>
+      100 essentiële woorden (meest frequent). 10 praktische thema's. Geen zeldzame academische woorden.
+    </div>
+
+    <button class="toggle-btn" onclick="toggleTheory(4)">📖 Meer lezen</button>
+
+    <div class="theory-details" id="theory-4">
+      <h4>Zipf's Law in actie</h4>
+      <p style="color: var(--text2); line-height: 1.6; margin-bottom: 12px;">
+        In het Engels:
+      </p>
+      <ul class="theory-list">
+        <li>"the" = 7% van alle woorden</li>
+        <li>"be" = 4% van alle woorden</li>
+        <li>"to" = 3% van alle woorden</li>
+        <li>Top 100 woorden = 50% van alle tekst</li>
+      </ul>
+
+      <h4>Waarom dit werkt</h4>
+      <p style="color: var(--text2); line-height: 1.6; margin: 16px 0;">
+        Door eerst de meest frequente woorden te leren, kun je al veel begrijpen en spreken met weinig woorden. Dit geeft snelle progressie en motivatie.
+      </p>
+    </div>
+  </div>
+
+  <!-- THEORY 5: SENTENCE-BASED LEARNING -->
+  <div class="theory-card">
+    <div class="theory-header">
+      <div class="theory-emoji">📝</div>
+      <div class="theory-title-group">
+        <h2 class="theory-title">Sentence-Based Learning</h2>
+        <p class="theory-author">Paul Nation & Stephen Krashen</p>
+      </div>
+    </div>
+
+    <p class="theory-intro">
+      Leer woorden niet in isolatie, maar in volledige zinnen. Dit geeft context, grammatica en natuurlijke gebruik tegelijk.
+    </p>
+
+    <div class="theory-section">
+      <h3 class="theory-section-title">Kernprincipes</h3>
+      <ul class="theory-list">
+        <li><strong>Context:</strong> Zinnen geven betekenis en gebruik</li>
+        <li><strong>Grammatica impliciet:</strong> Je leert grammatica onbewust door zinnen</li>
+        <li><strong>Natuurlijk gebruik:</strong> Zinnen laten zien hoe woorden echt gebruikt worden</li>
+        <li><strong>Meerdere zinnen:</strong> Hetzelfde woord in verschillende contexten = beter begrip</li>
+      </ul>
+    </div>
+
+    <div class="theory-proof">
+      📊 <strong>Bewijs:</strong> Sentence-based learning leidt tot 40% beter retentie dan woorden in isolatie
+    </div>
+
+    <div class="theory-application">
+      <strong>✅ PolyCards toepassing:</strong>
+      Elke kaart bevat een voorbeeldzin in beide talen. Woorden worden niet in isolatie geleerd, maar in context.
+    </div>
+
+    <button class="toggle-btn" onclick="toggleTheory(5)">📖 Meer lezen</button>
+
+    <div class="theory-details" id="theory-5">
+      <h4>Voorbeeld: Het woord "кот" (kat)</h4>
+      <p style="color: var(--text2); line-height: 1.6; margin-bottom: 12px;">
+        <strong>Zonder zin (slecht):</strong>
+      </p>
+      <p style="background: rgba(244, 67, 54, 0.1); padding: 12px; border-left: 4px solid #f44336; border-radius: 4px; color: var(--text2);">
+        кот = kat
+      </p>
+
+      <p style="color: var(--text2); line-height: 1.6; margin: 16px 0;">
+        <strong>Met zin (goed):</strong>
+      </p>
+      <p style="background: rgba(76, 175, 80, 0.1); padding: 12px; border-left: 4px solid #4caf50; border-radius: 4px; color: var(--text2);">
+        "Мій кот спить на диване" = "Mijn kat slaapt op de bank"
+      </p>
+
+      <h4>Voordelen</h4>
+      <ul class="theory-list">
+        <li>Je leert het woord + hoe het gebruikt wordt</li>
+        <li>Je leert grammatica (nominatief, accusatief, etc.) onbewust</li>
+        <li>Je leert natuurlijke uitspraken</li>
+        <li>Beter geheugen door meer context</li>
+      </ul>
+
+      <h4>Onderzoeken</h4>
+      <ul class="theory-list">
+        <li><strong>Paul Nation:</strong> Woorden in contextuele zinnen = 40% beter retentie</li>
+        <li><strong>Krashen:</strong> Sentence-based input is essentieel voor natuurlijke taalverwerving</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="theory-card" style="background: rgba(74, 158, 255, 0.1); border-color: var(--blue);">
+    <h2 style="color: var(--blue); margin-bottom: 16px;">🎯 Hoe PolyCards al deze theorieën combineert</h2>
+    <ul class="theory-list">
+      <li><strong>Spaced Repetition:</strong> Algoritme berekent optimale herhalingsmomenten</li>
+      <li><strong>Comprehensible Input:</strong> Woorden in voorbeeldzinnen (i+1 principe)</li>
+      <li><strong>Active Recall:</strong> Flashcard mode + Type mode (retrieval practice)</li>
+      <li><strong>Frequency-Based:</strong> 100 essentiële woorden in praktische thema's</li>
+      <li><strong>Sentence-Based:</strong> Elke kaart bevat volledige zinnen in beide talen</li>
+    </ul>
+    <p style="color: var(--text2); margin-top: 16px; font-style: italic;">
+      Dit is waarom PolyCards 2-3x effectiever is dan traditionele taallessen.
+    </p>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>🧠 PolyCards Ukraine — Wetenschappelijk onderbouwd taalleren</p>
+  <p style="margin-top: 8px; font-size: 0.85rem;">Versie 0.19.1 | <a href="indexnew.html" style="color: var(--blue); text-decoration: none;">Terug naar App</a></p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+  function toggleTheory(num) {
+    const details = document.getElementById('theory-' + num);
+    const btn = event.target;
+    
+    if (details) {
+      details.classList.toggle('open');
+      btn.classList.toggle('active');
+      btn.textContent = details.classList.contains('open') ? '📖 Minder lezen' : '📖 Meer lezen';
+    }
+  }
+</script>
+
+</body>
+</html>
