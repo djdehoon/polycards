@@ -1,54 +1,212 @@
-// components/ui.js - UI Management
+// ════════════════════════════════════════
+// UI - Shared UI Functions
+// ════════════════════════════════════════
+
 const UI = {
-  showPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const pageEl = document.getElementById('page-' + page);
-    if (pageEl) pageEl.classList.add('active');
-    
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    const tabEl = document.querySelector(`[data-page="${page}"]`);
-    if (tabEl) tabEl.classList.add('active');
+  // Show/hide pages
+  showPage(pageId) {
+    try {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+      });
+
+      // Hide all nav tabs
+      document.querySelectorAll('.nav-tab').forEach(t => {
+        t.classList.remove('active');
+      });
+
+      // Show selected page
+      const page = document.getElementById('page-' + pageId);
+      if (page) {
+        page.classList.add('active');
+      }
+
+      // Highlight nav tab
+      const tabIndex = { decks: 0, instructions: 1, browse: 2, stats: 3 };
+      if (tabIndex[pageId] !== undefined) {
+        const tabs = document.querySelectorAll('.nav-tab');
+        if (tabs[tabIndex[pageId]]) {
+          tabs[tabIndex[pageId]].classList.add('active');
+        }
+      }
+
+      return true;
+    } catch (error) {
+      console.error('UI showPage error:', error);
+      return false;
+    }
   },
 
-  renderDecks(cards) {
-    const decks = [...new Set(cards.map(c => c.deck))];
-    const html = decks.map(deck => {
-      const deckCards = cards.filter(c => c.deck === deck);
-      const dueCards = SRS.getDueCards(deckCards).length;
-      return `
-        <div class="deck-card" onclick="Study.selectDeck('${deck}')">
-          <div style="font-size: 2rem; margin-bottom: 10px;">🎴</div>
-          <div style="font-weight: bold;">${deck}</div>
-          <div style="color: var(--text2); font-size: 0.9rem;">${deckCards.length} woorden</div>
-          <div style="color: var(--green); font-size: 0.85rem; margin-top: 5px;">${dueCards} due</div>
-        </div>
-      `;
-    }).join('');
-    document.getElementById('deck-list').innerHTML = html;
+  // Show/hide modal
+  openModal(modalId) {
+    try {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('open');
+      }
+      return true;
+    } catch (error) {
+      console.error('UI openModal error:', error);
+      return false;
+    }
   },
 
-  renderStats(cards) {
-    const total = cards.length;
-    const learned = cards.filter(c => c.stats?.repetitions >= 5).length;
-    const html = `
-      <div class="card">
-        <div style="font-size: 1.2rem; margin-bottom: 10px;">📊 Voortgang</div>
-        <div style="margin: 10px 0;">Totaal woorden: <strong>${total}</strong></div>
-        <div style="margin: 10px 0;">Geleerd: <strong>${learned}</strong></div>
-        <div style="margin: 10px 0;">Percentage: <strong>${Math.round(learned/total*100)}%</strong></div>
-      </div>
-    `;
-    document.getElementById('stats-display').innerHTML = html;
+  closeModal(modalId) {
+    try {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('open');
+      }
+      return true;
+    } catch (error) {
+      console.error('UI closeModal error:', error);
+      return false;
+    }
   },
 
-  showWelcome() {
-    this.showPage('welcome');
+  // Show toast notification
+  showToast(message, duration = 2500) {
+    try {
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, duration);
+      }
+      return true;
+    } catch (error) {
+      console.error('UI showToast error:', error);
+      return false;
+    }
   },
 
-  hideWelcome() {
-    const welcomeEl = document.getElementById('page-welcome');
-    if (welcomeEl) welcomeEl.style.display = 'none';
+  // Update element text
+  setText(elementId, text) {
+    try {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.textContent = text;
+      }
+      return true;
+    } catch (error) {
+      console.error('UI setText error:', error);
+      return false;
+    }
+  },
+
+  // Update element HTML
+  setHTML(elementId, html) {
+    try {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.innerHTML = html;
+      }
+      return true;
+    } catch (error) {
+      console.error('UI setHTML error:', error);
+      return false;
+    }
+  },
+
+  // Show/hide element
+  show(elementId) {
+    try {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.style.display = 'block';
+      }
+      return true;
+    } catch (error) {
+      console.error('UI show error:', error);
+      return false;
+    }
+  },
+
+  hide(elementId) {
+    try {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.style.display = 'none';
+      }
+      return true;
+    } catch (error) {
+      console.error('UI hide error:', error);
+      return false;
+    }
+  },
+
+  // Add/remove CSS class
+  addClass(elementId, className) {
+    try {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.classList.add(className);
+      }
+      return true;
+    } catch (error) {
+      console.error('UI addClass error:', error);
+      return false;
+    }
+  },
+
+  removeClass(elementId, className) {
+    try {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.classList.remove(className);
+      }
+      return true;
+    } catch (error) {
+      console.error('UI removeClass error:', error);
+      return false;
+    }
+  },
+
+  // Toggle CSS class
+  toggleClass(elementId, className) {
+    try {
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.classList.toggle(className);
+      }
+      return true;
+    } catch (error) {
+      console.error('UI toggleClass error:', error);
+      return false;
+    }
+  },
+
+  // Disable/enable button
+  disableButton(buttonId) {
+    try {
+      const button = document.getElementById(buttonId);
+      if (button) {
+        button.disabled = true;
+      }
+      return true;
+    } catch (error) {
+      console.error('UI disableButton error:', error);
+      return false;
+    }
+  },
+
+  enableButton(buttonId) {
+    try {
+      const button = document.getElementById(buttonId);
+      if (button) {
+        button.disabled = false;
+      }
+      return true;
+    } catch (error) {
+      console.error('UI enableButton error:', error);
+      return false;
+    }
   }
 };
 
+// Make UI available globally
 window.UI = UI;
