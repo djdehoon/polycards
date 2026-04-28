@@ -5,54 +5,48 @@
 const SRS = {
   // SM-2 Algorithm - Rate a card
   rateCard(card, rating) {
-    // rating: 0-4
-    // 0 = complete blackout
-    // 1 = blackout after some hesitation
-    // 2 = correct response after serious doubt
-    // 3 = correct response after hesitation
-    // 4 = perfect response
-
+    // rating: 'again' (0), 'hard' (1), 'good' (2), 'easy' (3)
     if (!card) return card;
 
     // Initialize if needed
     if (!card.interval) card.interval = 0;
-    if (!card.easeFactor) card.easeFactor = 2.5;
-    if (!card.repetitions) card.repetitions = 0;
+    if (!card.ease) card.ease = 2.5;
+    if (!card.lapses) card.lapses = 0;
 
-    if (rating < 3) {
-      // Incorrect or difficult
-      card.repetitions = 0;
+    const now = Date.now();
+    const day = 86400000; // 24 hours in ms
+
+    if (rating === 'again') {
+      // Complete blackout
       card.interval = 0;
-    } else {
-      // Correct
-      card.repetitions++;
-
-      if (card.repetitions === 1) {
+      card.state = 'learn';
+      card.due = now + 60000; // 1 minute
+      card.lapses++;
+    } else if (rating === 'hard') {
+      // Correct but difficult
+      card.interval = Math.max(1, card.interval * 1.2);
+      card.ease = Math.max(1.3, card.ease - 0.15);
+      card.state = 'review';
+      card.due = now + card.interval * day;
+    } else if (rating === 'good') {
+      // Correct response
+      if (card.interval === 0) {
         card.interval = 1;
-      } else if (card.repetitions === 2) {
-        card.interval = 3;
       } else {
-        card.interval = Math.round(card.interval * card.easeFactor);
+        card.interval = Math.round(card.interval * card.ease);
       }
-    }
-
-    // Update ease factor
-    card.easeFactor = Math.max(
-      1.3,
-      card.easeFactor + 0.1 - (5 - rating) * (0.08 + (5 - rating) * 0.02)
-    );
-
-    // Calculate next due date
-    const now = new Date();
-    card.dueDate = new Date(now.getTime() + card.interval * 24 * 60 * 60 * 1000);
-
-    // Update stats
-    if (!card.stats) card.stats = { studied: 0, correct: 0, incorrect: 0 };
-    card.stats.studied++;
-    if (rating >= 3) {
-      card.stats.correct++;
-    } else {
-      card.stats.incorrect++;
+      card.state = 'review';
+      card.due = now + card.interval * day;
+    } else if (rating === 'easy') {
+      // Perfect response
+      if (card.interval === 0) {
+        card.interval = 4;
+      } else {
+        card.interval = Math.round(card.interval * card.ease * 1.3);
+      }
+      card.ease = Math.min(3.0, card.ease + 0.15);
+      card.state = 'review';
+      card.due = now + card.interval * day;
     }
 
     return card;
@@ -60,15 +54,14 @@ const SRS = {
 
   // Get cards due for study
   getDueCards(cards, deckName = null) {
-    const now = new Date();
+    const now = Date.now();
     let dueCards = cards.filter(card => {
-      const isDue = !card.dueDate || new Date(card.dueDate) <= now;
+      const isDue = !card.due || card.due <= now;
       const isInDeck = !deckName || card.deck === deckName;
       return isDue && isInDeck;
     });
 
-    // Shuffle for variety
-    return this.shuffle(dueCards);
+    return dueCards;
   },
 
   // Get all cards for a deck
@@ -77,46 +70,28 @@ const SRS = {
   },
 
   // Calculate statistics
-  getStats(cards) {
+  getStats(cards, deckName = null) {
+    const now = Date.now();
+    let filtered = cards;
+    
+    if (deckName) {
+      filtered = filtered.filter(c => c.deck === deckName);
+    }
+
     const stats = {
-      total: cards.length,
-      studied: 0,
-      correct: 0,
-      incorrect: 0,
-      due: 0,
-      streak: 0,
-      lastStudyDate: null
+      total: filtered.length,
+      new: filtered.filter(c => c.state === 'new').length,
+      learning: filtered.filter(c => c.state === 'learn').length,
+      review: filtered.filter(c => c.state === 'review').length,
+      due: filtered.filter(c => c.state === 'review' && c.due <= now).length,
+      mature: filtered.filter(c => c.interval >= 21).length
     };
-
-    cards.forEach(card => {
-      if (card.stats) {
-        stats.studied += card.stats.studied || 0;
-        stats.correct += card.stats.correct || 0;
-        stats.incorrect += card.stats.incorrect || 0;
-      }
-
-      const isDue = !card.dueDate || new Date(card.dueDate) <= new Date();
-      if (isDue) stats.due++;
-
-      if (card.lastStudyDate) {
-        const lastDate = new Date(card.lastStudyDate);
-        if (lastDate > new Date(stats.lastStudyDate || 0)) {
-          stats.lastStudyDate = card.lastStudyDate;
-        }
-      }
-    });
-
-    // Calculate accuracy
-    stats.accuracy = stats.studied > 0 
-      ? Math.round((stats.correct / stats.studied) * 100)
-      : 0;
 
     return stats;
   },
 
-  // Shuffle array (Fisher-Yates)
-  shuffle(array) {
-    const arr = [...array];
+  // Shuffle array
+  shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
