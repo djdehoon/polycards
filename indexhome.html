@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PolyCards - Learn Languages with Spaced Repetition</title>
   <style>
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface2: #252525;
+      --border: #333;
+      --text: #f0f0f0;
+      --text2: #a0a0a0;
+      --blue: #4a9eff;
+      --blue-dark: #3a7ecc;
+      --green: #4caf50;
+      --orange: #ff9800;
+      --radius: 12px;
+    }
+
     html {
       scroll-behavior: smooth;
     }
@@ -17,8 +31,8 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #333;
+      background: var(--bg);
+      color: var(--text);
       padding: 20px;
       min-height: 100vh;
     }
@@ -31,7 +45,6 @@
 
     .header {
       text-align: center;
-      color: white;
       margin-bottom: 60px;
     }
 
@@ -39,18 +52,18 @@
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 12px;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      color: var(--text);
     }
 
     .header p {
       font-size: 1.3rem;
-      opacity: 0.95;
+      color: var(--text2);
       margin-bottom: 8px;
     }
 
     .header-sub {
       font-size: 1rem;
-      opacity: 0.85;
+      color: var(--text2);
     }
 
     .languages-grid {
@@ -61,13 +74,13 @@
     }
 
     .language-card {
-      background: white;
-      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 32px 24px;
       text-align: center;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -84,7 +97,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
       transition: left 0.5s;
     }
 
@@ -94,24 +107,26 @@
 
     .language-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      border-color: var(--blue);
+      box-shadow: 0 10px 30px rgba(74, 158, 255, 0.15);
     }
 
     .language-flag {
       font-size: 4rem;
       margin-bottom: 16px;
+      line-height: 1;
     }
 
     .language-name {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #333;
+      color: var(--text);
       margin-bottom: 8px;
     }
 
     .language-subtitle {
       font-size: 0.95rem;
-      color: #666;
+      color: var(--text2);
       margin-bottom: 16px;
     }
 
@@ -125,29 +140,24 @@
     }
 
     .status-live {
-      background: #4caf50;
-      color: white;
-    }
-
-    .status-new {
-      background: #ff9800;
+      background: var(--green);
       color: white;
     }
 
     .status-soon {
-      background: #2196f3;
+      background: var(--orange);
       color: white;
     }
 
     .language-words {
       font-size: 0.9rem;
-      color: #999;
+      color: var(--text2);
       margin-bottom: 16px;
     }
 
     .btn-learn {
       display: inline-block;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: var(--blue);
       color: white;
       padding: 12px 28px;
       border-radius: 8px;
@@ -160,27 +170,29 @@
     }
 
     .btn-learn:hover {
+      background: var(--blue-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 8px 16px rgba(74, 158, 255, 0.3);
     }
 
     .btn-learn:disabled {
-      background: #ccc;
+      background: var(--surface2);
+      color: var(--text2);
       cursor: not-allowed;
       transform: none;
     }
 
     .footer {
       text-align: center;
-      color: white;
       margin-top: 40px;
       padding-top: 20px;
-      border-top: 1px solid rgba(255,255,255,0.2);
+      border-top: 1px solid var(--border);
     }
 
     .footer p {
       margin: 8px 0;
       font-size: 0.95rem;
+      color: var(--text2);
     }
 
     .footer-links {
@@ -188,22 +200,22 @@
     }
 
     .footer-links a {
-      color: white;
+      color: var(--blue);
       text-decoration: none;
       margin: 0 16px;
-      transition: opacity 0.3s;
+      transition: color 0.3s;
     }
 
     .footer-links a:hover {
-      opacity: 0.8;
+      color: var(--blue-dark);
     }
 
     .feedback-section {
-      background: rgba(255,255,255,0.95);
-      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 32px;
       margin-top: 60px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
@@ -212,14 +224,14 @@
     .feedback-title {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #333;
+      color: var(--text);
       margin-bottom: 12px;
       text-align: center;
     }
 
     .feedback-subtitle {
       font-size: 0.95rem;
-      color: #666;
+      color: var(--text2);
       text-align: center;
       margin-bottom: 24px;
     }
@@ -232,17 +244,19 @@
 
     .feedback-input {
       padding: 12px;
-      border: 2px solid #e0e0e0;
+      border: 1px solid var(--border);
+      background: var(--surface2);
       border-radius: 8px;
       font-size: 1rem;
       font-family: inherit;
+      color: var(--text);
       transition: all 0.3s;
     }
 
     .feedback-input:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
     }
 
     textarea.feedback-input {
@@ -251,7 +265,7 @@
     }
 
     .feedback-button {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: var(--blue);
       color: white;
       padding: 12px 24px;
       border: none;
@@ -263,8 +277,9 @@
     }
 
     .feedback-button:hover {
+      background: var(--blue-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+      box-shadow: 0 8px 16px rgba(74, 158, 255, 0.3);
     }
 
     @media (max-width: 1024px) {
@@ -423,52 +438,62 @@
       <button class="btn-learn" onclick="window.location.href='indexnew.html'">Start Learning →</button>
     </div>
 
-    <!-- 🇪🇸 SPANISH - NEW -->
+    <!-- 🇪🇸 SPANISH - LIVE -->
     <div class="language-card">
       <div class="language-flag">🇪🇸</div>
       <div class="language-name">Spanish</div>
       <div class="language-subtitle">Español ↔ English</div>
-      <div class="language-status status-new">🆕 NEW</div>
+      <div class="language-status status-live">✅ LIVE</div>
       <div class="language-words">100 words • 10 categories</div>
       <button class="btn-learn" onclick="window.location.href='indexnew-spanish.html'">Start Learning →</button>
     </div>
 
-    <!-- 🇵🇹 PORTUGUESE - NEW -->
+    <!-- 🇵🇹 PORTUGUESE - LIVE -->
     <div class="language-card">
       <div class="language-flag">🇵🇹</div>
       <div class="language-name">Portuguese</div>
       <div class="language-subtitle">Português ↔ English</div>
-      <div class="language-status status-new">🆕 NEW</div>
+      <div class="language-status status-live">✅ LIVE</div>
       <div class="language-words">100 words • 10 categories</div>
       <button class="btn-learn" onclick="window.location.href='indexnew-portuguese.html'">Start Learning →</button>
     </div>
 
-    <!-- 🇵🇱 POLISH - NEW -->
+    <!-- 🇵🇱 POLISH - LIVE -->
     <div class="language-card">
       <div class="language-flag">🇵🇱</div>
       <div class="language-name">Polish</div>
       <div class="language-subtitle">Polski ↔ English</div>
-      <div class="language-status status-new">🆕 NEW</div>
+      <div class="language-status status-live">✅ LIVE</div>
       <div class="language-words">100 words • 10 categories</div>
       <button class="btn-learn" onclick="window.location.href='indexnew-polish.html'">Start Learning →</button>
     </div>
 
-    <!-- 🇨🇳 CHINESE - NEW -->
+    <!-- 🇨🇳 CHINESE - LIVE -->
     <div class="language-card">
       <div class="language-flag">🇨🇳</div>
       <div class="language-name">Chinese</div>
       <div class="language-subtitle">中文 ↔ English</div>
-      <div class="language-status status-new">🆕 NEW</div>
+      <div class="language-status status-live">✅ LIVE</div>
       <div class="language-words">100 words • 10 categories</div>
       <button class="btn-learn" onclick="window.location.href='indexnew-chinese.html'">Start Learning →</button>
     </div>
 
-    <!-- 🇫🇮 FINNISH - SOON AVAILABLE -->
+    <!-- 🇸🇦 ARABIC - COMING SOON -->
+    <div class="language-card">
+      <div class="language-flag">🇸🇦</div>
+      <div class="language-name">Arabic</div>
+      <div class="language-subtitle">العربية ↔ English</div>
+      <div class="language-status status-soon">⏳ COMING SOON</div>
+      <div class="language-words">100 words • 10 categories</div>
+      <button class="btn-learn" disabled>Coming Soon</button>
+    </div>
+
+    <!-- 🇫🇮 FINNISH - COMING SOON -->
     <div class="language-card">
       <div class="language-flag">🇫🇮</div>
       <div class="language-name">Finnish</div>
       <div class="language-subtitle">Suomi ↔ English</div>
-      <div class="language-status status-soon">⏳ SOON</div>
+      <div class="language-status status-soon">⏳ COMING SOON</div>
       <div class="language-words">100 words • 10 categories</div>
       <button class="btn-learn" disabled>Coming Soon</button>
     </div>
@@ -514,7 +539,7 @@
       <a href="theories.html">📖 Why PolyCards Works</a>
       <a href="https://github.com/djdehoon/polycards" target="_blank">💻 GitHub</a>
     </div>
-    <p style="margin-top: 16px; font-size: 0.85rem; opacity: 0.8;">PolyCards v0.20 • Open Source Language Learning</p>
+    <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text2);">PolyCards v0.20 • Open Source Language Learning</p>
   </div>
 
 </div>
