@@ -7,7 +7,9 @@ const Audio = {
   speak(text, lang = 'uk-UA') {
     try {
       // Stop any ongoing speech
-      window.speechSynthesis.cancel();
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
 
       // Create utterance
       const utterance = new SpeechSynthesisUtterance(text);
@@ -17,6 +19,18 @@ const Audio = {
         utterance.lang = 'uk-UA';
       } else if (lang === 'nl' || lang === 'nl-NL') {
         utterance.lang = 'nl-NL';
+      } else if (lang === 'es' || lang === 'es-ES') {
+        utterance.lang = 'es-ES';
+      } else if (lang === 'pt' || lang === 'pt-PT') {
+        utterance.lang = 'pt-PT';
+      } else if (lang === 'pl' || lang === 'pl-PL') {
+        utterance.lang = 'pl-PL';
+      } else if (lang === 'zh' || lang === 'zh-CN') {
+        utterance.lang = 'zh-CN';
+      } else if (lang === 'ar' || lang === 'ar-SA') {
+        utterance.lang = 'ar-SA';
+      } else if (lang === 'fi' || lang === 'fi-FI') {
+        utterance.lang = 'fi-FI';
       } else {
         utterance.lang = 'en-US';
       }
@@ -26,8 +40,15 @@ const Audio = {
       utterance.pitch = 1;
       utterance.volume = 1;
 
+      // Error handling
+      utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event.error);
+      };
+
       // Speak
-      window.speechSynthesis.speak(utterance);
+      if (window.speechSynthesis) {
+        window.speechSynthesis.speak(utterance);
+      }
 
       return true;
     } catch (error) {
@@ -46,6 +67,11 @@ const Audio = {
     return this.speak(word, 'nl-NL');
   },
 
+  // Speak word in Spanish
+  speakSpanish(word) {
+    return this.speak(word, 'es-ES');
+  },
+
   // Speak word in English (fallback)
   speakEnglish(word) {
     return this.speak(word, 'en-US');
@@ -54,7 +80,9 @@ const Audio = {
   // Stop current speech
   stop() {
     try {
-      window.speechSynthesis.cancel();
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
       return true;
     } catch (error) {
       console.error('Audio stop error:', error);
@@ -69,7 +97,10 @@ const Audio = {
 
   // Get available voices
   getVoices() {
-    return window.speechSynthesis.getVoices();
+    if (window.speechSynthesis) {
+      return window.speechSynthesis.getVoices();
+    }
+    return [];
   }
 };
 
