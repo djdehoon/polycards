@@ -705,27 +705,17 @@ function init() {
 // Show A1 Motivation Modal
 function showA1Motivation() {
   const modal = document.getElementById('a1-motivation-modal');
-  if (modal) {
-    modal.classList.add('open');
-  }
+  if (modal) modal.classList.add('open');
 }
 
-// Close A1 Motivation Modal
 function closeA1Motivation() {
   const modal = document.getElementById('a1-motivation-modal');
-  if (modal) {
-    modal.classList.remove('open');
-  }
-  // Optioneel: Start study mode
-  // startStudy('A1 Module');
+  if (modal) modal.classList.remove('open');
 }
 
-// Show on first visit (optional)
 function initA1Motivation() {
-  if (!localStorage.getItem('a1-motivation-shown')) {
-    showA1Motivation();
-    localStorage.setItem('a1-motivation-shown', 'true');
-  }
+  showA1Motivation();
 }
+
 
 
