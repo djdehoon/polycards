@@ -728,5 +728,4 @@ function initA1Motivation() {
   }
 }
 
-// Start app
-init();
+
