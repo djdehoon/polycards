@@ -680,6 +680,9 @@ function showWelcome() {
 // ════════════════════════════════════════
 function init() {
   load();
+  // In je init() function:
+  initA1Motivation(); // Toon pop-up bij eerste bezoek
+
   
   // Check if first time user (NEW in v0.17)
   //const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
