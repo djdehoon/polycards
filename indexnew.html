@@ -325,30 +325,10 @@
   
 <div class="toast" id="toast"></div>
 
-<!-- A1 Motivation Modal -->
-<div class="modal-overlay" id="a1-motivation-modal">
-  <div class="modal a1-modal">
-    <h2>🎯 Master 100 A1 Words</h2>
-    <p>Learn with context + spaced repetition</p>
-    <button onclick="closeA1Motivation()" class="btn btn-primary">Start Learning</button>
-  </div>
-</div>
-
 <!-- Scripts -->
 <script src="js/general.js"></script>
 <script>
-  function init() {
-    load();
-    initA1Motivation();
-    showPage('decks');
-    populateDeckSelect();
-  }
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
     init();
-  }
 </script>
 </body>
 
