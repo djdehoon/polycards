@@ -380,6 +380,16 @@
 
 
 <script src="js/general.js"></script>
-  
+ 
+<!-- INIT AANROEPEN -->
+<script>
+    // Start when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+</script> 
+
 </body>
 </html>
