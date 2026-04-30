@@ -680,9 +680,7 @@ function showWelcome() {
 // ════════════════════════════════════════
 function init() {
   load();
-  initA1Motivation(); // Toon pop-up bij eerste bezoek
-
-  
+    
   // Check if first time user (NEW in v0.17)
   //const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
   //if (!hasSeenWelcome) {
@@ -695,27 +693,4 @@ function init() {
   showPage('decks');
   populateDeckSelect();
 }
-
-
-
-// ═══════════════════════════════════════════════════════════════
-// A1 MODULE MOTIVATION MODAL
-// ═══════════════════════════════════════════════════════════════
-
-// Show A1 Motivation Modal
-function showA1Motivation() {
-  const modal = document.getElementById('a1-motivation-modal');
-  if (modal) modal.classList.add('open');
-}
-
-function closeA1Motivation() {
-  const modal = document.getElementById('a1-motivation-modal');
-  if (modal) modal.classList.remove('open');
-}
-
-function initA1Motivation() {
-  showA1Motivation();
-}
-
-
 
