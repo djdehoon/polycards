@@ -20,6 +20,33 @@
 @import url('stats.css');
 //@import url('other.css');
 
+/* Modal Overlay - Show/Hide */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;              /* ← HIDDEN by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;              /* ← SHOW when .open is added */
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
 /* ═══════════════════════════════════════════════════════════════
    A1 MODULE MOTIVATION MODAL
    ═══════════════════════════════════════════════════════════════ */
