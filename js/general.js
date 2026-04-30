@@ -697,8 +697,7 @@ function init() {
   populateDeckSelect();
 }
 
-// Start app
-init();
+
 
 // ═══════════════════════════════════════════════════════════════
 // A1 MODULE MOTIVATION MODAL
@@ -733,3 +732,5 @@ function initA1Motivation() {
 // NEW: Show A1 Motivation on first visit
   initA1Motivation();
 
+// Start app
+init();
