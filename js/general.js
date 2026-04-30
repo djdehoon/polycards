@@ -730,7 +730,6 @@ function initA1Motivation() {
   }
 }
 
-// Call this when page loads (add to your init function)
-// initA1Motivation();
-
+// NEW: Show A1 Motivation on first visit
+  initA1Motivation();
 
