@@ -680,7 +680,6 @@ function showWelcome() {
 // ════════════════════════════════════════
 function init() {
   load();
-  // In je init() function:
   initA1Motivation(); // Toon pop-up bij eerste bezoek
 
   
@@ -728,9 +727,6 @@ function initA1Motivation() {
     localStorage.setItem('a1-motivation-shown', 'true');
   }
 }
-
-// NEW: Show A1 Motivation on first visit
-  initA1Motivation();
 
 // Start app
 init();
