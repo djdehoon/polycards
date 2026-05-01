@@ -12,7 +12,7 @@ const WORDS = [
   {w:'лев',t:'lev',tr:'leeuw',sUk:'De <b>лев</b> is de koning van de jungle.',sNl:'De <b>leeuw</b> is de koning van de jungle.',deck:'animals 🐾',e:'🦁'},
   {w:'слон',t:'slon',tr:'olifant',sUk:'De <b>слон</b> heeft een lange slurf.',sNl:'De <b>olifant</b> heeft een lange slurf.',deck:'animals 🐾',e:'🐘'},
   {w:'жаба',t:'zhaba',tr:'kikker',sUk:'De <b>жаба</b> springt in het water.',sNl:'De <b>kikker</b> springt in het water.',deck:'animals 🐾',e:'🐸'},
-  {w:'метелик',t:'metелyk',tr:'vlinder',sUk:'De <b>метелик</b> vliegt over de bloemen.',sNl:'De <b>vlinder</b> vliegt over de bloemen.',deck:'animals 🐾',e:'🦋'},
+  {w:'метелик',t:'metelyk',tr:'vlinder',sUk:'De <b>метелик</b> vliegt over de bloemen.',sNl:'De <b>vlinder</b> vliegt over de bloemen.',deck:'animals 🐾',e:'🦋'},
 
   // 🍎 Eten & Drinken (10)
   {w:'хліб',t:'khlib',tr:'brood',sUk:'Ik koop elke dag vers <b>хліб</b>.',sNl:'Ik koop elke dag vers <b>brood</b>.',deck:'Eten & Drinken 🍎',e:'🍞'},
@@ -116,7 +116,7 @@ const WORDS = [
   {w:'злий',t:'zlyy',tr:'boos',sUk:'Ze is <b>злий</b> op hem.',sNl:'Ze is <b>boos</b> op hem.',deck:'Emoties ❤️',e:'😠'},
   {w:'наляканий',t:'nalyakanyy',tr:'bang',sUk:'Het kind is <b>наляканий</b> van de hond.',sNl:'Het kind is <b>bang</b> voor de hond.',deck:'Emoties ❤️',e:'😨'},
   {w:'здивований',t:'zdyvovanyy',tr:'verrast',sUk:'Ik ben <b>здивований</b> door het cadeau.',sNl:'Ik ben <b>verrast</b> door het cadeau.',deck:'Emoties ❤️',e:'😲'},
-  {w:'втомлений',t:'vtomlenыy',tr:'moe',sUk:'Ik ben <b>втомлений</b> na het werk.',sNl:'Ik ben <b>moe</b> na het werk.',deck:'Emoties ❤️',e:'😴'},
+  {w:'втомлений',t:'vtomlenyy',tr:'moe',sUk:'Ik ben <b>втомлений</b> na het werk.',sNl:'Ik ben <b>moe</b> na het werk.',deck:'Emoties ❤️',e:'😴'},
   {w:'закоханий',t:'zakohanyy',tr:'verliefd',sUk:'Hij is <b>закоханий</b> op haar.',sNl:'Hij is <b>verliefd</b> op haar.',deck:'Emoties ❤️',e:'😍'},
   {w:'спокійний',t:'spokiynyy',tr:'rustig / kalm',sUk:'Ze is altijd <b>спокійний</b>.',sNl:'Ze is altijd <b>rustig</b>.',deck:'Emoties ❤️',e:'😌'},
   {w:'гордий',t:'hordyy',tr:'trots',sUk:'Ik ben <b>гордий</b> op jou.',sNl:'Ik ben <b>trots</b> op jou.',deck:'Emoties ❤️',e:'🦁'},
@@ -137,6 +137,17 @@ let cardFlipped = false;
 let typeChecked = false;
 let totalInSession = 0;
 
+let browseFilterDeck = 'all';
+let _browseSearchDebounce = null;
+let _speechVoicesCache = null;
+
+function getSpeechVoices() {
+  if (typeof speechSynthesis === 'undefined') return [];
+  const v = speechSynthesis.getVoices();
+  if (v.length) _speechVoicesCache = v;
+  return _speechVoicesCache && _speechVoicesCache.length ? _speechVoicesCache : v;
+}
+
 // ════════════════════════════════════════
 // 💾 STORAGE
 // ════════════════════════════════════════
@@ -145,10 +156,23 @@ function save() {
   localStorage.setItem('ukr_cards', JSON.stringify(cards));
 }
 function load() {
-  const d = localStorage.getItem('ukr_decks');
-  const c = localStorage.getItem('ukr_cards');
-  decks = d ? JSON.parse(d) : [];
-  cards = c ? JSON.parse(c) : [];
+  try {
+    const d = localStorage.getItem('ukr_decks');
+    const c = localStorage.getItem('ukr_cards');
+    decks = d ? JSON.parse(d) : [];
+    cards = c ? JSON.parse(c) : [];
+  } catch {
+    decks = [];
+    cards = [];
+  }
+  if (!Array.isArray(decks)) decks = [];
+  if (!Array.isArray(cards)) cards = [];
+
+  if (cards.length > 0 && decks.length === 0) {
+    const deckNames = [...new Set(cards.map(card => card.deck).filter(Boolean))];
+    deckNames.forEach(name => decks.push({ name }));
+    save();
+  }
 
   // Eerste keer: laad standaard woorden + decks
   if (cards.length === 0) {
@@ -200,13 +224,22 @@ function showPage(id) {
 // ════════════════════════════════════════
 function renderDecks() {
   const now = Date.now();
+  const stats = new Map();
+  for (const c of cards) {
+    const key = c.deck;
+    if (!stats.has(key)) stats.set(key, { new: 0, learn: 0, due: 0 });
+    const s = stats.get(key);
+    if (c.state === 'new') s.new++;
+    else if (c.state === 'learn') s.learn++;
+    else if (c.state === 'review' && c.due <= now) s.due++;
+  }
   const container = document.getElementById('deck-rows');
   container.innerHTML = '';
   decks.forEach(deck => {
-    const dc = cards.filter(c => c.deck === deck.name);
-    const newC = dc.filter(c => c.state === 'new').length;
-    const learnC = dc.filter(c => c.state === 'learn').length;
-    const dueC = dc.filter(c => c.state === 'review' && c.due <= now).length;
+    const st = stats.get(deck.name) || { new: 0, learn: 0, due: 0 };
+    const newC = st.new;
+    const learnC = st.learn;
+    const dueC = st.due;
     const row = document.createElement('div');
     row.className = 'deck-row';
     row.innerHTML = `
@@ -395,11 +428,7 @@ const dir = getEffectiveDirection();
 const text = dir === 'uk-nl' ? currentCard.word : currentCard.translation;
 const lang = dir === 'uk-nl' ? 'uk-UA' : 'nl-NL';
 
-
-
-
-// Check of stemmen beschikbaar zijn
-const voices = speechSynthesis.getVoices();
+const voices = getSpeechVoices();
 const hasVoice = voices.some(v => v.lang.startsWith(lang.split('-')[0]));
 
 
@@ -575,22 +604,14 @@ function clearAdd() {
 // ════════════════════════════════════════
 // 🔍 BROWSE
 // ════════════════════════════════════════
-function renderBrowse() {
+function renderBrowseListOnly() {
   const query = (document.getElementById('browse-search').value || '').toLowerCase();
-  const activeFilter = document.querySelector('.f-btn.active');
-  const filterDeck = activeFilter ? activeFilter.dataset.deck : 'all';
-
-  // Filters
-  const filterRow = document.getElementById('browse-filters');
-  filterRow.innerHTML = `<button class="f-btn ${filterDeck === 'all' ? 'active' : ''}" data-deck="all" onclick="setBrowseFilter('all')">Alle</button>` +
-    decks.map(d => `<button class="f-btn ${filterDeck === d.name ? 'active' : ''}" data-deck="${d.name}" onclick="setBrowseFilter('${d.name}')">${d.name}</button>`).join('');
-
   let filtered = cards;
-  if (filterDeck !== 'all') filtered = filtered.filter(c => c.deck === filterDeck);
+  if (browseFilterDeck !== 'all') filtered = filtered.filter(c => c.deck === browseFilterDeck);
   if (query) filtered = filtered.filter(c =>
-    c.word.toLowerCase().includes(query) ||
-    c.translation.toLowerCase().includes(query) ||
-    c.translit.toLowerCase().includes(query)
+    String(c.word || '').toLowerCase().includes(query) ||
+    String(c.translation || '').toLowerCase().includes(query) ||
+    String(c.translit || '').toLowerCase().includes(query)
   );
 
   document.getElementById('browse-count').textContent = filtered.length + ' kaarten';
@@ -608,13 +629,27 @@ function renderBrowse() {
       </div>`).join('');
 }
 
-let _browseFilter = 'all';
+function scheduleBrowseSearch() {
+  clearTimeout(_browseSearchDebounce);
+  _browseSearchDebounce = setTimeout(() => {
+    _browseSearchDebounce = null;
+    renderBrowseListOnly();
+  }, 140);
+}
+
+function renderBrowse() {
+  const filterRow = document.getElementById('browse-filters');
+  filterRow.innerHTML = `<button class="f-btn ${browseFilterDeck === 'all' ? 'active' : ''}" data-deck="all" onclick="setBrowseFilter('all')">Alle</button>` +
+    decks.map(d => `<button class="f-btn ${browseFilterDeck === d.name ? 'active' : ''}" data-deck="${d.name}" onclick="setBrowseFilter('${d.name}')">${d.name}</button>`).join('');
+  renderBrowseListOnly();
+}
+
 function setBrowseFilter(deck) {
-  _browseFilter = deck;
-  document.querySelectorAll('.f-btn').forEach(b => {
+  browseFilterDeck = deck;
+  document.querySelectorAll('#browse-filters .f-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.deck === deck);
   });
-  renderBrowse();
+  renderBrowseListOnly();
 }
 
 // ════════════════════════════════════════
@@ -635,7 +670,7 @@ function renderStats() {
   bars.innerHTML = decks.map(d => {
     const dc = cards.filter(c => c.deck === d.name);
     const pct = total > 0 ? Math.round((dc.length / total) * 100) : 0;
-    const colors = ['#4a9eff','#4caf50','#ff9800','#f44336','#9c27b0','#00bcd4','#ff5722','#8bc34a','#fflashcard107','#e91e63'];
+    const colors = ['#4a9eff','#4caf50','#ff9800','#f44336','#9c27b0','#00bcd4','#ff5722','#8bc34a','#ffc107','#e91e63'];
     const color = colors[decks.indexOf(d) % colors.length];
     return `<div class="bar-row">
       <div class="bar-label"><span>${d.name}</span><span>${dc.length} kaarten</span></div>
@@ -656,6 +691,7 @@ function shuffle(arr) {
 
 function showToast(msg) {
   const t = document.getElementById('toast');
+  if (!t) return;
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
@@ -680,16 +716,19 @@ function showWelcome() {
 // ════════════════════════════════════════
 function init() {
   load();
-    
-  // Check if first time user (NEW in v0.17)
-  //const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
-  //if (!hasSeenWelcome) {
-  //  document.getElementById('welcome-screen').style.display = 'flex';
-  //}
 
-  // Always show welcome
-  document.getElementById('welcome-screen').style.display = 'flex';
-  
+  if (typeof speechSynthesis !== 'undefined' && !window._polySpeechVoicesHooked) {
+    window._polySpeechVoicesHooked = true;
+    speechSynthesis.onvoiceschanged = () => { _speechVoicesCache = null; };
+    getSpeechVoices();
+  }
+
+  const welcomeEl = document.getElementById('welcome-screen');
+  const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
+  if (welcomeEl) {
+    welcomeEl.style.display = hasSeenWelcome ? 'none' : 'flex';
+  }
+
   showPage('decks');
   populateDeckSelect();
 }
