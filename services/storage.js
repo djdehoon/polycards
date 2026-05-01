@@ -1,77 +1,81 @@
 // ════════════════════════════════════════
-// STORAGE - LocalStorage Management
+// 💾 STORAGE
 // ════════════════════════════════════════
-
-const Storage = {
-  // Get data from localStorage
-  get(key) {
-    try {
-      const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : null;
-    } catch (error) {
-      console.error('Storage get error:', error);
-      return null;
-    }
-  },
-
-  // Set data in localStorage
-  set(key, value) {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-      return true;
-    } catch (error) {
-      console.error('Storage set error:', error);
-      return false;
-    }
-  },
-
-  // Remove data from localStorage
-  remove(key) {
-    try {
-      localStorage.removeItem(key);
-      return true;
-    } catch (error) {
-      console.error('Storage remove error:', error);
-      return false;
-    }
-  },
-
-  // Clear all data
-  clear() {
-    try {
-      localStorage.clear();
-      return true;
-    } catch (error) {
-      console.error('Storage clear error:', error);
-      return false;
-    }
-  },
-
-  // Export data as JSON
-  export() {
-    try {
-      const cards = this.get('polycards_ukraine_cards') || [];
-      const stats = this.get('polycards_ukraine_stats') || {};
-      return JSON.stringify({ cards, stats }, null, 2);
-    } catch (error) {
-      console.error('Storage export error:', error);
-      return null;
-    }
-  },
-
-  // Import data from JSON
-  import(jsonData) {
-    try {
-      const data = JSON.parse(jsonData);
-      if (data.cards) this.set('polycards_ukraine_cards', data.cards);
-      if (data.stats) this.set('polycards_ukraine_stats', data.stats);
-      return true;
-    } catch (error) {
-      console.error('Storage import error:', error);
-      return false;
-    }
+function save() {
+  localStorage.setItem('ukr_decks', JSON.stringify(decks));
+  localStorage.setItem('ukr_cards', JSON.stringify(cards));
+}
+function load() {
+  try {
+    const d = localStorage.getItem('ukr_decks');
+    const c = localStorage.getItem('ukr_cards');
+    decks = d ? JSON.parse(d) : [];
+    cards = c ? JSON.parse(c) : [];
+  } catch {
+    decks = [];
+    cards = [];
   }
-};
+  if (!Array.isArray(decks)) decks = [];
+  if (!Array.isArray(cards)) cards = [];
 
-// Make Storage available globally
-window.Storage = Storage;
+  if (cards.length > 0 && decks.length === 0) {
+    const deckNames = [...new Set(cards.map(card => card.deck).filter(Boolean))];
+    deckNames.forEach(name => decks.push({ name }));
+    save();
+  }
+
+  // Eerste keer: laad standaard woorden + decks
+  if (cards.length === 0) {
+    const deckNames = [...new Set(WORDS.map(w => w.deck))];
+    deckNames.forEach(name => {
+      if (!decks.find(d => d.name === name)) {
+        decks.push({ name });
+      }
+    });
+    WORDS.forEach(w => {
+      cards.push({
+        id: Date.now() + Math.random(),
+        word: w.w,
+        translit: w.t,
+        translation: w.tr,
+        sentenceUk: w.sUk,
+        sentenceNl: w.sNl,
+        deck: w.deck,
+        emoji: w.e,
+        interval: 0,
+        ease: 2.5,
+        due: 0,
+        lapses: 0,
+        state: 'new'
+      });
+    });
+    save();
+  }
+}
+
+// ════════════════════════════════════════
+// 🎉 WELCOME SCREEN
+// ════════════════════════════════════════
+function closeWelcome() {
+  localStorage.setItem('polycards_ukraine_welcome', 'true');
+  document.getElementById('welcome-screen').style.display = 'none';
+  //showPage('decks');  // Show the decks page
+}
+
+  
+// ════════════════════════════════════════
+// 🚀 INITIALIZATION
+// ════════════════════════════════════════
+function init() {
+  load();
+
+  const welcomeEl = document.getElementById('welcome-screen');
+  const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
+  if (welcomeEl) {
+    welcomeEl.style.display = hasSeenWelcome ? 'none' : 'flex';
+  }
+
+  showPage('decks');
+  populateDeckSelect();
+}
+

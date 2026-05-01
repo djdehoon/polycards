@@ -54,7 +54,7 @@
   </svg>
   <span class="logo-name">PolyCards</span> 
   <span class="logo-country">Ukraine</span>
-  <span class="nav-version">v0.20.2</span>
+  <span class="nav-version">v0.20.1</span>
 </div>
   
 <div class="nav-tabs">
@@ -186,7 +186,7 @@
 <div class="page" id="page-browse">
   <div class="page-title">Browse 🔍</div>
   <div class="page-sub" id="browse-count">Alle kaarten</div>
-  <input class="search-bar" id="browse-search" placeholder="🔍 Zoek op woord of vertaling..." oninput="scheduleBrowseSearch()"/>
+  <input class="search-bar" id="browse-search" placeholder="🔍 Zoek op woord of vertaling..." oninput="renderBrowse()"/>
   <div class="filter-row" id="browse-filters"></div>
   <div id="browse-list"></div>
 </div>
@@ -326,6 +326,7 @@
 <div class="toast" id="toast"></div>
 
 <!-- Scripts -->
+<script src="services/storage.js"></script>
 <script src="js/general.js"></script>
 <script>
     init();

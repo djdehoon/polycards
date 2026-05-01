@@ -137,72 +137,6 @@ let cardFlipped = false;
 let typeChecked = false;
 let totalInSession = 0;
 
-let browseFilterDeck = 'all';
-let _browseSearchDebounce = null;
-let _speechVoicesCache = null;
-
-function getSpeechVoices() {
-  if (typeof speechSynthesis === 'undefined') return [];
-  const v = speechSynthesis.getVoices();
-  if (v.length) _speechVoicesCache = v;
-  return _speechVoicesCache && _speechVoicesCache.length ? _speechVoicesCache : v;
-}
-
-// ════════════════════════════════════════
-// 💾 STORAGE
-// ════════════════════════════════════════
-function save() {
-  localStorage.setItem('ukr_decks', JSON.stringify(decks));
-  localStorage.setItem('ukr_cards', JSON.stringify(cards));
-}
-function load() {
-  try {
-    const d = localStorage.getItem('ukr_decks');
-    const c = localStorage.getItem('ukr_cards');
-    decks = d ? JSON.parse(d) : [];
-    cards = c ? JSON.parse(c) : [];
-  } catch {
-    decks = [];
-    cards = [];
-  }
-  if (!Array.isArray(decks)) decks = [];
-  if (!Array.isArray(cards)) cards = [];
-
-  if (cards.length > 0 && decks.length === 0) {
-    const deckNames = [...new Set(cards.map(card => card.deck).filter(Boolean))];
-    deckNames.forEach(name => decks.push({ name }));
-    save();
-  }
-
-  // Eerste keer: laad standaard woorden + decks
-  if (cards.length === 0) {
-    const deckNames = [...new Set(WORDS.map(w => w.deck))];
-    deckNames.forEach(name => {
-      if (!decks.find(d => d.name === name)) {
-        decks.push({ name });
-      }
-    });
-    WORDS.forEach(w => {
-      cards.push({
-        id: Date.now() + Math.random(),
-        word: w.w,
-        translit: w.t,
-        translation: w.tr,
-        sentenceUk: w.sUk,
-        sentenceNl: w.sNl,
-        deck: w.deck,
-        emoji: w.e,
-        interval: 0,
-        ease: 2.5,
-        due: 0,
-        lapses: 0,
-        state: 'new'
-      });
-    });
-    save();
-  }
-}
-
 // ════════════════════════════════════════
 // 🧭 NAVIGATIE
 // ════════════════════════════════════════
@@ -224,22 +158,13 @@ function showPage(id) {
 // ════════════════════════════════════════
 function renderDecks() {
   const now = Date.now();
-  const stats = new Map();
-  for (const c of cards) {
-    const key = c.deck;
-    if (!stats.has(key)) stats.set(key, { new: 0, learn: 0, due: 0 });
-    const s = stats.get(key);
-    if (c.state === 'new') s.new++;
-    else if (c.state === 'learn') s.learn++;
-    else if (c.state === 'review' && c.due <= now) s.due++;
-  }
   const container = document.getElementById('deck-rows');
   container.innerHTML = '';
   decks.forEach(deck => {
-    const st = stats.get(deck.name) || { new: 0, learn: 0, due: 0 };
-    const newC = st.new;
-    const learnC = st.learn;
-    const dueC = st.due;
+    const dc = cards.filter(c => c.deck === deck.name);
+    const newC = dc.filter(c => c.state === 'new').length;
+    const learnC = dc.filter(c => c.state === 'learn').length;
+    const dueC = dc.filter(c => c.state === 'review' && c.due <= now).length;
     const row = document.createElement('div');
     row.className = 'deck-row';
     row.innerHTML = `
@@ -428,7 +353,11 @@ const dir = getEffectiveDirection();
 const text = dir === 'uk-nl' ? currentCard.word : currentCard.translation;
 const lang = dir === 'uk-nl' ? 'uk-UA' : 'nl-NL';
 
-const voices = getSpeechVoices();
+
+
+
+// Check of stemmen beschikbaar zijn
+const voices = speechSynthesis.getVoices();
 const hasVoice = voices.some(v => v.lang.startsWith(lang.split('-')[0]));
 
 
@@ -604,10 +533,18 @@ function clearAdd() {
 // ════════════════════════════════════════
 // 🔍 BROWSE
 // ════════════════════════════════════════
-function renderBrowseListOnly() {
+function renderBrowse() {
   const query = (document.getElementById('browse-search').value || '').toLowerCase();
+  const activeFilter = document.querySelector('.f-btn.active');
+  const filterDeck = activeFilter ? activeFilter.dataset.deck : 'all';
+
+  // Filters
+  const filterRow = document.getElementById('browse-filters');
+  filterRow.innerHTML = `<button class="f-btn ${filterDeck === 'all' ? 'active' : ''}" data-deck="all" onclick="setBrowseFilter('all')">Alle</button>` +
+    decks.map(d => `<button class="f-btn ${filterDeck === d.name ? 'active' : ''}" data-deck="${d.name}" onclick="setBrowseFilter('${d.name}')">${d.name}</button>`).join('');
+
   let filtered = cards;
-  if (browseFilterDeck !== 'all') filtered = filtered.filter(c => c.deck === browseFilterDeck);
+  if (filterDeck !== 'all') filtered = filtered.filter(c => c.deck === filterDeck);
   if (query) filtered = filtered.filter(c =>
     String(c.word || '').toLowerCase().includes(query) ||
     String(c.translation || '').toLowerCase().includes(query) ||
@@ -629,27 +566,13 @@ function renderBrowseListOnly() {
       </div>`).join('');
 }
 
-function scheduleBrowseSearch() {
-  clearTimeout(_browseSearchDebounce);
-  _browseSearchDebounce = setTimeout(() => {
-    _browseSearchDebounce = null;
-    renderBrowseListOnly();
-  }, 140);
-}
-
-function renderBrowse() {
-  const filterRow = document.getElementById('browse-filters');
-  filterRow.innerHTML = `<button class="f-btn ${browseFilterDeck === 'all' ? 'active' : ''}" data-deck="all" onclick="setBrowseFilter('all')">Alle</button>` +
-    decks.map(d => `<button class="f-btn ${browseFilterDeck === d.name ? 'active' : ''}" data-deck="${d.name}" onclick="setBrowseFilter('${d.name}')">${d.name}</button>`).join('');
-  renderBrowseListOnly();
-}
-
+let _browseFilter = 'all';
 function setBrowseFilter(deck) {
-  browseFilterDeck = deck;
-  document.querySelectorAll('#browse-filters .f-btn').forEach(b => {
+  _browseFilter = deck;
+  document.querySelectorAll('.f-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.deck === deck);
   });
-  renderBrowseListOnly();
+  renderBrowse();
 }
 
 // ════════════════════════════════════════
@@ -700,36 +623,7 @@ function showToast(msg) {
 // ════════════════════════════════════════
 // 🎉 WELCOME SCREEN
 // ════════════════════════════════════════
-function closeWelcome() {
-  localStorage.setItem('polycards_ukraine_welcome', 'true');
-  document.getElementById('welcome-screen').style.display = 'none';
-  //showPage('decks');  // Show the decks page
-}
-
 function showWelcome() {
   document.getElementById('welcome-screen').style.display = 'flex';
-}
-
-  
-// ════════════════════════════════════════
-// 🚀 INITIALIZATION
-// ════════════════════════════════════════
-function init() {
-  load();
-
-  if (typeof speechSynthesis !== 'undefined' && !window._polySpeechVoicesHooked) {
-    window._polySpeechVoicesHooked = true;
-    speechSynthesis.onvoiceschanged = () => { _speechVoicesCache = null; };
-    getSpeechVoices();
-  }
-
-  const welcomeEl = document.getElementById('welcome-screen');
-  const hasSeenWelcome = localStorage.getItem('polycards_ukraine_welcome');
-  if (welcomeEl) {
-    welcomeEl.style.display = hasSeenWelcome ? 'none' : 'flex';
-  }
-
-  showPage('decks');
-  populateDeckSelect();
 }
 
