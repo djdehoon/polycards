@@ -39,25 +39,6 @@ function renderDecks() {
   });
 }
 
-function openDeckModal() {
-  document.getElementById('deck-modal').classList.add('open');
-}
-function closeDeckModal() {
-  document.getElementById('deck-modal').classList.remove('open');
-  document.getElementById('new-deck-name').value = '';
-}
-function createDeck() {
-  const name = document.getElementById('new-deck-name').value.trim();
-  if (!name) return;
-  if (decks.find(d => d.name === name)) { showToast('Deck bestaat al!'); return; }
-  decks.push({ name });
-  save();
-  closeDeckModal();
-  renderDecks();
-  populateDeckSelect();
-  showToast('✅ Deck aangemaakt!');
-}
-
 // ════════════════════════════════════════
 // ➕ KAART TOEVOEGEN
 // ════════════════════════════════════════
